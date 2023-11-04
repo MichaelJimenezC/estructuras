@@ -2,6 +2,7 @@ package com.mycompany.proyecto_estructuras;
 
 import Logica.Usuario;
 import Prefijos.PrefijoPais;
+import static com.mycompany.proyecto_estructuras.App.listaUsuarios;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,26 +31,35 @@ public class PrimaryController {
     private boolean comboBoxLoaded = false;
 
     @FXML
-    private void LoginPage(ActionEvent event) {
+    private void LoginPage(ActionEvent event) throws IOException {
 
         PrefijoPais selection = comboPrefijos.getValue();
         String numero = telefono.getText();
         String prefijo = selection != null ? selection.getPrefijo() : "";
         String contrasenia = password.getText();
-        if (selection!= null) {
-            try{
-            App.setRoot("secondary");
-            
-            }catch(IOException e){
-                e.printStackTrace();
-                showAlert("Error","Cambio de pantalla fallido","No se pudo cargar la vista siguiebte");
-            }
+        App.usuario = verificarUsuario(prefijo, numero, contrasenia);
+        if (App.usuario != null) {
+            App.setRoot("secondary.fxml");
         } else {
             showAlert("Error de login", "No puedes continuar", "Por favor, llenar todos los campos");
             telefono.clear();
             password.clear();
             comboPrefijos.getSelectionModel().clearSelection();
         }
+    }
+
+    public static Usuario verificarUsuario(String prefijo, String number, String contra) {
+        for (Usuario usuario : listaUsuarios) {
+            if (usuario.getPrefijo().equals(prefijo) && usuario.getTelefono().equals(number) && usuario.getContraseña().equals(contra)) {
+
+                System.out.println(usuario);
+                System.out.println("Usuario verificado");
+                return usuario;
+            }
+
+        }
+        System.out.println("No se ha encontrado el archivo");
+        return null;
     }
 
     private boolean isInputValid() {
@@ -99,7 +109,6 @@ public class PrimaryController {
         lista.add(new PrefijoPais("+91", "India"));
         return lista;
     }
-
 
     @FXML
     public void initialize() {

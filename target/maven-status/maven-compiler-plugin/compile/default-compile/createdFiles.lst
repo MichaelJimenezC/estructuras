@@ -1,6 +1,7 @@
 Logica\DoubleLinkedList$Nodo.class
 com\mycompany\proyecto_estructuras\PrimaryController.class
 module-info.class
+com\mycompany\proyecto_estructuras\ContactosPageController.class
 Logica\DoubleLinkedList.class
 com\mycompany\proyecto_estructuras\App.class
 Logica\Usuario.class
