@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<VBox fx:id="mainContainer" spacing="20" alignment="TOP_CENTER" xmlns:fx="http://javafx.com/fxml" >
+    <!-- Barra de título -->
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #FF8379; -fx-padding: 10;">
+        <Button text="←" fx:id="backButton" />
+        <Label fx:id="titleLabel" text="Friends Profile" HBox.hgrow="ALWAYS" style="-fx-text-fill: white; -fx-font-size: 20px;" />
+        <!-- Puedes añadir aquí un botón de configuración si es necesario -->
+    </HBox>
+
+    <!-- Contenedor del perfil -->
+    <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20;">
+        <ImageView fx:id="profileImageView" fitWidth="100" fitHeight="100" preserveRatio="true" />
+        <Label text="Leon Garcia" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        <Button text="Friends" style="-fx-background-color: #FF8379; -fx-text-fill: white; -fx-font-weight: bold;" />
+    </VBox>
+
+    <!-- Opciones del perfil -->
+    <VBox spacing="10" style="-fx-padding: 10;">
+        <Button text="Edit Profile" styleClass="menu-button" />
+        <Button text="Messages" styleClass="menu-button" />
+        <Button text="Notifications" styleClass="menu-button" />
+        <Button text="Photos" styleClass="menu-button" />
+    </VBox>
+
+    <!-- Lista de otros contactos -->
+    <Label text="Others Contacts" style="-fx-font-weight: bold; -fx-padding: 5;" />
+    <HBox spacing="15" alignment="CENTER" style="-fx-padding: 10;">
+        <!-- Sustituir "placeholder.png" con las imágenes reales -->
+        <VBox alignment="CENTER" spacing="5">
+            <ImageView fx:id="contact1" fitWidth="60" fitHeight="60" preserveRatio="true" />
+            <Label text="Ivan" />
+        </VBox>
+        <VBox alignment="CENTER" spacing="5">
+            <ImageView fx:id="contact2" fitWidth="60" fitHeight="60" preserveRatio="true" />
+            <Label text="Nathaniel" />
+        </VBox>
+        <VBox alignment="CENTER" spacing="5">
+            <ImageView fx:id="contact3" fitWidth="60" fitHeight="60" preserveRatio="true" />
+            <Label text="Bridges" />
+        </VBox>
+        <VBox alignment="CENTER" spacing="5">
+            <ImageView fx:id="contact4" fitWidth="60" fitHeight="60" preserveRatio="true" />
+            <Label text="Asik" />
+        </VBox>
+    </HBox>
+</VBox>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="432.0" spacing="15.0" style="-fx-background-color: ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.PrimaryController">
+   <children>
+      <VBox prefHeight="178.0" prefWidth="398.0" style="-fx-background-color: fffff;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="139.0" prefWidth="398.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="150.0" prefWidth="154.0">
+                     <children>
+                        <Label text="Welcome Back!" textFill="#6735a4">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Loggin your account" textFill="#6735a4" />
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="101.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Imagenes/Login.png" />
+                     </image></ImageView>
+               </children>
+               <padding>
+                  <Insets left="45.0" top="25.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox prefHeight="27.0" prefWidth="398.0">
+         <children>
+            <Label text="Phone Number" textFill="#6735a4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="45.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="84.0" prefWidth="464.0" spacing="20.0">
+         <children>
+            <ComboBox fx:id="comboPrefijos" onShowing="#handleComboBoxShowing" prefHeight="25.0" prefWidth="173.0" />
+            <TextField fx:id="telefono" prefHeight="25.0" prefWidth="166.0" />
+         </children>
+         <padding>
+            <Insets left="45.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="40.0" prefWidth="398.0">
+         <children>
+            <Label text="Password" textFill="#6735a4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="45.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="83.0" prefWidth="419.0">
+         <children>
+            <PasswordField fx:id="password" prefHeight="25.0" prefWidth="254.0" />
+         </children>
+         <padding>
+            <Insets left="45.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: #6735a4;" text="Login" onAction="#LoginPage" textFill="#ecebee">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

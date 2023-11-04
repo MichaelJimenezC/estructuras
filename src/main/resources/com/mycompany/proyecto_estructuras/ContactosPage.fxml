@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="279.0" style="-fx-background-color: fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" prefHeight="138.0" prefWidth="268.0" spacing="10.0" style="-fx-background-color: #937cdf;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="52.0" prefWidth="279.0">
+               <children>
+                  <Label prefHeight="52.0" prefWidth="82.0" text="Contacts" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <VBox prefHeight="35.0" prefWidth="331.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="84.0" prefWidth="279.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="92.0" prefWidth="331.0" spacing="10.0">
+               <children>
+                  <TextField prefHeight="25.0" prefWidth="187.0" />
+                  <ImageView fitHeight="22.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Imagenes/lupa.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="55.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Imagenes/caritaTriste.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="197.0" spacing="10.0">
+                     <children>
+                        <Label text="Ups!" />
+                        <Label text="Paraece que no tiene contactos" />
+                        <Label />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6735a4;" text="Agregar Contactos" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="-fx-border-radius: 15;" />
+      <String fx:value="-fx-background-radius: 15;" />
+   </styleClass>
+</VBox>
