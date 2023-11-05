@@ -3,6 +3,7 @@ com\mycompany\proyecto_estructuras\PrimaryController.class
 module-info.class
 com\mycompany\proyecto_estructuras\ContactosPageController.class
 Logica\DoubleLinkedList.class
+com\mycompany\proyecto_estructuras\PrimaryController$1.class
 com\mycompany\proyecto_estructuras\App.class
 Logica\Usuario.class
 Prefijos\PrefijoPais.class
@@ -11,4 +12,5 @@ Logica\Persona.class
 Logica\DoubleLinkedList$1.class
 com\mycompany\proyecto_estructuras\SecondaryController.class
 Logica\Empresa.class
+com\mycompany\proyecto_estructuras\PrimaryController$2.class
 Logica\Contacto.class
