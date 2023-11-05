@@ -5,8 +5,6 @@
 package Prefijos;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 /**
  * Clase bandera, creada con la finalidad de llenar el comboBox con la bandera
  * del país con su respectivo codigo y el numero de usuario para el respectivo
@@ -19,7 +17,6 @@ public class PrefijoPais {
     private Image bandera;
     private String prefijo;
     private String nombrePais;
-    private ImageView graphic;
 
     public PrefijoPais(Image bandera, String prefijo, String nombrePais) {
         this.bandera = bandera;
@@ -49,10 +46,6 @@ public class PrefijoPais {
 
     public void setBandera(Image bandera) {
         this.bandera = bandera;
-    }
-
-    public void setGraphic(ImageView imagen) {
-        this.graphic = imagen;
     }
 
     @Override

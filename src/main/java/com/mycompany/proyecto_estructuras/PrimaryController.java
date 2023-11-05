@@ -34,16 +34,25 @@ public class PrimaryController {
     }
     private boolean comboBoxLoaded = false;
 
+    /**
+     * Manejador de eventos que se encargará de hacer las respectivas
+     * validaciones de las credenciales de los usuarios en que de caso no el
+     * usuario no exista se mostrará un mensaje de error
+     *
+     * @param event evento
+     * @throws IOException lanzamos una excepcion
+     */
     @FXML
     private void LoginPage(ActionEvent event) throws IOException {
-
-        PrefijoPais selection = comboPrefijos.getValue();
-        String numero = telefono.getText();
-        String prefijo = selection != null ? selection.getPrefijo() : "";
-        String contrasenia = password.getText();
-        App.usuario = verificarUsuario(prefijo, numero, contrasenia);
-        if (App.usuario != null) {
-            App.setRoot("secondary.fxml");
+        PrefijoPais seleccion = comboPrefijos.getValue();
+        String PrefijoSeleccionado = seleccion.getPrefijo();
+        String numero = telefono.getText().trim();
+        String contrasenia = password.getText().trim();
+        App.usuario = verificarUsuario(PrefijoSeleccionado, numero, contrasenia);
+        if (isInputValid()) {
+            if (App.usuario != null) {
+                App.setRoot("secondary");
+            }
         } else {
             showAlert("Error de login", "No puedes continuar", "Por favor, llenar todos los campos");
             telefono.clear();
@@ -51,13 +60,14 @@ public class PrimaryController {
             comboPrefijos.getSelectionModel().clearSelection();
         }
     }
-/**
- * 
- * @param prefijo parametro prefijo
- * @param number parametro numero
- * @param contra parametro contraseña
- * @return retorna el usuario verificado
- */
+
+    /**
+     *
+     * @param prefijo parametro prefijo
+     * @param number parametro numero
+     * @param contra parametro contraseña
+     * @return retorna el usuario verificado
+     */
     public static Usuario verificarUsuario(String prefijo, String number, String contra) {
         for (Usuario usuario : listaUsuarios) {
             if (usuario.getPrefijo().equals(prefijo) && usuario.getTelefono().equals(number) && usuario.getContraseña().equals(contra)) {
@@ -66,16 +76,14 @@ public class PrimaryController {
                 System.out.println("Usuario verificado");
                 return usuario;
             }
-
         }
-        System.out.println("No se ha encontrado el archivo");
         return null;
     }
 
     private boolean isInputValid() {
         String MessageError = "";
         if (telefono.getText() == null || telefono.getText().isEmpty()) {
-            MessageError = "Telefono no valido";
+
         }
         if (password.getText() == null || password.getText().isEmpty()) {
             MessageError = "Constraeña no valida";
@@ -85,11 +93,21 @@ public class PrimaryController {
             MessageError = "Seleccione el prefijo del país";
 
         }
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error de credenciales");
+        alert.setHeaderText("Usuario o contraseñas invalidas");
+        alert.setContentText("Ingresar correctamente credenciales");
+        alert.showAndWait();
+        telefono.clear();
+        password.clear();
+        comboPrefijos.getSelectionModel().clearSelection();
         return MessageError.isEmpty();
     }
 
     /**
-     * Método que creara un showAlert personalizado y consta de 3 parametros que serán editados por el usuario
+     * Método que creara un showAlert personalizado y consta de 3 parametros que
+     * serán editados por el usuario
+     *
      * @param title titulo de nuestra casilla emergente
      * @param header Encabezado de nuestra casilla emergente
      * @param content Contenido que se mostrá en la casilla emergente

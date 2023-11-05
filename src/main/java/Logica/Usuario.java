@@ -55,5 +55,10 @@ public class Usuario implements Serializable{
     public void setContactos(DoubleLinkedList<Contacto> contactos) {
         this.contactos = contactos;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "prefijo=" + prefijo + ", telefono=" + telefono + ", contrase\u00f1a=" + contraseña +'}';
+    }
    
 }

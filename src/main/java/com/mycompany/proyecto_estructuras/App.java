@@ -30,9 +30,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 432, 545);
+        scene = new Scene(loadFXML("primary"), 353, 597);
+        stage.setTitle("Loggin Page");
         stage.setScene(scene);
         stage.show();
+        System.out.println(listaUsuarios);
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -53,7 +55,7 @@ public class App extends Application {
                 lineas.add(linea);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("No se encontró el archivo");
+            System.out.println("No se encontró el archivo, estamos en el metodo de crear lista de usuarios");
         } catch (IOException e) {
             e.printStackTrace();
         }

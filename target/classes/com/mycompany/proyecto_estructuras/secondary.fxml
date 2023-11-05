@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="426.0" style="-fx-background-color: ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="353.0" style="-fx-background-color: ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.SecondaryController">
    <children>
       <VBox alignment="CENTER" prefHeight="294.0" prefWidth="426.0">
          <children>
@@ -38,12 +38,13 @@
                   </Label>
                </children>
             </HBox>
-            <Label text="Parece que no tienes contactos agregados, dale en continuar para empezar" />
+            <Label text="Parece que no tienes contactos agregados" />
+            <Label text="Presionar para continuar para empezar a crear contactos" />
          </children>
       </VBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6735a4;" text="Continuar" textFill="#fcfcfc">
+            <Button fx:id="continuar" onAction="#MenuLogin" mnemonicParsing="false" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6735a4;" text="Continuar" textFill="#fcfcfc">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
