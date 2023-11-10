@@ -11,8 +11,12 @@ public class SecondaryController {
        
     }
     @FXML
-    private void MenuLogin(ActionEvent event) throws IOException{
-     App.setRoot("Menu");
+    private void MenuLogin(ActionEvent event){
+        try {
+            App.setRoot("Menu");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     
 }

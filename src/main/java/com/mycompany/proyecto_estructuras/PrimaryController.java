@@ -43,18 +43,24 @@ public class PrimaryController {
      * @throws IOException lanzamos una excepcion
      */
     @FXML
-    private void LoginPage(ActionEvent event) throws IOException {
+    private void LoginPage(ActionEvent event) {
+        if (!isInputValid()) {
+            return;
+        }
         PrefijoPais seleccion = comboPrefijos.getValue();
         String PrefijoSeleccionado = seleccion.getPrefijo();
         String numero = telefono.getText().trim();
         String contrasenia = password.getText().trim();
         App.usuario = verificarUsuario(PrefijoSeleccionado, numero, contrasenia);
-        if (isInputValid()) {
-            if (App.usuario != null) {
-                App.setRoot("secondary");
+        if (App.usuario != null) { try {
+            // Verificación de las credenciales del usuario
+            App.setRoot("secondary"); // Cambiar a la siguiente pantalla
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         } else {
-            showAlert("Error de login", "No puedes continuar", "Por favor, llenar todos los campos");
+            // Informar al usuario que las credenciales son incorrectas
+            showAlert("Error de login", "Acceso Denegado", "Prefijo, número de teléfono o contraseña incorrectos.");
             telefono.clear();
             password.clear();
             comboPrefijos.getSelectionModel().clearSelection();
@@ -81,27 +87,27 @@ public class PrimaryController {
     }
 
     private boolean isInputValid() {
-        String MessageError = "";
-        if (telefono.getText() == null || telefono.getText().isEmpty()) {
+        StringBuilder errorMessage = new StringBuilder();
 
+        if (comboPrefijos.getValue() == null) {
+            errorMessage.append("Seleccione el prefijo del país.\n");
+        }
+        if (telefono.getText() == null || telefono.getText().isEmpty()) {
+            errorMessage.append("Número de teléfono no válido.\n");
         }
         if (password.getText() == null || password.getText().isEmpty()) {
-            MessageError = "Constraeña no valida";
-
+            errorMessage.append("Contraseña no válida.\n");
         }
-        if (comboPrefijos.getValue() == null) {
-            MessageError = "Seleccione el prefijo del país";
 
+        if (errorMessage.length() > 0) {
+            // Mostrar todos los errores acumulados si hay alguno.
+            showAlert("Error de Validación", "Por favor corrija los siguientes campos", errorMessage.toString());
+             telefono.clear();
+            password.clear();
+            comboPrefijos.getSelectionModel().clearSelection();
+            return false; // Indicar que la entrada no es válida.
         }
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Error de credenciales");
-        alert.setHeaderText("Usuario o contraseñas invalidas");
-        alert.setContentText("Ingresar correctamente credenciales");
-        alert.showAndWait();
-        telefono.clear();
-        password.clear();
-        comboPrefijos.getSelectionModel().clearSelection();
-        return MessageError.isEmpty();
+        return true; // Indicar que la entrada es válida.
     }
 
     /**
