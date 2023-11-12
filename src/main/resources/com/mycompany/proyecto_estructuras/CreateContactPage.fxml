@@ -10,7 +10,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -138,19 +137,19 @@
                <children>
                   <HBox prefHeight="41.0" prefWidth="353.0" spacing="15.0" style="-fx-background-color: ffff;">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="260.0" />
-                        <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="21.0" style="-fx-background-color: #6735a4;">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../Imagenes/Agregar2.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
+                        <TextField prefHeight="25.0" prefWidth="270.0" />
+                              <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="25.0" style="-fx-background-color: #6735a4;">
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Imagenes/Agregar2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                  <padding>
-                                    <Insets bottom="2.0" left="6.0" right="4.0" top="2.0" />
+                                    <Insets bottom="3.0" left="6.0" right="6.0" top="6.0" />
                                  </padding>
-                        </Button>
+                              </Button>
                      </children>
                      <padding>
                         <Insets left="25.0" right="25.0" top="10.0" />
@@ -172,7 +171,19 @@
                            <children>
                         <HBox prefHeight="55.0" prefWidth="353.0" spacing="15.0" style="-fx-background-color: ffff;">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="299.0" />
+                              <TextField prefHeight="25.0" prefWidth="263.0" />
+                                    <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="25.0" style="-fx-background-color: #6735a4;">
+                                       <graphic>
+                                          <ImageView fitHeight="14.0" fitWidth="13.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../Imagenes/Agregar2.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <padding>
+                                          <Insets bottom="3.0" left="6.0" right="6.0" top="6.0" />
+                                       </padding>
+                                    </Button>
                            </children>
                            <padding>
                               <Insets left="25.0" right="25.0" top="10.0" />
@@ -267,30 +278,7 @@
                   <Insets top="10.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="46.0" prefWidth="353.0" style="-fx-background-color: ffff;">
-               <children>
-                  <Label text="Contactos Relacionados">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-               <opaqueInsets>
-                  <Insets left="25.0" />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="25.0" top="10.0" />
-               </padding>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: fff;">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Pane prefHeight="39.0" prefWidth="137.0" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: fff;" />
             <VBox alignment="CENTER" prefHeight="52.0" prefWidth="353.0" style="-fx-background-color: ffff;">
                <children>
                   <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6735a4;" text="Guardar" textFill="WHITE">
