@@ -4,34 +4,30 @@ import Logica.AL;
 import Logica.Archivos;
 import Logica.Usuario;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class App extends Application{
 
     public static Usuario usuario = null;
     private static Scene scene;
-    public static ArrayList<Usuario> listaUsuarios = Archivos.deserializarListaUsuarios("usuarios.ser");
+    public static ArrayList<Usuario> listaUsuarios= Archivos.deserializarListaUsuarios("usuarios.ser");
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("createContact"), 410, 665);
+//        Archivos.serializarListaUsuarios(listaUsuarios, "usuarios.ser");
+        scene = new Scene(loadFXML("primary"), 410, 665);
         stage.setTitle("Loggin Page");
         stage.setScene(scene);
         stage.show();
@@ -44,7 +40,7 @@ public class App extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        
+
         return fxmlLoader.load();
     }
 
@@ -71,7 +67,6 @@ public class App extends Application {
         }
         return usuarios;
     }
-
     public static void main(String[] args) {
 
         launch();

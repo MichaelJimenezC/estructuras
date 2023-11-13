@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.scene.Node;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 
 public class CreateContactController implements Initializable {
@@ -53,6 +55,9 @@ public class CreateContactController implements Initializable {
     private TextField txtOcupación;
     @FXML
     private Button buttonGuardar;
+    @FXML
+    private Button btnFoto;
+    
     private boolean comboBoxLoaded = false;
 
     @FXML
@@ -68,6 +73,12 @@ public class CreateContactController implements Initializable {
                 }
             }
         }
+    }
+        @FXML
+    private ToggleGroup generos;
+    @FXML
+    private void handleComboBoxPersona(Event event){
+        PrimaryController.configurarComboBoxConPrefijos(comboPrefijos2);
     }
 
     @FXML
@@ -129,9 +140,15 @@ public class CreateContactController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cbTipo.getItems().addAll("Persona", "Empresa");
         cbTipo.setValue("Persona");
-
     }
 
+   @FXML
+    private void handleRadioButtonAction() {
+        if (generos.getSelectedToggle() != null) {
+            RadioButton selectedRadioButton = (RadioButton) generos.getSelectedToggle();
+            System.out.println("Selected Radio Button: " + selectedRadioButton.getText());
+        }
+    }
     @FXML
     private void guardarContacto(ActionEvent event) {
         // Recuperar los valores de los atributos

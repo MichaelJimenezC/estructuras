@@ -4,6 +4,7 @@
  */
 package Logica;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class DoubleLinkedList<E> implements List<E> {
+public class DoubleLinkedList<E> implements List<E>, Serializable {
 
     Nodo<E> primero;
     Nodo<E> ultimo;
