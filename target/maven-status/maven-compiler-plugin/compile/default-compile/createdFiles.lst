@@ -9,6 +9,7 @@ Logica\Empresa.class
 Logica\Contacto.class
 com\mycompany\proyecto_estructuras\NewContactWindow.class
 com\mycompany\proyecto_estructuras\CreateContactPage2Controller.class
+com\mycompany\proyecto_estructuras\ViewContactController.class
 module-info.class
 com\mycompany\proyecto_estructuras\ContactosPageController.class
 Logica\DoubleLinkedList.class
