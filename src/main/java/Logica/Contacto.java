@@ -12,14 +12,14 @@ package Logica;
 public class Contacto {
     private String nombre;
     private DoubleLinkedList<String[]> direcciones;
-    private DoubleLinkedList<String[]> emails;
-    private DoubleLinkedList<String[]> redes;
-    private DoubleLinkedList<String[]> fotos;
+    private DoubleLinkedList<String> emails;
+    private DoubleLinkedList<String> redes;
+    private DoubleLinkedList<String> fotos;
     private DoubleLinkedList<String[]> fechas;
     private DoubleLinkedList<String[]> telefonos;
     private DoubleLinkedList<String[]> contactosRelacionados;
 
-    public Contacto(String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String[]> emails, DoubleLinkedList<String[]> redes, DoubleLinkedList<String[]> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<String[]> telefonos, DoubleLinkedList<String[]> contactosRelacionados) {
+    public Contacto(String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<String[]> telefonos) {
         this.nombre = nombre;
         this.direcciones = direcciones;
         this.emails = emails;
@@ -27,7 +27,7 @@ public class Contacto {
         this.fotos = fotos;
         this.fechas = fechas;
         this.telefonos = telefonos;
-        this.contactosRelacionados = contactosRelacionados;
+        
     }
 
     public String getNombre() {
@@ -46,30 +46,7 @@ public class Contacto {
         this.direcciones = direcciones;
     }
 
-    public DoubleLinkedList<String[]> getEmails() {
-        return emails;
-    }
-
-    public void setEmails(DoubleLinkedList<String[]> emails) {
-        this.emails = emails;
-    }
-
-    public DoubleLinkedList<String[]> getRedes() {
-        return redes;
-    }
-
-    public void setRedes(DoubleLinkedList<String[]> redes) {
-        this.redes = redes;
-    }
-
-    public DoubleLinkedList<String[]> getFotos() {
-        return fotos;
-    }
-
-    public void setFotos(DoubleLinkedList<String[]> fotos) {
-        this.fotos = fotos;
-    }
-
+    
     public DoubleLinkedList<String[]> getFechas() {
         return fechas;
     }

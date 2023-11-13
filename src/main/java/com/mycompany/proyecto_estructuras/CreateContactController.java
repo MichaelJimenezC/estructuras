@@ -1,7 +1,10 @@
 package com.mycompany.proyecto_estructuras;
 
+import Logica.Archivos;
+import Logica.DoubleLinkedList;
+import Logica.Persona;
+import Logica.Usuario;
 import Prefijos.PrefijoPais;
-import static com.mycompany.proyecto_estructuras.PrimaryController.comboPrefijos;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +29,7 @@ public class CreateContactController implements Initializable {
     @FXML
     private ComboBox cbTipo;
     @FXML
-    private ComboBox<PrefijoPais> comboPrefijos2=PrimaryController.comboPrefijos;
+    private ComboBox<PrefijoPais> comboPrefijos2;
     @FXML
     private TextField txtNombres;
     @FXML
@@ -45,7 +48,7 @@ public class CreateContactController implements Initializable {
 
     @FXML
     private Button buttonGuardar;
-    private boolean comboBoxLoaded=false;
+    private boolean comboBoxLoaded = false;
 
     @FXML
     private void cambiarTipo(ActionEvent event) {
@@ -81,36 +84,6 @@ public class CreateContactController implements Initializable {
             System.out.println("wtf");
         }
 
-    }
-  @FXML
-    private void handleComboBoxShowing(Event event) {
-        if (!comboBoxLoaded) {
-            List<PrefijoPais> prefijos = obtenerPrefijosPais();
-
-            comboPrefijos.getItems().setAll(prefijos);
-            comboBoxLoaded = true;
-
-            for (PrefijoPais prefijoPais : comboPrefijos.getItems()) {
-                System.out.println(prefijoPais.getNombrePais() + " - " + prefijoPais.getPrefijo() + " - " + prefijoPais.getBandera());
-            }
-        }
-    }
-    private List<PrefijoPais> obtenerPrefijosPais() {
-        List<PrefijoPais> lista = new ArrayList<>();
-
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/ecuador.png")), "+593", "Ecuador"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/reino-unido.png")), "+44", "Reino Unido"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/francia.png")), "+33", "Francia"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/alemania.png")), "+49", "Alemania"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/peru.png")), "+51", "Peru"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/argentina.png")), "+54", "Argentina"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/colombia.png")), "+57", "Colombia"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/india.png")), "+91", "India"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/corea-del-sur.png")), "+82", "Corea"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/estados-unidos.png")), "+1", "Estados Unidos"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/chile.png")), "+56", "Chile"));
-
-        return lista;
     }
 
     private void agregarTextField(VBox parentVBox) {
@@ -167,19 +140,15 @@ public class CreateContactController implements Initializable {
         String redesSociales = obtenerValores(cajaRedes);
         String direcciones = obtenerValores(cajaDirecciones);
         String fechasRelevantes = obtenerValores(cajaFechas);
-
-        // Imprimir o realizar acciones con los valores recuperados
-        System.out.println("Tipo: " + tipo);
-        System.out.println("Nombres: " + nombres);
-        System.out.println("Apellidos: " + apellidos);
-        System.out.println("Telefonos: " + telefonos);
-        System.out.println("Emails: " + emails);
-        System.out.println("Redes Sociales: " + redesSociales);
-        System.out.println("Direcciones: " + direcciones);
-        System.out.println("Fechas Relevantes: " + fechasRelevantes);
-
-        // Aquí puedes realizar acciones adicionales con los valores recuperados
-        // Por ejemplo, cerrar la ventana actual, cambiar a otra vista, etc.
+        Persona contacto = new Persona(apellidos, cedula, genero, fechasRelevantes, ocupacion, Nacionalidad, nombres, direcciones, emails, redes, fotos, fechas, telefonos);
+        App.usuario.getContactos().add(contacto);
+        for (Usuario usuario : App.listaUsuarios) {
+            if (usuario.equals(App.usuario)) {
+                usuario.getContactos().add(contacto);              
+                
+            }
+        }
+        Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios");
     }
 
 // Método auxiliar para obtener valores de VBox dinámicos

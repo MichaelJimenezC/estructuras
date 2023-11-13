@@ -19,8 +19,8 @@ public class Persona extends Contacto{
     private String ocupacion;
     private String Nacionalidad;
 
-    public Persona(String apellido, String cedula, String genero, String fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String[]> emails, DoubleLinkedList<String[]> redes, DoubleLinkedList<String[]> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<String[]> telefonos, DoubleLinkedList<String[]> contactosRelacionados) {
-        super(nombre, direcciones, emails, redes, fotos, fechas, telefonos, contactosRelacionados);
+    public Persona(String apellido, String cedula, String genero, String fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<String[]> telefonos) {
+        super(nombre, direcciones, emails, redes, fotos, fechas, telefonos);
         this.apellido = apellido;
         this.cedula = cedula;
         this.genero = genero;
@@ -28,6 +28,8 @@ public class Persona extends Contacto{
         this.ocupacion = ocupacion;
         this.Nacionalidad = Nacionalidad;
     }
+
+    
 
  
    

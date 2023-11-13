@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.CreateContactController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.CreateContactController">
    <content>
       <VBox prefHeight="665.0" prefWidth="410.0" style="-fx-background-color: ffff;">
          <children>
@@ -85,7 +85,7 @@
                            <children>
                               <HBox prefHeight="54.0" prefWidth="269.0" spacing="10.0">
                                  <children>
-                                    <ComboBox fx:id="comboPrefijos2" onAction="#handleComboBoxShowing" prefWidth="150.0" />
+                                    <ComboBox fx:id="comboPrefijos2" prefWidth="150.0" />
                                     <TextField />
                                  </children>
                               </HBox>
