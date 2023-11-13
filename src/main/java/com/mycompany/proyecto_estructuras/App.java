@@ -30,7 +30,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 353, 597);
+        scene = new Scene(loadFXML("createContact"), 353, 597);
         stage.setTitle("Loggin Page");
         stage.setScene(scene);
         stage.show();

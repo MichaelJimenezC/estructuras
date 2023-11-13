@@ -13,7 +13,7 @@ public class SecondaryController {
     @FXML
     private void MenuLogin(ActionEvent event){
         try {
-            App.setRoot("Menu");
+            App.setRoot("createContact");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
