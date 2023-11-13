@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="396.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="396.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.CreateContactController">
    <content>
       <VBox prefHeight="643.0" prefWidth="408.0" style="-fx-background-color: ffff;">
          <children>
@@ -38,6 +38,14 @@
                   <Insets top="5.0" />
                </padding>
             </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+               <children>
+                  <ComboBox fx:id="cbTipo" onAction="#cambiarTipo" prefWidth="150.0" promptText="Persona" />
+               </children>
+               <padding>
+                  <Insets left="25.0" right="65.0" top="5.0" />
+               </padding>
+            </VBox>
             <VBox fx:id="vboxApellidos" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                <children>
                   <Label text="Sour Names">
@@ -45,7 +53,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="25.0" prefWidth="354.0" />
+                  <TextField fx:id="txtNombres" prefHeight="25.0" prefWidth="354.0" />
                </children>
                <padding>
                   <Insets left="25.0" right="65.0" top="5.0" />
@@ -58,7 +66,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="25.0" prefWidth="354.0" />
+                  <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="354.0" />
                </children>
                <padding>
                   <Insets left="25.0" right="65.0" top="5.0" />
@@ -73,7 +81,7 @@
                   </Label>
                   <HBox prefHeight="54.0" prefWidth="345.0" spacing="17.0">
                      <children>
-                        <VBox prefHeight="54.0" prefWidth="297.0">
+                        <VBox fx:id="cajaTelefonos" prefHeight="54.0" prefWidth="297.0" spacing="10.0">
                            <children>
                               <HBox prefHeight="54.0" prefWidth="269.0" spacing="10.0">
                                  <children>
@@ -85,7 +93,7 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
                            </children>
                         </VBox>
                      </children>
@@ -104,14 +112,14 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <VBox prefHeight="54.0" prefWidth="302.0">
+                        <VBox fx:id="cajaEmails" prefHeight="54.0" prefWidth="302.0" spacing="10.0">
                            <children>
                               <TextField prefHeight="25.0" prefWidth="282.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
                            </children>
                         </VBox>
                      </children>
@@ -132,14 +140,14 @@
                      </font></Label>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <VBox prefHeight="55.0" prefWidth="304.0">
+                        <VBox fx:id="cajaRedes" prefHeight="55.0" prefWidth="304.0" spacing="10.0">
                            <children>
                               <TextField prefHeight="25.0" prefWidth="278.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
                            </children>
                         </VBox>
                      </children>
@@ -157,7 +165,7 @@
                      </font></Label>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <VBox prefHeight="55.0" prefWidth="279.0">
+                        <VBox fx:id="cajaDirecciones" prefHeight="55.0" prefWidth="279.0" spacing="10.0">
                            <children>
                               <HBox prefHeight="55.0" prefWidth="217.0" spacing="10.0">
                                  <children>
@@ -169,7 +177,7 @@
                         </VBox>
                         <VBox prefHeight="55.0" prefWidth="74.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
                            </children>
                         </VBox>
                      </children>
@@ -191,7 +199,7 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <VBox prefHeight="50.0" prefWidth="303.0">
+                        <VBox fx:id="cajaFechas" prefHeight="50.0" prefWidth="303.0" spacing="10.0">
                            <children>
                               <HBox prefHeight="50.0" prefWidth="214.0" spacing="10.0">
                                  <children>
@@ -203,7 +211,7 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
                            </children>
                         </VBox>
                      </children>
@@ -215,7 +223,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: ffff;">
                <children>
-                  <Button fx:id="buttonGuardar" mnemonicParsing="false" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6743a3;" text="Guardar" textFill="WHITE">
+                  <Button fx:id="buttonGuardar" mnemonicParsing="false" onAction="#guardarContacto" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6743a3;" text="Guardar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
