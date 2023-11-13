@@ -54,7 +54,7 @@ public class PrimaryController {
         App.usuario = verificarUsuario(PrefijoSeleccionado, numero, contrasenia);
         if (App.usuario != null) { try {
             // Verificación de las credenciales del usuario
-            App.setRoot("secondary"); // Cambiar a la siguiente pantalla
+            App.setRoot("ContactosPage"); // Cambiar a la siguiente pantalla
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

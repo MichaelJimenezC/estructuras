@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,70 +11,53 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="279.0" style="-fx-background-color: fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox alignment="CENTER" prefHeight="138.0" prefWidth="268.0" spacing="10.0" style="-fx-background-color: #6735a4;">
+
+<ScrollPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.ContactosPageController">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="279.0" style="-fx-background-color: fff;">
          <children>
-            <VBox alignment="CENTER" prefHeight="52.0" prefWidth="279.0">
+            <VBox alignment="CENTER" prefHeight="138.0" prefWidth="268.0" spacing="10.0" style="-fx-background-color: #6735a4;">
                <children>
-                  <Label prefHeight="52.0" prefWidth="82.0" text="Contacts" textFill="WHITE">
+                  <VBox alignment="CENTER" prefHeight="52.0" prefWidth="279.0">
+                     <children>
+                        <Label prefHeight="52.0" prefWidth="82.0" text="Contacts" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="84.0" prefWidth="279.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="92.0" prefWidth="331.0" spacing="10.0">
+                     <children>
+                        <TextField prefHeight="25.0" prefWidth="187.0" />
+                        <ImageView fitHeight="22.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Imagenes/lupa.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="vboxVerContactos" alignment="CENTER" prefHeight="154.0" prefWidth="279.0" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#agregar" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6735a4;" text="Agregar Contactos" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
-                  </Label>
+                  </Button>
                </children>
             </VBox>
          </children>
+         <styleClass>
+            <String fx:value="-fx-border-radius: 15;" />
+            <String fx:value="-fx-background-radius: 15;" />
+         </styleClass>
       </VBox>
-      <VBox prefHeight="84.0" prefWidth="279.0">
-         <children>
-            <HBox alignment="CENTER" prefHeight="92.0" prefWidth="331.0" spacing="10.0">
-               <children>
-                  <TextField prefHeight="25.0" prefWidth="187.0" />
-                  <ImageView fitHeight="22.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Imagenes/lupa.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox fx:id="vboxVerContactos" alignment="CENTER" prefHeight="154.0" prefWidth="279.0">
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox prefHeight="79.0" prefWidth="85.0">
-                     <children>
-                        <ImageView fitHeight="66.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <TextField />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6735a4;" text="Agregar Contactos" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Button>
-         </children>
-      </VBox>
-   </children>
-   <styleClass>
-      <String fx:value="-fx-border-radius: 15;" />
-      <String fx:value="-fx-background-radius: 15;" />
-   </styleClass>
-</VBox>
+   </content>
+</ScrollPane>
