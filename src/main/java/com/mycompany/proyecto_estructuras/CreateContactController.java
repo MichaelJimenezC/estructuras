@@ -34,8 +34,7 @@ public class CreateContactController implements Initializable {
     private TextField txtNombres;
     @FXML
     private TextField txtApellidos;
-    @FXML
-    private TextField txtEdad;
+    
     @FXML
     private VBox cajaTelefonos;
     @FXML
