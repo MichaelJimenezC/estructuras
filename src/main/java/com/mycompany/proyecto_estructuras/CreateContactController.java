@@ -148,7 +148,7 @@ public class CreateContactController implements Initializable {
                 
             }
         }
-        Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios");
+        Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
     }
 
 // Método auxiliar para obtener valores de VBox dinámicos
