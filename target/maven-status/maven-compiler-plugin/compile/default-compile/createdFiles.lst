@@ -15,7 +15,6 @@ com\mycompany\proyecto_estructuras\ContactosPageController.class
 Logica\DoubleLinkedList.class
 com\mycompany\proyecto_estructuras\PrimaryController$1.class
 com\mycompany\proyecto_estructuras\App.class
-com\mycompany\proyecto_estructuras\CreateContactController.class
 Logica\Persona.class
 com\mycompany\proyecto_estructuras\SecondaryController.class
 com\mycompany\proyecto_estructuras\PrimaryController$2.class

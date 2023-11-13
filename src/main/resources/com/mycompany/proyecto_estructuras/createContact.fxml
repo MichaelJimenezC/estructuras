@@ -137,7 +137,8 @@
                   <Label text="Redes Sociales">
                      <font>
                         <Font name="System Bold" size="12.0" />
-                     </font></Label>
+                     </font>
+                  </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <VBox fx:id="cajaRedes" prefHeight="55.0" prefWidth="304.0" spacing="10.0">
@@ -221,6 +222,53 @@
                   </HBox>
                </children>
             </VBox>
+            <VBox fx:id="vboxDirecciones1" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
+               <children>
+                  <Label text="Genero">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox prefHeight="55.0" prefWidth="279.0" spacing="10.0">
+                           <children>
+                              <ComboBox fx:id="cbxGenero" prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="25.0" right="65.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
+               <children>
+                  <Label text="Nacionalidad">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtNacionalidad" prefHeight="25.0" prefWidth="354.0" />
+               </children>
+               <padding>
+                  <Insets left="25.0" right="65.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
+               <children>
+                  <Label text="Ocupación">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtOcupación" prefHeight="25.0" prefWidth="354.0" />
+               </children>
+               <padding>
+                  <Insets left="25.0" right="65.0" top="5.0" />
+               </padding>
+            </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: ffff;">
                <children>
                   <Button fx:id="buttonGuardar" mnemonicParsing="false" onAction="#guardarContacto" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6743a3;" text="Guardar" textFill="WHITE">
@@ -233,7 +281,6 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="408.0" style="-fx-background-color: ffff;" />
          </children>
       </VBox>
    </content>

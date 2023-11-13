@@ -34,7 +34,8 @@ public class CreateContactController implements Initializable {
     private TextField txtNombres;
     @FXML
     private TextField txtApellidos;
-
+    @FXML
+    private TextField txtEdad;
     @FXML
     private VBox cajaTelefonos;
     @FXML
@@ -45,7 +46,12 @@ public class CreateContactController implements Initializable {
     private VBox cajaDirecciones;
     @FXML
     private VBox cajaFechas;
-
+    @FXML
+    private ComboBox<String> cbxGenero;
+    @FXML
+    private TextField txtNacionalidad;
+    @FXML
+    private TextField txtOcupación;
     @FXML
     private Button buttonGuardar;
     private boolean comboBoxLoaded = false;
@@ -133,6 +139,9 @@ public class CreateContactController implements Initializable {
         String tipo = (String) cbTipo.getValue();
         String nombres = txtNombres.getText();
         String apellidos = txtApellidos.getText();
+        String genero = (String) cbxGenero.getValue();
+        String ocupacion = txtOcupación.getText();
+        String Nacionalidad = txtNacionalidad.getText();
 
         // Recuperar valores dinámicos de los componentes
         String telefonos = obtenerValores(cajaTelefonos);
@@ -140,15 +149,18 @@ public class CreateContactController implements Initializable {
         String redesSociales = obtenerValores(cajaRedes);
         String direcciones = obtenerValores(cajaDirecciones);
         String fechasRelevantes = obtenerValores(cajaFechas);
-        Persona contacto = new Persona(apellidos, cedula, genero, fechasRelevantes, ocupacion, Nacionalidad, nombres, direcciones, emails, redes, fotos, fechas, telefonos);
-        App.usuario.getContactos().add(contacto);
-        for (Usuario usuario : App.listaUsuarios) {
-            if (usuario.equals(App.usuario)) {
-                usuario.getContactos().add(contacto);              
-                
-            }
-        }
-        Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
+        DoubleLinkedList<String[]> lldirecciones=new DoubleLinkedList();
+        DoubleLinkedList<String> llemails=new DoubleLinkedList();
+        DoubleLinkedList<String> llredes=new DoubleLinkedList();
+        DoubleLinkedList<String> llfotos=new DoubleLinkedList();
+        DoubleLinkedList<String[]> llfechas=new DoubleLinkedList();
+        DoubleLinkedList<String[]> lltelefonos=new DoubleLinkedList();
+        
+        Persona contacto = new Persona(apellidos, genero, fechasRelevantes, ocupacion, Nacionalidad, nombres, lldirecciones, llemails, llredes, llfotos, llfechas, lltelefonos);
+        System.out.println(telefonos);
+        System.out.println(emails);
+        System.out.println(redesSociales);
+        System.out.println(direcciones);
     }
 
 // Método auxiliar para obtener valores de VBox dinámicos

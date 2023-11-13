@@ -13,16 +13,14 @@ package Logica;
  */
 public class Persona extends Contacto{
     private String apellido;
-    private String cedula;
     private String genero;
     private String fechaNacimiento;
     private String ocupacion;
     private String Nacionalidad;
 
-    public Persona(String apellido, String cedula, String genero, String fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<String[]> telefonos) {
+    public Persona(String apellido , String genero, String fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<String[]> telefonos) {
         super(nombre, direcciones, emails, redes, fotos, fechas, telefonos);
         this.apellido = apellido;
-        this.cedula = cedula;
         this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
         this.ocupacion = ocupacion;
@@ -42,13 +40,7 @@ public class Persona extends Contacto{
         this.apellido = apellido;
     }
 
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
+   
 
     public String getGenero() {
         return genero;
