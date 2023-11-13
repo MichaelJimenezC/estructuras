@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="396.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.CreateContactController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.CreateContactController">
    <content>
-      <VBox prefHeight="643.0" prefWidth="408.0" style="-fx-background-color: ffff;">
+      <VBox prefHeight="665.0" prefWidth="410.0" style="-fx-background-color: ffff;">
          <children>
             <VBox fx:id="vboxImagen" alignment="CENTER" prefHeight="140.0" prefWidth="408.0" style="-fx-background-color: ffff;">
                <children>
@@ -38,12 +38,12 @@
                   <Insets top="5.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                <children>
-                  <ComboBox fx:id="cbTipo" onAction="#cambiarTipo" prefWidth="150.0" promptText="Persona" />
+                  <ComboBox fx:id="cbTipo" onAction="#cambiarTipo" prefHeight="25.0" prefWidth="130.0" promptText="Persona" />
                </children>
                <padding>
-                  <Insets left="25.0" right="65.0" top="5.0" />
+                  <Insets left="75.0" right="65.0" top="5.0" />
                </padding>
             </VBox>
             <VBox fx:id="vboxApellidos" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
@@ -85,7 +85,7 @@
                            <children>
                               <HBox prefHeight="54.0" prefWidth="269.0" spacing="10.0">
                                  <children>
-                                    <ComboBox prefWidth="150.0" />
+                                    <ComboBox fx:id="comboPrefijos2" onAction="#handleComboBoxShowing" prefWidth="150.0" />
                                     <TextField />
                                  </children>
                               </HBox>
@@ -189,7 +189,7 @@
             </VBox>
             <VBox fx:id="vboxFechasRelevantes" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <padding>
-                  <Insets bottom="20.0" left="25.0" />
+                  <Insets bottom="20.0" left="25.0" top="10.0" />
                </padding>
                <children>
                   <Label text="Fechas Relevantes">

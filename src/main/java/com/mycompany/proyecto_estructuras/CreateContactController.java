@@ -1,5 +1,7 @@
 package com.mycompany.proyecto_estructuras;
 
+import Prefijos.PrefijoPais;
+import static com.mycompany.proyecto_estructuras.PrimaryController.comboPrefijos;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,13 +14,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.Event;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 
 public class CreateContactController implements Initializable {
 
     @FXML
     private ComboBox cbTipo;
+    @FXML
+    private ComboBox<PrefijoPais> comboPrefijos2=PrimaryController.comboPrefijos;
     @FXML
     private TextField txtNombres;
     @FXML
@@ -37,6 +45,7 @@ public class CreateContactController implements Initializable {
 
     @FXML
     private Button buttonGuardar;
+    private boolean comboBoxLoaded=false;
 
     @FXML
     private void cambiarTipo(ActionEvent event) {
@@ -72,6 +81,36 @@ public class CreateContactController implements Initializable {
             System.out.println("wtf");
         }
 
+    }
+  @FXML
+    private void handleComboBoxShowing(Event event) {
+        if (!comboBoxLoaded) {
+            List<PrefijoPais> prefijos = obtenerPrefijosPais();
+
+            comboPrefijos.getItems().setAll(prefijos);
+            comboBoxLoaded = true;
+
+            for (PrefijoPais prefijoPais : comboPrefijos.getItems()) {
+                System.out.println(prefijoPais.getNombrePais() + " - " + prefijoPais.getPrefijo() + " - " + prefijoPais.getBandera());
+            }
+        }
+    }
+    private List<PrefijoPais> obtenerPrefijosPais() {
+        List<PrefijoPais> lista = new ArrayList<>();
+
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/ecuador.png")), "+593", "Ecuador"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/reino-unido.png")), "+44", "Reino Unido"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/francia.png")), "+33", "Francia"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/alemania.png")), "+49", "Alemania"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/peru.png")), "+51", "Peru"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/argentina.png")), "+54", "Argentina"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/colombia.png")), "+57", "Colombia"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/india.png")), "+91", "India"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/corea-del-sur.png")), "+82", "Corea"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/estados-unidos.png")), "+1", "Estados Unidos"));
+        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/chile.png")), "+56", "Chile"));
+
+        return lista;
     }
 
     private void agregarTextField(VBox parentVBox) {

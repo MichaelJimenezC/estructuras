@@ -26,7 +26,7 @@ public class PrimaryController {
     @FXML
     private PasswordField password;
     @FXML
-    private ComboBox<PrefijoPais> comboPrefijos;
+    public static ComboBox<PrefijoPais> comboPrefijos;
 
     @FXML
     private void switchToSecondary() throws IOException {
