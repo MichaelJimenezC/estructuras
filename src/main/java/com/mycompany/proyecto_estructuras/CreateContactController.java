@@ -5,6 +5,7 @@ import Logica.DoubleLinkedList;
 import Logica.Persona;
 import Logica.Usuario;
 import Prefijos.PrefijoPais;
+import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +18,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -25,6 +30,9 @@ import javafx.scene.Node;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class CreateContactController implements Initializable {
 
@@ -36,7 +44,7 @@ public class CreateContactController implements Initializable {
     private TextField txtNombres;
     @FXML
     private TextField txtApellidos;
-    
+
     @FXML
     private VBox cajaTelefonos;
     @FXML
@@ -57,7 +65,9 @@ public class CreateContactController implements Initializable {
     private Button buttonGuardar;
     @FXML
     private Button btnFoto;
-    
+    @FXML
+    private ImageView ImgFotoPersona;
+
     private boolean comboBoxLoaded = false;
 
     @FXML
@@ -74,10 +84,11 @@ public class CreateContactController implements Initializable {
             }
         }
     }
-        @FXML
-    private ToggleGroup generos;
     @FXML
-    private void handleComboBoxPersona(Event event){
+    private ToggleGroup generos;
+
+    @FXML
+    private void handleComboBoxPersona(Event event) {
         PrimaryController.configurarComboBoxConPrefijos(comboPrefijos2);
     }
 
@@ -112,6 +123,25 @@ public class CreateContactController implements Initializable {
         parentVBox.getChildren().add(hBox);
     }
 
+    @FXML
+    private void handleBtnFotoClick(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Obtiene la ventana actual
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Selecciona una imagen");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagenes", "*.png", "*.jpg", "*.jpeg"));
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            // Asumiendo que "Img" es una carpeta en el mismo directorio que el directorio de salida del proyecto.
+            Path destPath = Paths.get("Img" + File.separator + selectedFile.getName());
+            Files.copy(selectedFile.toPath(), destPath, StandardCopyOption.REPLACE_EXISTING);
+            // Si deseas reflejar la imagen en la UI:
+            Image image = new Image(destPath.toUri().toString());
+            ImgFotoPersona.setImage(image); // Asegúrate de tener un ImageView en tu FXML para mostrar la imagen.
+        }
+    }
+
     private void agregarTextFieldEnHBox(VBox parentVBox) {
         TextField textField = new TextField();
         parentVBox.getChildren().add(textField);
@@ -142,13 +172,14 @@ public class CreateContactController implements Initializable {
         cbTipo.setValue("Persona");
     }
 
-   @FXML
+    @FXML
     private void handleRadioButtonAction() {
         if (generos.getSelectedToggle() != null) {
             RadioButton selectedRadioButton = (RadioButton) generos.getSelectedToggle();
             System.out.println("Selected Radio Button: " + selectedRadioButton.getText());
         }
     }
+
     @FXML
     private void guardarContacto(ActionEvent event) {
         // Recuperar los valores de los atributos
@@ -165,13 +196,13 @@ public class CreateContactController implements Initializable {
         String redesSociales = obtenerValores(cajaRedes);
         String direcciones = obtenerValores(cajaDirecciones);
         String fechasRelevantes = obtenerValores(cajaFechas);
-        DoubleLinkedList<String[]> lldirecciones=new DoubleLinkedList();
-        DoubleLinkedList<String> llemails=new DoubleLinkedList();
-        DoubleLinkedList<String> llredes=new DoubleLinkedList();
-        DoubleLinkedList<String> llfotos=new DoubleLinkedList();
-        DoubleLinkedList<String[]> llfechas=new DoubleLinkedList();
-        DoubleLinkedList<String[]> lltelefonos=new DoubleLinkedList();
-        
+        DoubleLinkedList<String[]> lldirecciones = new DoubleLinkedList();
+        DoubleLinkedList<String> llemails = new DoubleLinkedList();
+        DoubleLinkedList<String> llredes = new DoubleLinkedList();
+        DoubleLinkedList<String> llfotos = new DoubleLinkedList();
+        DoubleLinkedList<String[]> llfechas = new DoubleLinkedList();
+        DoubleLinkedList<String[]> lltelefonos = new DoubleLinkedList();
+
         Persona contacto = new Persona(apellidos, genero, fechasRelevantes, ocupacion, Nacionalidad, nombres, lldirecciones, llemails, llredes, llfotos, llfechas, lltelefonos);
         System.out.println(telefonos);
         System.out.println(emails);

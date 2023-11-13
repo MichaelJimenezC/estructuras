@@ -21,16 +21,16 @@
             <children>
                 <VBox fx:id="vboxImagen" alignment="CENTER" prefHeight="140.0" prefWidth="408.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Button fx:id="btnFoto" mnemonicParsing="false" style="-fx-background-color: ffff;">
+                        <Button fx:id="btnFoto" mnemonicParsing="false" onAction="#handleBtnFotoClick" style="-fx-background-color: ffff;">
                             <graphic>
-                                <ImageView fitHeight="109.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="ImgFotoPersona" fitHeight="109.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../../Imagenes/exportar.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Label text="Agregar Imagen">
+                        <Label>
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -50,7 +50,7 @@
                 </VBox>
                 <VBox fx:id="vboxApellidos" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Label text="Sour Names">
+                        <Label text="Nombres" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -63,7 +63,7 @@
                 </VBox>
                 <VBox fx:id="vboxNombres" layoutX="10.0" layoutY="134.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Label text="Given Names">
+                        <Label text="Apellidos" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -76,7 +76,7 @@
                 </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                     <children>
-                        <Label text="Cedula">
+                        <Label text="Cédula" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -93,7 +93,7 @@
                 </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Label text="Género">
+                        <Label text="Género" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -104,13 +104,12 @@
                                     <!-- Define el ToggleGroup aquí -->
                                     <ToggleGroup fx:id="generos" />
                                 </fx:define>
-
-                                <RadioButton fx:id="femenino" mnemonicParsing="false" text="Femenino">
+                                    <RadioButton fx:id="masculino" mnemonicParsing="false" text="Masculino">
                            <toggleGroup>
-            
+                              <ToggleGroup fx:id="generos" />
                            </toggleGroup></RadioButton>
-                                <RadioButton fx:id="masculino" mnemonicParsing="false" text="Masculino" toggleGroup="$generos" />
-
+                                    <RadioButton fx:id="femenino" mnemonicParsing="false" text="Femenino" toggleGroup="$generos">
+                                    </RadioButton>
                             </children>
                             <padding>
                                 <Insets left="75.0" />
@@ -123,7 +122,7 @@
                 </VBox>
                 <VBox fx:id="vboxTelefonos" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                     <children>
-                        <Label text="Telefonos">
+                        <Label text="Telefonos" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -154,7 +153,7 @@
                 </VBox>
                 <VBox fx:id="vboxEmails" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                     <children>
-                        <Label text="Emails">
+                        <Label text="Emails" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -183,7 +182,7 @@
                 </VBox>
                 <VBox fx:id="vboxRedesSociales" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                     <children>
-                        <Label text="Redes Sociales">
+                        <Label text="Redes Sociales" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -209,7 +208,7 @@
                 </VBox>
                 <VBox fx:id="vboxDirecciones" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Label text="Direcciones">
+                        <Label text="Direcciones" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -243,7 +242,7 @@
                         <Insets bottom="20.0" left="25.0" top="10.0" />
                     </padding>
                     <children>
-                        <Label text="Fechas Relevantes">
+                        <Label text="Fechas Relevantes" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -272,30 +271,9 @@
                         </HBox>
                     </children>
                 </VBox>
-                <VBox fx:id="vboxDirecciones1" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
-                    <children>
-                        <Label text="Genero">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                            <children>
-                                <VBox prefHeight="55.0" prefWidth="279.0" spacing="10.0">
-                                    <children>
-                                        <ComboBox fx:id="cbxGenero" prefWidth="150.0" />
-                                    </children>
-                                </VBox>
-                            </children>
-                        </HBox>
-                    </children>
-                    <padding>
-                        <Insets left="25.0" right="65.0" top="5.0" />
-                    </padding>
-                </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Label text="Nacionalidad">
+                        <Label text="Nacionalidad" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -308,7 +286,7 @@
                 </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Label text="Ocupación">
+                        <Label text="Ocupación" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
