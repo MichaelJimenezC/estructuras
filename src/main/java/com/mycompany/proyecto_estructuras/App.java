@@ -1,6 +1,7 @@
 package com.mycompany.proyecto_estructuras;
 
 import Logica.AL;
+import Logica.Archivos;
 import Logica.Usuario;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -26,7 +27,7 @@ public class App extends Application {
 
     public static Usuario usuario = null;
     private static Scene scene;
-    public static ArrayList<Usuario> listaUsuarios = crearListaUsuarios("src/main/resources/Archivos/usuarios.txt");
+    public static ArrayList<Usuario> listaUsuarios = Archivos.deserializarListaUsuarios("usuarios.ser");
 
     @Override
     public void start(Stage stage) throws IOException {
