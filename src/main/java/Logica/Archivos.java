@@ -22,6 +22,7 @@ public class Archivos {
             outputStream.writeObject(listaUsuarios);
             System.out.println("Lista de usuarios serializada correctamente.");
         } catch (IOException e) {
+            System.out.println("Serilizando clase archivos");
             e.printStackTrace();
             // Maneja la excepción según tus necesidades.
         }
@@ -32,6 +33,7 @@ public class Archivos {
             listaUsuarios = (ArrayList<Usuario>) inputStream.readObject();
             System.out.println("Lista de usuarios deserializada correctamente.");
         } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No serializo");
             e.printStackTrace();
             // Maneja la excepción según tus necesidades.
         }

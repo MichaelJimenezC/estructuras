@@ -4,11 +4,14 @@ import Logica.Usuario;
 import Prefijos.PrefijoPais;
 import static com.mycompany.proyecto_estructuras.App.listaUsuarios;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
@@ -16,17 +19,16 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 
-public class PrimaryController {
+public class PrimaryController implements Initializable {
 
     @FXML
     private TextField telefono;
     @FXML
     private PasswordField password;
     @FXML
-    public static ComboBox<PrefijoPais> comboPrefijos;
+    public  ComboBox<PrefijoPais> comboPrefijos;
 
     @FXML
     private void switchToSecondary() throws IOException {
@@ -52,9 +54,10 @@ public class PrimaryController {
         String numero = telefono.getText().trim();
         String contrasenia = password.getText().trim();
         App.usuario = verificarUsuario(PrefijoSeleccionado, numero, contrasenia);
-        if (App.usuario != null) { try {
-            // Verificación de las credenciales del usuario
-            App.setRoot("ContactosPage"); // Cambiar a la siguiente pantalla
+        if (App.usuario != null) {
+            try {
+                // Verificación de las credenciales del usuario
+                App.setRoot("ContactosPage"); // Cambiar a la siguiente pantalla
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -102,7 +105,7 @@ public class PrimaryController {
         if (errorMessage.length() > 0) {
             // Mostrar todos los errores acumulados si hay alguno.
             showAlert("Error de Validación", "Por favor corrija los siguientes campos", errorMessage.toString());
-             telefono.clear();
+            telefono.clear();
             password.clear();
             comboPrefijos.getSelectionModel().clearSelection();
             return false; // Indicar que la entrada no es válida.
@@ -135,15 +138,54 @@ public class PrimaryController {
      */
     @FXML
     private void handleComboBoxShowing(Event event) {
-        if (!comboBoxLoaded) {
-            List<PrefijoPais> prefijos = obtenerPrefijosPais();
+        configurarComboBoxConPrefijos(comboPrefijos);
+    }
 
-            comboPrefijos.getItems().setAll(prefijos);
-            comboBoxLoaded = true;
+    public static void configurarComboBoxConPrefijos(ComboBox<PrefijoPais> comboBox) {
+        // Asegurarse de que el ComboBox no se haya cargado previamente
+        if (comboBox.getItems().isEmpty()) {
+            // Cargar datos en el ComboBox
+            comboBox.getItems().addAll(PrimaryController.obtenerPrefijosPais());
 
-            for (PrefijoPais prefijoPais : comboPrefijos.getItems()) {
-                System.out.println(prefijoPais.getNombrePais() + " - " + prefijoPais.getPrefijo() + " - " + prefijoPais.getBandera());
-            }
+            // Configurar cómo se muestra cada item con una celda personalizada
+            comboBox.setCellFactory(lv -> new ListCell<PrefijoPais>() {
+                private final ImageView imageView = new ImageView();
+
+                @Override
+                protected void updateItem(PrefijoPais item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        imageView.setImage(item.getBandera());
+                        imageView.setFitWidth(20);
+                        imageView.setFitHeight(15);
+                        setText(item.getNombrePais() + " " + item.getPrefijo());
+                        setGraphic(imageView);
+                    }
+                }
+            });
+
+            // Configurar cómo se muestra el item seleccionado en el botón del ComboBox
+            comboBox.setButtonCell(new ListCell<PrefijoPais>() {
+                private final ImageView imageView = new ImageView();
+
+                @Override
+                protected void updateItem(PrefijoPais item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        imageView.setImage(item.getBandera());
+                        imageView.setFitWidth(20);
+                        imageView.setFitHeight(15);
+                        setText(item.getNombrePais() + " " + item.getPrefijo());
+                        setGraphic(imageView);
+                    }
+                }
+            });
         }
     }
 
@@ -155,64 +197,26 @@ public class PrimaryController {
      * @return la lista de los paises que serán llenados en el comboBox
      * prefijoPaises
      */
-    private List<PrefijoPais> obtenerPrefijosPais() {
+    public static List<PrefijoPais> obtenerPrefijosPais() {
         List<PrefijoPais> lista = new ArrayList<>();
 
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/ecuador.png")), "+593", "Ecuador"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/reino-unido.png")), "+44", "Reino Unido"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/francia.png")), "+33", "Francia"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/alemania.png")), "+49", "Alemania"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/peru.png")), "+51", "Peru"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/argentina.png")), "+54", "Argentina"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/colombia.png")), "+57", "Colombia"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/india.png")), "+91", "India"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/corea-del-sur.png")), "+82", "Corea"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/estados-unidos.png")), "+1", "Estados Unidos"));
-        lista.add(new PrefijoPais(new Image(getClass().getResourceAsStream("/Imagenes/chile.png")), "+56", "Chile"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/ecuador.png")), "+593", "Ecuador"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/reino-unido.png")), "+44", "Reino Unido"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/francia.png")), "+33", "Francia"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/alemania.png")), "+49", "Alemania"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/peru.png")), "+51", "Peru"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/argentina.png")), "+54", "Argentina"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/colombia.png")), "+57", "Colombia"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/india.png")), "+91", "India"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/corea-del-sur.png")), "+82", "Corea"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/estados-unidos.png")), "+1", "Estados Unidos"));
+        lista.add(new PrefijoPais(new Image(PrimaryController.class.getResourceAsStream("/Imagenes/chile.png")), "+56", "Chile"));
 
         return lista;
     }
-
-    @FXML
-    public void initialize() {
-
-        comboPrefijos.setCellFactory(lv -> new ListCell<PrefijoPais>() {
-            private final ImageView imageView = new ImageView();
-
-            @Override
-            protected void updateItem(PrefijoPais item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    imageView.setImage(item.getBandera());
-                    imageView.setFitWidth(20);
-                    imageView.setFitHeight(15);
-                    setText(item.getNombrePais() + " " + item.getPrefijo());
-                    setGraphic(imageView);
-                }
-            }
-        });
-
-        comboPrefijos.setButtonCell(new ListCell<PrefijoPais>() {
-            private final ImageView imageView = new ImageView();
-
-            @Override
-            protected void updateItem(PrefijoPais item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    imageView.setImage(item.getBandera());
-                    imageView.setFitWidth(20);
-                    imageView.setFitHeight(15);
-                    setText(item.getNombrePais() + " " + item.getPrefijo());
-                    setGraphic(imageView);
-                }
-            }
-        });
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        
     }
-
 }

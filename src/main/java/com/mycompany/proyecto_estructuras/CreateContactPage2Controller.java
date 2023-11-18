@@ -4,10 +4,12 @@
  */
 package com.mycompany.proyecto_estructuras;
 
+import Prefijos.PrefijoPais;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,6 +25,7 @@ import javafx.scene.layout.VBox;
  * @author marle
  */
 public class CreateContactPage2Controller implements Initializable {
+
     @FXML
     private ComboBox cbTipo;
     @FXML
@@ -38,7 +41,8 @@ public class CreateContactPage2Controller implements Initializable {
     private VBox cajaDirecciones;
     @FXML
     private VBox cajaFechas;
-
+    @FXML
+    private ComboBox<PrefijoPais> comboPrefijos3;
     @FXML
     private Button buttonGuardarEmpresa;
     /**
@@ -48,8 +52,8 @@ public class CreateContactPage2Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cbTipo.getItems().addAll("Persona", "Empresa");
         cbTipo.setValue("Empresa");
-    }    
-     @FXML
+    }
+    @FXML
     private void cambiarTipo(ActionEvent event) {
         String opcionSeleccionada = (String) cbTipo.getValue();
 
@@ -63,6 +67,12 @@ public class CreateContactPage2Controller implements Initializable {
             }
         }
     }
+
+    @FXML
+    private void handleComboBoxEmpresa(Event event) {
+        PrimaryController.configurarComboBoxConPrefijos(comboPrefijos3);
+    }
+
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("boton");
@@ -117,5 +127,5 @@ public class CreateContactPage2Controller implements Initializable {
         hBox.getChildren().addAll(textField, datePicker);
         parentVBox.getChildren().add(hBox);
     }
-    
+
 }
