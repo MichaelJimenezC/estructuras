@@ -3,6 +3,7 @@ package com.mycompany.proyecto_estructuras;
 import Logica.Archivos;
 import Logica.DoubleLinkedList;
 import Logica.Persona;
+import Logica.Telefono;
 import Logica.Usuario;
 import Prefijos.PrefijoPais;
 import java.io.File;
@@ -55,8 +56,7 @@ public class CreateContactController implements Initializable {
     private VBox cajaDirecciones;
     @FXML
     private VBox cajaFechas;
-    @FXML
-    private ComboBox<String> cbxGenero;
+
     @FXML
     private TextField txtNacionalidad;
     @FXML
@@ -67,6 +67,7 @@ public class CreateContactController implements Initializable {
     private Button btnFoto;
     @FXML
     private ImageView ImgFotoPersona;
+ 
 
     private boolean comboBoxLoaded = false;
 
@@ -94,7 +95,6 @@ public class CreateContactController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("boton");
         Button sourceButton = (Button) event.getSource();
         System.out.println(sourceButton.getParent().getParent());
         VBox vbox = (VBox) ((HBox) sourceButton.getParent().getParent()).getChildren().get(0);
@@ -116,7 +116,8 @@ public class CreateContactController implements Initializable {
     private void agregarTextField(VBox parentVBox) {
         HBox hBox = new HBox();
         hBox.setSpacing(10);
-        ComboBox<String> comboBox = new ComboBox<>();
+        ComboBox<PrefijoPais> comboBox = new ComboBox<>();
+        PrimaryController.configurarComboBoxConPrefijos(comboBox);
         comboBox.setPrefWidth(150);
         TextField textField = new TextField();
         hBox.getChildren().addAll(comboBox, textField);
@@ -183,17 +184,15 @@ public class CreateContactController implements Initializable {
     @FXML
     private void guardarContacto(ActionEvent event) {
         String telefonos = obtenerValores(cajaTelefonos);
-        String[] telefonosArray = obtenerValores(cajaTelefonos).split("[()]");
-        for(String algo:telefonosArray){
-            System.out.println(algo);
-        }
-        
+
         if (!txtNombres.getText().isEmpty() && !telefonos.isEmpty()) {
             String nombres = txtNombres.getText();
             String apellidos = txtApellidos.getText();
-            String genero="";
-            if (cbxGenero != null) {
-                genero = (String) cbxGenero.getValue();
+            String genero = "";
+            if (generos.getSelectedToggle() != null) {
+                RadioButton select=(RadioButton)generos.getSelectedToggle();
+                
+                genero = select.getText();
             }
             String ocupacion = txtOcupación.getText();
             String Nacionalidad = txtNacionalidad.getText();
@@ -212,7 +211,36 @@ public class CreateContactController implements Initializable {
             DoubleLinkedList<String> llredes = new DoubleLinkedList();
             DoubleLinkedList<String> llfotos = new DoubleLinkedList();
             DoubleLinkedList<String[]> llfechas = new DoubleLinkedList();
-            DoubleLinkedList<String[]> lltelefonos = new DoubleLinkedList();
+            DoubleLinkedList<Telefono> lltelefonos = new DoubleLinkedList();
+            //añadir telefonos
+            String[] telefonosArray = telefonos.split("\\|");
+            String[] emailsArray = emails.split("\\|");
+            String[] redesSocialesArray = redesSociales.split("\\|");
+            String[] direccionesArray = direcciones.split("\\|");
+            String[] fechasRelevantesArray = fechasRelevantes.split("\\,");
+            for (String algo : telefonosArray) {
+                if (!algo.isEmpty()) {
+                    String[] telefonoArray = algo.split("[()]");
+                    Telefono telefono = new Telefono(telefonoArray[0], telefonoArray[1], telefonoArray[2]);
+                    lltelefonos.add(telefono);
+                }
+            }
+            for(String algo:emailsArray){
+                llemails.add(algo);
+            }
+            for(String algo:redesSocialesArray){
+                llredes.add(algo);
+            }
+            for(String algo:direccionesArray){
+                String[]direccion=algo.split(" ");
+                lldirecciones.add(direccion);
+            }
+            for(String algo:fechasRelevantesArray){
+                String[]fecha=algo.split("\\|");
+                llfechas.add(fecha);
+            }
+            
+
 //            Persona(String apellido , String genero, String fechaNacimiento
 //            , String ocupacion, String Nacionalidad
 //            , String nombre, DoubleLinkedList<String[]> direcciones
@@ -220,7 +248,8 @@ public class CreateContactController implements Initializable {
 //            , DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas
 //            , DoubleLinkedList<String[]> telefonos
 //            ) 
-//            Persona contacto = new Persona(apellidos, genero, fechasRelevantes, ocupacion, Nacionalidad, nombres, lldirecciones, llemails, llredes, llfotos, llfechas, lltelefonos);
+            Persona contacto = new Persona(apellidos, genero, fechasRelevantes, ocupacion, Nacionalidad, nombres, lldirecciones, llemails, llredes, llfotos, llfechas, lltelefonos);
+            System.out.println("Contacto: " + contacto);
         }
     }
 
@@ -231,22 +260,21 @@ public class CreateContactController implements Initializable {
             if (node instanceof HBox) {
                 HBox hBox = (HBox) node;
                 for (Node child : hBox.getChildren()) {
-                    if (child instanceof ComboBox) {                      
+                    if (child instanceof ComboBox) {
                         ComboBox<?> comboBox = (ComboBox<?>) child;
-                        Object valor=comboBox.getValue();
-                        System.out.println("hola: "+valor);
-                        valores.append(valor);
+                        Object valor = comboBox.getValue();
+                        valores.append(valor).append(" ");
                     } else if (child instanceof TextField) {
                         TextField textField = (TextField) child;
-                        valores.append(textField.getText()).append(" ");
+                        valores.append(textField.getText()).append("|");
                     } else if (child instanceof DatePicker) {
                         DatePicker datePicker = (DatePicker) child;
-                        valores.append(datePicker.getValue()).append(" ");
+                        valores.append(datePicker.getValue()).append(",");
                     }
                 }
             } else if (node instanceof TextField) {
                 TextField textField = (TextField) node;
-                valores.append(textField.getText()).append(" ");
+                valores.append(textField.getText()).append("|");
             }
         }
         return valores.toString().trim();

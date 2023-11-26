@@ -18,7 +18,7 @@ public class Persona extends Contacto{
     private String ocupacion;
     private String Nacionalidad;
 
-    public Persona(String apellido , String genero, String fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<String[]> telefonos) {
+    public Persona(String apellido , String genero, String fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<Telefono> telefonos) {
         super(nombre, direcciones, emails, redes, fotos, fechas, telefonos);
         this.apellido = apellido;
         this.genero = genero;
@@ -73,5 +73,12 @@ public class Persona extends Contacto{
     public void setNacionalidad(String Nacionalidad) {
         this.Nacionalidad = Nacionalidad;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+" , "+"Persona{" + "apellido=" + apellido + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + ", ocupacion=" + ocupacion + ", Nacionalidad=" + Nacionalidad + '}';
+    }
+
+    
     
 }

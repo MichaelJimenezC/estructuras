@@ -16,10 +16,10 @@ public class Contacto {
     private DoubleLinkedList<String> redes;
     private DoubleLinkedList<String> fotos;
     private DoubleLinkedList<String[]> fechas;
-    private DoubleLinkedList<String[]> telefonos;
+    private DoubleLinkedList<Telefono> telefonos;
     private DoubleLinkedList<String[]> contactosRelacionados;
 
-    public Contacto(String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<String[]> telefonos) {
+    public Contacto(String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<Telefono> telefonos) {
         this.nombre = nombre;
         this.direcciones = direcciones;
         this.emails = emails;
@@ -55,11 +55,11 @@ public class Contacto {
         this.fechas = fechas;
     }
 
-    public DoubleLinkedList<String[]> getTelefonos() {
+    public DoubleLinkedList<Telefono> getTelefonos() {
         return telefonos;
     }
 
-    public void setTelefonos(DoubleLinkedList<String[]> telefonos) {
+    public void setTelefonos(DoubleLinkedList<Telefono> telefonos) {
         this.telefonos = telefonos;
     }
 
@@ -94,6 +94,12 @@ public class Contacto {
     public void setFotos(DoubleLinkedList<String> fotos) {
         this.fotos = fotos;
     }
+
+    @Override
+    public String toString() {
+        return "Contacto{" + "nombre=" + nombre + ", direcciones=" + direcciones + ", emails=" + emails + ", redes=" + redes + ", fotos=" + fotos + ", fechas=" + fechas + ", telefonos=" + telefonos + ", contactosRelacionados=" + contactosRelacionados + '}';
+    }
+    
    
    
    

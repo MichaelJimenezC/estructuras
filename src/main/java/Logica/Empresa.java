@@ -9,7 +9,7 @@ public class Empresa extends Contacto{
     private String numeroRegistro;
     private String tipoEmpresa;
 
-    public Empresa(String razonSocial, String numeroRegistro, String tipoEmpresa, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<String[]> telefonos) {
+    public Empresa(String razonSocial, String numeroRegistro, String tipoEmpresa, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<Telefono> telefonos) {
         super(nombre, direcciones, emails, redes, fotos, fechas, telefonos);
         this.razonSocial = razonSocial;
         this.numeroRegistro = numeroRegistro;
