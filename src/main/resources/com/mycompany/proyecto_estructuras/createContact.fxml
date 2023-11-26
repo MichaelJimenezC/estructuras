@@ -45,7 +45,7 @@
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                     <children>
-                        <ComboBox fx:id="cbTipo" onAction="#cambiarTipo" prefHeight="25.0" prefWidth="130.0" promptText="Persona" style="-fx-border-color: #6743a4; -fx-border-radius: 6;" />
+                        <ComboBox fx:id="cbTipo" onAction="#cambiarTipo" prefHeight="25.0" prefWidth="130.0" promptText="Persona" />
                     </children>
                     <padding>
                         <Insets left="75.0" right="65.0" top="5.0" />
@@ -61,7 +61,7 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtNombres" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #6743a4; -fx-border-radius: 6;" />
+                        <TextField fx:id="txtNombres" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
                         <Insets left="25.0" right="95.0" top="5.0" />
@@ -74,7 +74,7 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #6743a4; -fx-border-radius: 6;" />
+                        <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
                         <Insets left="25.0" right="95.0" top="5.0" />
@@ -116,21 +116,28 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <HBox prefHeight="54.0" prefWidth="345.0" spacing="17.0">
+                        <HBox prefHeight="54.0" prefWidth="345.0" spacing="8.0">
                             <children>
                                 <VBox fx:id="cajaTelefonos" prefHeight="54.0" prefWidth="297.0" spacing="10.0">
                                     <children>
-                                        <HBox prefHeight="25.0" prefWidth="281.0" spacing="10.0">
+                                        <HBox prefHeight="27.0" prefWidth="259.0" spacing="10.0">
                                             <children>
-                                                <ComboBox fx:id="comboPrefijos2" onShowing="#handleComboBoxPersona" prefHeight="25.0" prefWidth="168.0" style="-fx-border-radius: 6; -fx-border-color: #6743a4;" />
-                                                <TextField style="-fx-border-color: #6743a4; -fx-border-radius: 6;" />
+                                                <ComboBox fx:id="comboPrefijos2" onShowing="#handleComboBoxPersona" prefHeight="27.0" prefWidth="177.0" />
+                                                <TextField style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="25.0" prefWidth="47.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Imagenes/agregar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                                     </children>
                                 </VBox>
                             </children>
@@ -151,12 +158,19 @@
                             <children>
                                 <VBox fx:id="cajaEmails" prefHeight="54.0" prefWidth="302.0" spacing="10.0">
                                     <children>
-                                        <TextField prefHeight="25.0" prefWidth="282.0" style="-fx-border-color: #6743a4; -fx-border-radius: 6;" />
+                                        <TextField prefHeight="27.0" prefWidth="250.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="200.0" prefWidth="100.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="18.0" prefWidth="11.0" style="-fx-background-color: ffff;">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Imagenes/agregar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                                     </children>
                                 </VBox>
                             </children>
@@ -180,12 +194,19 @@
                             <children>
                                 <VBox fx:id="cajaRedes" prefHeight="55.0" prefWidth="304.0" spacing="10.0">
                                     <children>
-                                        <TextField prefHeight="25.0" prefWidth="278.0" style="-fx-border-color: #6743a4; -fx-border-radius: 6;" />
+                                        <TextField prefHeight="25.0" prefWidth="278.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="200.0" prefWidth="100.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Imagenes/agregar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                                     </children>
                                 </VBox>
                             </children>
@@ -208,15 +229,22 @@
                                     <children>
                                         <HBox prefHeight="55.0" prefWidth="217.0" spacing="10.0">
                                             <children>
-                                                <ComboBox prefWidth="150.0" style="-fx-border-radius: 6; -fx-border-color: #6743a4;" />
-                                                <TextField style="-fx-border-color: #6743a4; -fx-border-radius: 6;" />
+                                                <ComboBox prefWidth="150.0" />
+                                                <TextField style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="55.0" prefWidth="74.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Imagenes/agregar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                                     </children>
                                 </VBox>
                             </children>
@@ -242,15 +270,22 @@
                                     <children>
                                         <HBox prefHeight="50.0" prefWidth="214.0" spacing="10.0">
                                             <children>
-                                                <TextField style="-fx-border-color: #6743a4; -fx-border-radius: 6;" />
-                                                <DatePicker style="-fx-border-color: #6743a4; -fx-border-radius: 6;" />
+                                                <TextField style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                                <DatePicker />
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="200.0" prefWidth="100.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Button" />
+                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../Imagenes/agregar.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                                     </children>
                                 </VBox>
                             </children>
@@ -264,7 +299,7 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtNacionalidad" prefHeight="25.0" prefWidth="354.0" />
+                        <TextField fx:id="txtNacionalidad" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
                         <Insets left="25.0" right="95.0" top="5.0" />
@@ -277,7 +312,10 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtOcupación" prefHeight="25.0" prefWidth="354.0" />
+                        <TextField fx:id="txtOcupación" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;">
+                     <padding>
+                        <Insets right="45.0" />
+                     </padding></TextField>
                     </children>
                     <padding>
                         <Insets left="25.0" right="65.0" top="5.0" />

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,63 +12,61 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<ScrollPane prefHeight="665.0" prefWidth="359.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+ <content>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="359.0" style="-fx-background-color: ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="117.0" prefWidth="359.0" style="-fx-background-color: #6735a4;">
+      <VBox prefHeight="57.0" prefWidth="359.0">
          <children>
-            <HBox prefHeight="133.0" prefWidth="383.0" spacing="15.0">
+            <HBox prefHeight="44.0" prefWidth="359.0" spacing="5.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #6735a4;">
+                  <Button mnemonicParsing="false" style="-fx-background-color: FFFF;">
                      <graphic>
-                        <ImageView fitHeight="41.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="29.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../Imagenes/Regresar.png" />
+                              <Image url="@../../../Imagenes/boton-de-flecha-izquierda-del-teclado.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label text="Friends Profiles" textFill="WHITE">
+                  <Label text="Contactos" textFill="#6735a4">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                      <padding>
-                        <Insets top="10.0" />
+                        <Insets top="5.0" />
                      </padding>
                   </Label>
                </children>
                <padding>
-                  <Insets left="35.0" top="35.0" />
+                  <Insets left="5.0" top="10.0" />
                </padding>
             </HBox>
          </children>
          <padding>
-            <Insets bottom="15.0" />
+            <Insets top="10.0" />
          </padding>
       </VBox>
       <VBox fx:id="vboxContactoPerfil" prefHeight="115.0" prefWidth="359.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="325.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <ImageView fitHeight="105.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Imagenes/llamada%20(1).png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                     <padding>
-                        <Insets left="35.0" right="25.0" />
-                     </padding>
-                  </VBox>
+                  <ImageView fitHeight="105.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Img/Jim%20Halpert2.png" />
+                     </image>
+                  </ImageView>
                   <VBox alignment="CENTER" prefHeight="150.0" prefWidth="176.0" spacing="10.0">
                      <children>
-                        <Label text="Leon Garcia">
+                        <Label text="Leon Garcia" textFill="#6735a4">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label text="Empresa" />
+                        <Label text="Empresa" textFill="#7f65ff">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
                      </children>
                      <padding>
                         <Insets left="25.0" right="25.0" top="25.0" />
@@ -75,19 +74,19 @@
                   </VBox>
                </children>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets bottom="10.0" left="60.0" right="50.0" top="10.0" />
                </padding>
             </HBox>
          </children>
       </VBox>
       <VBox fx:id="vboxNombres" layoutX="10.0" layoutY="134.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                <children>
-                  <Label text="Given Names">
+                  <Label text="Given Names" textFill="#6735a4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="354.0" />
+                  <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                </children>
                <padding>
                   <Insets left="45.0" right="65.0" top="5.0" />
@@ -95,12 +94,12 @@
             </VBox>
             <VBox fx:id="vboxApellidos" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                <children>
-                  <Label text="Sour Names">
+                  <Label text="Sour Names" textFill="#6735a4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtNombres" prefHeight="25.0" prefWidth="354.0" />
+                  <TextField fx:id="txtNombres" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                </children>
                <padding>
                   <Insets left="45.0" right="65.0" top="5.0" />
@@ -108,7 +107,7 @@
             </VBox>
             <VBox fx:id="vboxTelefonoEmpresas" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <Label text="Telefonos">
+                  <Label text="Telefonos" textFill="#6735a4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -120,7 +119,7 @@
                               <HBox prefHeight="31.0" prefWidth="251.0" spacing="10.0">
                                  <children>
                                     <ComboBox prefHeight="25.0" prefWidth="110.0" />
-                                    <TextField prefHeight="25.0" prefWidth="147.0" />
+                                    <TextField fx:id="txtNumero" prefHeight="25.0" prefWidth="147.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                  </children>
                               </HBox>
                            </children>
@@ -134,7 +133,7 @@
             </VBox>
             <VBox fx:id="vboxEmailsEmpresas" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <Label text="Emails">
+                  <Label text="Emails" textFill="#6735a4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -143,7 +142,7 @@
                      <children>
                         <VBox fx:id="cajaEmails" prefHeight="54.0" prefWidth="302.0" spacing="10.0">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="282.0" />
+                              <TextField fx:id="txtEmails" prefHeight="25.0" prefWidth="282.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                            </children>
                         </VBox>
                      </children>
@@ -158,7 +157,7 @@
             </VBox>
             <VBox fx:id="vboxRedesEmpresas" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <Label text="Redes Sociales">
+                  <Label text="Redes Sociales" textFill="#6735a4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
@@ -166,7 +165,7 @@
                      <children>
                         <VBox fx:id="cajaRedes" prefHeight="55.0" prefWidth="304.0" spacing="10.0">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="278.0" />
+                              <TextField fx:id="txtRedes" prefHeight="25.0" prefWidth="278.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                            </children>
                         </VBox>
                      </children>
@@ -178,7 +177,7 @@
             </VBox>
             <VBox fx:id="vboxDireccionesEmpresas" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                <children>
-                  <Label text="Direcciones">
+                  <Label text="Direcciones" textFill="#6735a4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
@@ -189,7 +188,7 @@
                               <HBox prefHeight="55.0" prefWidth="217.0" spacing="10.0">
                                  <children>
                                     <ComboBox prefWidth="150.0" />
-                                    <TextField />
+                                    <TextField fx:id="txtDirecciones" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                  </children>
                               </HBox>
                            </children>
@@ -203,10 +202,10 @@
             </VBox>
             <VBox fx:id="vboxFechasEmpresas" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <padding>
-                  <Insets bottom="20.0" left="45.0" />
+                  <Insets bottom="20.0" left="45.0" top="10.0" />
                </padding>
                <children>
-                  <Label text="Fechas Relevantes">
+                  <Label text="Fechas Relevantes" textFill="#6735a4">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -217,7 +216,7 @@
                            <children>
                               <HBox prefHeight="50.0" prefWidth="214.0" spacing="10.0">
                                  <children>
-                                    <TextField prefHeight="25.0" prefWidth="253.0" />
+                                    <TextField fx:id="txtFechas" prefHeight="25.0" prefWidth="253.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                  </children>
                               </HBox>
                            </children>
@@ -231,7 +230,7 @@
             </VBox>
       <VBox fx:id="vboxContactosRelacionados" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label text="Contactos relacionados">
+            <Label text="Contactos relacionados" textFill="#6735a4">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -245,5 +244,19 @@
             <Insets left="25.0" />
          </padding>
       </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #6735a4;" text="Editar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
    </children>
 </VBox>
+ </content>
+</ScrollPane>
