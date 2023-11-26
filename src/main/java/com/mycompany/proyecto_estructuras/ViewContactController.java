@@ -42,17 +42,6 @@ public class ViewContactController implements Initializable {
         // TODO
     }    
   
-    private static void cargarDatosPersona(Contacto contacto,ImageView perfil, Label txtNombre,TextField txtTelefono, 
-                                           TextField txtEmail,TextField txtredes, TextField txtDirecciones, TextField txtfechas) {
-        // Lógica para cargar datos de la persona
-        perfil.setImage(contacto.getFotos());
-        txtNombre.setLabelFor(contacto.getNombre());
-        txtEmail.setText(contacto.getEmails());
-        txtTelefono.setText(contacto.getTelefonos());
-        txtredes.setText(contacto.getRedes());
-        txtDirecciones.setText(contacto.getDirecciones());
-        txtfechas.setText(contacto.getFechas());
-        // Configurar otros campos específicos de la persona...
-    }
+  
     
 }

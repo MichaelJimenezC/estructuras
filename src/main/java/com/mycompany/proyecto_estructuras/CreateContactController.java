@@ -183,6 +183,11 @@ public class CreateContactController implements Initializable {
     @FXML
     private void guardarContacto(ActionEvent event) {
         String telefonos = obtenerValores(cajaTelefonos);
+        String[] telefonosArray = obtenerValores(cajaTelefonos).split("[()]");
+        for(String algo:telefonosArray){
+            System.out.println(algo);
+        }
+        
         if (!txtNombres.getText().isEmpty() && !telefonos.isEmpty()) {
             String nombres = txtNombres.getText();
             String apellidos = txtApellidos.getText();
@@ -226,9 +231,11 @@ public class CreateContactController implements Initializable {
             if (node instanceof HBox) {
                 HBox hBox = (HBox) node;
                 for (Node child : hBox.getChildren()) {
-                    if (child instanceof ComboBox) {
-                        ComboBox<String> comboBox = (ComboBox<String>) child;
-                        valores.append(comboBox.getValue()).append(" ");
+                    if (child instanceof ComboBox) {                      
+                        ComboBox<?> comboBox = (ComboBox<?>) child;
+                        Object valor=comboBox.getValue();
+                        System.out.println("hola: "+valor);
+                        valores.append(valor);
                     } else if (child instanceof TextField) {
                         TextField textField = (TextField) child;
                         valores.append(textField.getText()).append(" ");
