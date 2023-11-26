@@ -67,7 +67,6 @@ public class CreateContactController implements Initializable {
     private Button btnFoto;
     @FXML
     private ImageView ImgFotoPersona;
- 
 
     private boolean comboBoxLoaded = false;
 
@@ -96,9 +95,9 @@ public class CreateContactController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         Button sourceButton = (Button) event.getSource();
-        System.out.println(sourceButton.getParent().getParent());
-        VBox vbox = (VBox) ((HBox) sourceButton.getParent().getParent()).getChildren().get(0);
 
+        VBox vbox = (VBox) ((HBox) sourceButton.getParent().getParent()).getChildren().get(0);
+        agregarEliminar(sourceButton, vbox);
         if (vbox == cajaTelefonos) {
             agregarTextField(vbox);
         } else if (vbox == cajaEmails || vbox == cajaRedes) {
@@ -190,8 +189,8 @@ public class CreateContactController implements Initializable {
             String apellidos = txtApellidos.getText();
             String genero = "";
             if (generos.getSelectedToggle() != null) {
-                RadioButton select=(RadioButton)generos.getSelectedToggle();
-                
+                RadioButton select = (RadioButton) generos.getSelectedToggle();
+
                 genero = select.getText();
             }
             String ocupacion = txtOcupación.getText();
@@ -225,21 +224,20 @@ public class CreateContactController implements Initializable {
                     lltelefonos.add(telefono);
                 }
             }
-            for(String algo:emailsArray){
+            for (String algo : emailsArray) {
                 llemails.add(algo);
             }
-            for(String algo:redesSocialesArray){
+            for (String algo : redesSocialesArray) {
                 llredes.add(algo);
             }
-            for(String algo:direccionesArray){
-                String[]direccion=algo.split(" ");
+            for (String algo : direccionesArray) {
+                String[] direccion = algo.split(" ");
                 lldirecciones.add(direccion);
             }
-            for(String algo:fechasRelevantesArray){
-                String[]fecha=algo.split("\\|");
+            for (String algo : fechasRelevantesArray) {
+                String[] fecha = algo.split("\\|");
                 llfechas.add(fecha);
             }
-            
 
 //            Persona(String apellido , String genero, String fechaNacimiento
 //            , String ocupacion, String Nacionalidad
@@ -280,4 +278,30 @@ public class CreateContactController implements Initializable {
         return valores.toString().trim();
     }
 
+    private void agregarEliminar(Button botonOrigen, VBox padre) {
+
+        // Obtener el nodo padre del botón
+        VBox nodoPadre = (VBox) botonOrigen.getParent();
+        nodoPadre.setSpacing(5);
+        if (nodoPadre.getChildren().size() < 2) {
+            ImageView imgv = new ImageView();
+            imgv.setFitWidth(15); // ajusta el ancho de la imagen
+            imgv.setFitHeight(15); // ajusta la altura de la imagen
+            Image img = new Image("file:src/main/resources/Imagenes/close.png");
+            imgv.setImage(img);
+            // Agregar un nuevo botón al nodo padre
+            Button nuevoBoton = new Button("", imgv);
+            nuevoBoton.setStyle("-fx-background-color: white;");
+            nuevoBoton.setOnAction(e -> {
+                if (padre.getChildren().size() >= 1) {
+                    padre.getChildren().remove(padre.getChildren().size() - 1);
+                    if (padre.getChildren().size() == 1) {
+                        nodoPadre.getChildren().remove(nodoPadre.getChildren().size() - 1);
+                    }
+                }
+            });
+
+            nodoPadre.getChildren().add(nuevoBoton);
+        }
+    }
 }
