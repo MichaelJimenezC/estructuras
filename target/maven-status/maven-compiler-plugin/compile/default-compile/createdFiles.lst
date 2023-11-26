@@ -10,12 +10,10 @@ Logica\Contacto.class
 com\mycompany\proyecto_estructuras\NewContactWindow.class
 Logica\Archivos.class
 com\mycompany\proyecto_estructuras\CreateContactPage2Controller.class
-com\mycompany\proyecto_estructuras\ViewContactController.class
 module-info.class
 com\mycompany\proyecto_estructuras\ContactosPageController.class
 Logica\DoubleLinkedList.class
 com\mycompany\proyecto_estructuras\PrimaryController$1.class
-com\mycompany\proyecto_estructuras\App.class
 com\mycompany\proyecto_estructuras\CreateContactController.class
 Logica\Persona.class
 com\mycompany\proyecto_estructuras\SecondaryController.class
