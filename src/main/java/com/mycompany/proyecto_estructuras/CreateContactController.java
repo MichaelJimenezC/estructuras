@@ -1,11 +1,12 @@
 package com.mycompany.proyecto_estructuras;
 
-import Logica.Archivos;
+import Direcciones.Direccion;
+import Fechas.Fecha;
 import Logica.DoubleLinkedList;
 import Logica.Persona;
 import Logica.Telefono;
-import Logica.Usuario;
 import Prefijos.PrefijoPais;
+import Social_Media.RedesSociales;
 import java.io.File;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -17,14 +18,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.scene.Node;
@@ -56,7 +54,8 @@ public class CreateContactController implements Initializable {
     private VBox cajaDirecciones;
     @FXML
     private VBox cajaFechas;
-
+    @FXML
+    private ToggleGroup generos;
     @FXML
     private TextField txtNacionalidad;
     @FXML
@@ -69,6 +68,12 @@ public class CreateContactController implements Initializable {
     private ImageView ImgFotoPersona;
 
     private boolean comboBoxLoaded = false;
+    @FXML
+    private ComboBox<RedesSociales> comboBoxRedes;
+    @FXML
+    private ComboBox<Direccion> comboDirections;
+    @FXML
+    private ComboBox<Fecha> comboFechas;
 
     @FXML
     private void cambiarTipo(ActionEvent event) {
@@ -84,12 +89,25 @@ public class CreateContactController implements Initializable {
             }
         }
     }
-    @FXML
-    private ToggleGroup generos;
 
     @FXML
     private void handleComboBoxPersona(Event event) {
         PrimaryController.configurarComboBoxConPrefijos(comboPrefijos2);
+    }
+
+    @FXML
+    private void handleComboBoxSocialMedia(Event event) {
+        RedesSociales.configurarComboBoxConRedes(comboBoxRedes);
+    }
+
+    @FXML
+    private void handleComboBoxDirections(Event event) {
+        Direccion.configurarComboBoxConDirecciones(comboDirections);
+    }
+
+    @FXML
+    private void handleComboBoxDates(Event event) {
+        Fecha.configurarComboBoxConFechas(comboFechas);
     }
 
     @FXML

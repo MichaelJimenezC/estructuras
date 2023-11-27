@@ -5,27 +5,25 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="353.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.CreateContactController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.CreateContactController">
     <content>
         <VBox prefHeight="665.0" prefWidth="410.0" style="-fx-background-color: ffff;">
             <children>
-                <VBox fx:id="vboxImagen" alignment="CENTER" prefHeight="140.0" prefWidth="408.0" style="-fx-background-color: ffff;">
+                <VBox fx:id="vboxImagen" alignment="CENTER" prefHeight="124.0" prefWidth="413.0" style="-fx-background-color: ffff;">
                     <children>
                         <Button fx:id="btnFoto" mnemonicParsing="false" onAction="#handleBtnFotoClick" style="-fx-background-color: ffff;">
                             <graphic>
                                 <ImageView fx:id="ImgFotoPersona" fitHeight="109.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../../../Imagenes/perfil.png" />
+                                        <Image url="@../../../Imagenes/agregar-usuario.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -39,9 +37,9 @@
                     <padding>
                         <Insets top="5.0" />
                     </padding>
-               <VBox.margin>
-                  <Insets right="50.0" />
-               </VBox.margin>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                     <children>
@@ -50,9 +48,9 @@
                     <padding>
                         <Insets left="75.0" right="65.0" top="5.0" />
                     </padding>
-               <VBox.margin>
-                  <Insets right="50.0" />
-               </VBox.margin>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
                 </VBox>
                 <VBox fx:id="vboxApellidos" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                     <children>
@@ -64,7 +62,7 @@
                         <TextField fx:id="txtNombres" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
-                        <Insets left="25.0" right="95.0" top="5.0" />
+                        <Insets left="25.0" right="75.0" top="5.0" />
                     </padding>
                 </VBox>
                 <VBox fx:id="vboxNombres" layoutX="10.0" layoutY="134.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
@@ -74,13 +72,13 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                        <TextField fx:id="txtApellidos" prefHeight="27.0" prefWidth="322.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
-                        <Insets left="25.0" right="95.0" top="5.0" />
+                        <Insets left="25.0" right="75.0" top="5.0" />
                     </padding>
                 </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0">
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                     <children>
                         <Label text="Género" textFill="#6735a4">
                             <font>
@@ -88,25 +86,11 @@
                             </font>
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-                            <children>
-                                <fx:define>
-                                    <!-- Define el ToggleGroup aquí -->
-                                    <ToggleGroup fx:id="generos" />
-                                </fx:define>
-                                    <RadioButton fx:id="masculino" mnemonicParsing="false" text="Masculino">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="generos" />
-                           </toggleGroup></RadioButton>
-                                    <RadioButton fx:id="femenino" mnemonicParsing="false" text="Femenino" toggleGroup="$generos">
-                                    </RadioButton>
-                            </children>
-                            <padding>
-                                <Insets left="75.0" />
-                            </padding>
+                            
                         </HBox>
                     </children>
                     <padding>
-                        <Insets left="25.0" top="10.0" />
+                        <Insets bottom="10.0" left="25.0" top="10.0" />
                     </padding>
                 </VBox>
                 <VBox fx:id="vboxTelefonos" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -116,14 +100,14 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <HBox prefHeight="54.0" prefWidth="345.0" spacing="8.0">
+                        <HBox prefHeight="28.0" prefWidth="348.0">
                             <children>
-                                <VBox fx:id="cajaTelefonos" prefHeight="54.0" prefWidth="297.0" spacing="10.0">
+                                <VBox fx:id="cajaTelefonos" prefHeight="28.0" prefWidth="314.0">
                                     <children>
-                                        <HBox prefHeight="27.0" prefWidth="259.0" spacing="10.0">
+                                        <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboPrefijos2" onShowing="#handleComboBoxPersona" prefHeight="27.0" prefWidth="177.0" />
-                                                <TextField style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                                <ComboBox fx:id="comboPrefijos2" onShowing="#handleComboBoxPersona" prefHeight="27.0" prefWidth="156.0" />
+                                                <TextField prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
                                     </children>
@@ -131,20 +115,24 @@
                                 <VBox prefHeight="25.0" prefWidth="47.0">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../Imagenes/agregar.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
+                                            <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../Imagenes/agregar.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
                                     </children>
+                                    <padding>
+                                        <Insets left="7.0" />
+                                    </padding>
                                 </VBox>
                             </children>
                         </HBox>
                     </children>
                     <padding>
-                        <Insets left="25.0" right="95.0" top="5.0" />
+                        <Insets left="25.0" top="5.0" />
                     </padding>
                 </VBox>
                 <VBox fx:id="vboxEmails" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -156,107 +144,118 @@
                         </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                             <children>
-                                <VBox fx:id="cajaEmails" prefHeight="54.0" prefWidth="302.0" spacing="10.0">
+                                <VBox fx:id="cajaEmails" prefHeight="28.0" prefWidth="311.0" spacing="10.0">
                                     <children>
-                                        <TextField prefHeight="27.0" prefWidth="250.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                        <TextField prefHeight="27.0" prefWidth="305.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                <VBox prefHeight="28.0" prefWidth="17.0">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="18.0" prefWidth="11.0" style="-fx-background-color: ffff;">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../Imagenes/agregar.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
+                                            <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../Imagenes/agregar.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
                                     </children>
                                 </VBox>
                             </children>
                         </HBox>
                     </children>
                     <padding>
-                        <Insets left="25.0" right="95.0" top="5.0" />
+                        <Insets left="25.0" top="5.0" />
                     </padding>
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
                 </VBox>
-                <VBox fx:id="vboxRedesSociales" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                <VBox fx:id="vboxRedesSociales" prefHeight="52.0" prefWidth="345.0" spacing="10.0">
                     <children>
                         <Label text="Redes Sociales" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <HBox prefHeight="28.0" prefWidth="350.0">
                             <children>
-                                <VBox fx:id="cajaRedes" prefHeight="55.0" prefWidth="304.0" spacing="10.0">
+                                <VBox fx:id="cajaRedes" prefHeight="28.0" prefWidth="167.0">
                                     <children>
-                                        <TextField prefHeight="25.0" prefWidth="278.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                        <ComboBox fx:id="comboBoxRedes" onShowing="#handleComboBoxSocialMedia" prefHeight="25.0" prefWidth="158.0" />
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                <VBox prefHeight="28.0" prefWidth="145.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../Imagenes/agregar.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
+                                        <TextField prefHeight="28.0" prefWidth="126.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                     </children>
+                                </VBox>
+                                <VBox prefHeight="28.0" prefWidth="7.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" style="-fx-background-color: ffff;">
+                                            <graphic>
+                                                <ImageView fitHeight="39.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../Imagenes/agregar.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                    <padding>
+                                        <Insets left="8.0" />
+                                    </padding>
                                 </VBox>
                             </children>
                         </HBox>
                     </children>
                     <padding>
-                        <Insets left="25.0" right="95.0" top="5.0" />
+                        <Insets left="25.0" top="5.0" />
                     </padding>
                 </VBox>
-                <VBox fx:id="vboxDirecciones" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
+                <VBox fx:id="vboxDirecciones" prefHeight="60.0" prefWidth="358.0" spacing="10.0" style="-fx-background-color: ffff;">
                     <children>
                         <Label text="Direcciones" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <HBox prefHeight="28.0" prefWidth="343.0" spacing="10.0">
                             <children>
-                                <VBox fx:id="cajaDirecciones" prefHeight="55.0" prefWidth="279.0" spacing="10.0">
+                                <VBox fx:id="cajaDirecciones" prefHeight="27.0" prefWidth="310.0">
                                     <children>
-                                        <HBox prefHeight="55.0" prefWidth="217.0" spacing="10.0">
+                                        <HBox prefHeight="28.0" prefWidth="316.0" spacing="8.0">
                                             <children>
-                                                <ComboBox prefWidth="150.0" />
-                                                <TextField style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                                <ComboBox fx:id="comboDirections" onShowing="#handleComboBoxDirections" prefHeight="25.0" prefWidth="186.0" />
+                                                <TextField prefHeight="27.0" prefWidth="167.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="55.0" prefWidth="74.0">
+                                <VBox prefHeight="28.0" prefWidth="0.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../Imagenes/agregar.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
+                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="28.0" prefWidth="0.0" style="-fx-background-color: FFFF;">
+                                            <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../Imagenes/agregar.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
                                     </children>
                                 </VBox>
                             </children>
                         </HBox>
                     </children>
                     <padding>
-                        <Insets left="25.0" right="95.0" top="5.0" />
+                        <Insets left="25.0" top="5.0" />
                     </padding>
                 </VBox>
                 <VBox fx:id="vboxFechasRelevantes" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                     <padding>
-                        <Insets bottom="20.0" left="25.0" right="95.0" top="10.0" />
+                        <Insets left="25.0" top="10.0" />
                     </padding>
                     <children>
                         <Label text="Fechas Relevantes" textFill="#6735a4">
@@ -264,28 +263,32 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <HBox prefHeight="28.0" prefWidth="349.0">
                             <children>
-                                <VBox fx:id="cajaFechas" prefHeight="50.0" prefWidth="303.0" spacing="10.0">
+                                <VBox fx:id="cajaFechas" prefHeight="27.0" prefWidth="312.0">
                                     <children>
-                                        <HBox prefHeight="50.0" prefWidth="214.0" spacing="10.0">
+                                        <HBox prefHeight="25.0" prefWidth="293.0" spacing="8.0">
                                             <children>
-                                                <TextField style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
-                                                <DatePicker />
+                                    <ComboBox fx:id="comboFechas" onShowing="#handleComboBoxDates" prefHeight="25.0" prefWidth="180.0" />
+                                                <DatePicker prefHeight="25.0" prefWidth="160.0" />
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="200.0" prefWidth="100.0">
+                                <VBox prefHeight="27.0" prefWidth="43.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../Imagenes/agregar.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic></Button>
+                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="20.0" prefWidth="23.0" style="-fx-background-color: FFFF;">
+                                            <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../../../Imagenes/agregar.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <padding>
+                                                <Insets left="15.0" />
+                                            </padding>
+                                        </Button>
                                     </children>
                                 </VBox>
                             </children>
@@ -302,35 +305,32 @@
                         <TextField fx:id="txtNacionalidad" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
-                        <Insets left="25.0" right="95.0" top="5.0" />
+                        <Insets left="25.0" right="75.0" top="5.0" />
                     </padding>
                 </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" style="-fx-background-color: ffff;">
                     <children>
                         <Label text="Ocupación" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtOcupación" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;">
-                     <padding>
-                        <Insets right="45.0" />
-                     </padding></TextField>
+                        <TextField fx:id="txtOcupación" prefHeight="27.0" prefWidth="279.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
-                        <Insets left="25.0" right="65.0" top="5.0" />
+                        <Insets bottom="20.0" left="25.0" right="75.0" top="5.0" />
                     </padding>
                 </VBox>
-                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: ffff;">
+                <VBox alignment="CENTER" prefHeight="73.0" prefWidth="413.0" spacing="30.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Button fx:id="buttonGuardar" mnemonicParsing="false" onAction="#guardarContacto" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6743a3;" text="Guardar" textFill="WHITE">
+                        <Button fx:id="buttonGuardar" mnemonicParsing="false" onAction="#guardarContacto" prefHeight="25.0" prefWidth="147.0" style="-fx-background-color: #6743a3;" text="Guardar" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Button>
                     </children>
                     <padding>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="20.0" top="10.0" />
                     </padding>
                 </VBox>
             </children>

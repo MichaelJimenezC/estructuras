@@ -1,8 +1,12 @@
 Logica\DoubleLinkedList$Nodo.class
+Social_Media\RedesSociales.class
 com\mycompany\proyecto_estructuras\PrimaryController.class
 com\mycompany\proyecto_estructuras\MenuPersona2Controller.class
+Direcciones\Direccion.class
 Logica\Usuario.class
 Prefijos\PrefijoPais.class
+Logica\Telefono.class
+com\mycompany\proyecto_estructuras\CreateContactPageController.class
 Logica\AL.class
 Logica\DoubleLinkedList$1.class
 Logica\Empresa.class
@@ -10,10 +14,12 @@ Logica\Contacto.class
 com\mycompany\proyecto_estructuras\NewContactWindow.class
 Logica\Archivos.class
 com\mycompany\proyecto_estructuras\CreateContactPage2Controller.class
+com\mycompany\proyecto_estructuras\ViewContactController.class
 module-info.class
 com\mycompany\proyecto_estructuras\ContactosPageController.class
 Logica\DoubleLinkedList.class
 com\mycompany\proyecto_estructuras\PrimaryController$1.class
+com\mycompany\proyecto_estructuras\App.class
 com\mycompany\proyecto_estructuras\CreateContactController.class
 Logica\Persona.class
 com\mycompany\proyecto_estructuras\SecondaryController.class
