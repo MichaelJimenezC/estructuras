@@ -123,7 +123,7 @@
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="25.0" prefWidth="47.0">
+                                <VBox prefHeight="25.0" prefWidth="47.0" spacing="20.0">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
                                             <graphic>
@@ -160,7 +160,7 @@
                                         <TextField prefHeight="27.0" prefWidth="305.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="28.0" prefWidth="17.0">
+                                <VBox prefHeight="28.0" prefWidth="17.0" spacing="20.0">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="18.0" prefWidth="11.0" style="-fx-background-color: ffff;">
                                             <graphic>
@@ -286,7 +286,7 @@
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="27.0" prefWidth="43.0">
+                                <VBox prefHeight="27.0" prefWidth="43.0" spacing="20.0">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="20.0" prefWidth="23.0" style="-fx-background-color: FFFF;">
                                             <graphic>
