@@ -256,6 +256,9 @@
                                             </graphic>
                                         </Button>
                                     </children>
+                           <padding>
+                              <Insets left="7.0" />
+                           </padding>
                                 </VBox>
                             </children>
                         </HBox>
