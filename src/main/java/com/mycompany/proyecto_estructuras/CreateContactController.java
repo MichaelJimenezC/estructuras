@@ -74,7 +74,6 @@ public class CreateContactController implements Initializable {
     private ComboBox<Direccion> comboDirections;
     @FXML
     private ComboBox<Fecha> comboFechas;
-
     @FXML
     private void cambiarTipo(ActionEvent event) {
         String opcionSeleccionada = (String) cbTipo.getValue();
@@ -92,7 +91,7 @@ public class CreateContactController implements Initializable {
 
     @FXML
     private void handleComboBoxPersona(Event event) {
-        PrimaryController.configurarComboBoxConPrefijos(comboPrefijos2);
+        PrefijoPais.configurarComboBoxConPrefijos(comboPrefijos2);
     }
 
     @FXML
@@ -134,7 +133,7 @@ public class CreateContactController implements Initializable {
         HBox hBox = new HBox();
         hBox.setSpacing(10);
         ComboBox<PrefijoPais> comboBox = new ComboBox<>();
-        PrimaryController.configurarComboBoxConPrefijos(comboBox);
+        PrefijoPais.configurarComboBoxConPrefijos(comboBox);
         comboBox.setPrefWidth(150);
         TextField textField = new TextField();
         hBox.getChildren().addAll(comboBox, textField);

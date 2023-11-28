@@ -70,7 +70,7 @@ public class CreateContactPage2Controller implements Initializable {
 
     @FXML
     private void handleComboBoxEmpresa(Event event) {
-        PrimaryController.configurarComboBoxConPrefijos(comboPrefijos3);
+        PrefijoPais.configurarComboBoxConPrefijos(comboPrefijos3);
     }
 
     @FXML
