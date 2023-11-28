@@ -74,6 +74,7 @@ public class CreateContactController implements Initializable {
     private ComboBox<Direccion> comboDirections;
     @FXML
     private ComboBox<Fecha> comboFechas;
+
     @FXML
     private void cambiarTipo(ActionEvent event) {
         String opcionSeleccionada = (String) cbTipo.getValue();
@@ -115,28 +116,50 @@ public class CreateContactController implements Initializable {
 
         VBox vbox = (VBox) ((HBox) sourceButton.getParent().getParent()).getChildren().get(0);
         agregarEliminar(sourceButton, vbox);
-        if (vbox == cajaTelefonos) {
-            agregarTextField(vbox);
-        } else if (vbox == cajaEmails || vbox == cajaRedes) {
+        if (vbox == cajaTelefonos ) {
+            agregarTextField(vbox,"telefonos");
+        } else if (vbox == cajaEmails) {
             agregarTextFieldEnHBox(vbox);
         } else if (vbox == cajaDirecciones) {
-            agregarComboBoxYTextFieldEnHBox(vbox);
+            agregarTextField(vbox,"direcciones");
         } else if (vbox == cajaFechas) {
             agregarTextFieldYDatePickerEnHBox(vbox);
-        } else {
-            System.out.println("wtf");
+        } else if (vbox == cajaRedes){
+            agregarTextField(vbox,"redes");
         }
 
     }
 
-    private void agregarTextField(VBox parentVBox) {
+    private void agregarTextField(VBox parentVBox, String tipo) {
         HBox hBox = new HBox();
-        hBox.setSpacing(10);
-        ComboBox<PrefijoPais> comboBox = new ComboBox<>();
-        PrefijoPais.configurarComboBoxConPrefijos(comboBox);
-        comboBox.setPrefWidth(150);
+        hBox.setSpacing(20);
+        ComboBox<PrefijoPais> comboBox1 = new ComboBox<PrefijoPais>();
+        ComboBox<RedesSociales> comboBox2 = new ComboBox<RedesSociales>();
+        ComboBox<Direccion> comboBox3 = new ComboBox<Direccion>();
+
+        ComboBox<Fecha> comboBox4 = new ComboBox<Fecha>();
+        comboBox1.setMinWidth(150);
+        comboBox2.setMinWidth(150);
+        comboBox3.setMinWidth(150);
+        comboBox4.setMinWidth(150);
+
+        if (tipo.equalsIgnoreCase("telefonos")) {
+
+            PrefijoPais.configurarComboBoxConPrefijos(comboBox1);
+            hBox.getChildren().add(comboBox1);
+
+        } else if (tipo.equalsIgnoreCase("redes")) {
+            RedesSociales.configurarComboBoxConRedes(comboBox2);
+            hBox.getChildren().add(comboBox2);
+            
+        } else if (tipo.equalsIgnoreCase("direcciones")) {
+            Direccion.configurarComboBoxConDirecciones(comboBox3);
+            hBox.getChildren().add(comboBox3);
+
+        } 
+
         TextField textField = new TextField();
-        hBox.getChildren().addAll(comboBox, textField);
+        hBox.getChildren().add(textField);
         parentVBox.getChildren().add(hBox);
     }
 
@@ -177,9 +200,10 @@ public class CreateContactController implements Initializable {
     private void agregarTextFieldYDatePickerEnHBox(VBox parentVBox) {
         HBox hBox = new HBox();
         hBox.setSpacing(10);
-        TextField textField = new TextField();
+        ComboBox<Fecha> cb = new ComboBox();
+        Fecha.configurarComboBoxConFechas(cb);
         DatePicker datePicker = new DatePicker();
-        hBox.getChildren().addAll(textField, datePicker);
+        hBox.getChildren().addAll(cb, datePicker);
         parentVBox.getChildren().add(hBox);
     }
 

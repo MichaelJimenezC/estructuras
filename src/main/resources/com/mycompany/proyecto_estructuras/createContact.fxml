@@ -113,7 +113,7 @@
                         </Label>
                         <HBox prefHeight="28.0" prefWidth="348.0">
                             <children>
-                                <VBox fx:id="cajaTelefonos" prefHeight="28.0" prefWidth="314.0">
+                                <VBox fx:id="cajaTelefonos" prefHeight="28.0" prefWidth="314.0" spacing="20.0">
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
@@ -183,28 +183,28 @@
                         <Insets />
                     </VBox.margin>
                 </VBox>
-                <VBox fx:id="vboxRedesSociales" prefHeight="52.0" prefWidth="345.0" spacing="10.0">
+                <VBox fx:id="vboxRedesSociales" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                     <children>
                         <Label text="Redes Sociales" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <HBox prefHeight="28.0" prefWidth="350.0">
+                        <HBox prefHeight="28.0" prefWidth="348.0">
                             <children>
-                                <VBox fx:id="cajaRedes" prefHeight="28.0" prefWidth="167.0">
+                                <VBox fx:id="cajaRedes" prefHeight="28.0" prefWidth="314.0" spacing="20.0">
                                     <children>
-                                        <ComboBox fx:id="comboBoxRedes" onShowing="#handleComboBoxSocialMedia" prefHeight="25.0" prefWidth="158.0" />
+                                        <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
+                                            <children>
+                                                <ComboBox fx:id="comboBoxRedes" onShowing="#handleComboBoxSocialMedia" prefHeight="27.0" prefWidth="156.0" />
+                                                <TextField prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                            </children>
+                                        </HBox>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="28.0" prefWidth="145.0">
+                                <VBox prefHeight="28.0" prefWidth="7.0" spacing="20.0">
                                     <children>
-                                        <TextField prefHeight="28.0" prefWidth="126.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
-                                    </children>
-                                </VBox>
-                                <VBox prefHeight="28.0" prefWidth="7.0">
-                                    <children>
-                                        <Button mnemonicParsing="false" style="-fx-background-color: ffff;">
+                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: ffff;">
                                             <graphic>
                                                 <ImageView fitHeight="39.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -225,26 +225,26 @@
                         <Insets left="25.0" top="5.0" />
                     </padding>
                 </VBox>
-                <VBox fx:id="vboxDirecciones" prefHeight="60.0" prefWidth="358.0" spacing="10.0" style="-fx-background-color: ffff;">
+                <VBox fx:id="vboxDirecciones" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                     <children>
                         <Label text="Direcciones" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <HBox prefHeight="28.0" prefWidth="343.0" spacing="10.0">
+                        <HBox prefHeight="28.0" prefWidth="348.0">
                             <children>
-                                <VBox fx:id="cajaDirecciones" prefHeight="27.0" prefWidth="310.0">
+                                <VBox fx:id="cajaDirecciones" prefHeight="28.0" prefWidth="314.0" spacing="20.0">
                                     <children>
-                                        <HBox prefHeight="28.0" prefWidth="316.0" spacing="8.0">
+                                        <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboDirections" onShowing="#handleComboBoxDirections" prefHeight="25.0" prefWidth="186.0" />
-                                                <TextField prefHeight="27.0" prefWidth="167.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                                <ComboBox fx:id="comboDirecciones" onShowing="#handleComboBoxDirections" prefHeight="27.0" prefWidth="156.0" />
+                                                <TextField prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="28.0" prefWidth="0.0">
+                                <VBox prefHeight="28.0" prefWidth="0.0" spacing="20.0">
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="28.0" prefWidth="0.0" style="-fx-background-color: FFFF;">
                                             <graphic>
@@ -276,7 +276,7 @@
                         </Label>
                         <HBox prefHeight="28.0" prefWidth="349.0">
                             <children>
-                                <VBox fx:id="cajaFechas" prefHeight="27.0" prefWidth="312.0">
+                                <VBox fx:id="cajaFechas" prefHeight="27.0" prefWidth="312.0" spacing="20.0">
                                     <children>
                                         <HBox prefHeight="25.0" prefWidth="293.0" spacing="8.0">
                                             <children>
