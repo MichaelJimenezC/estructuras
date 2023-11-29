@@ -6,18 +6,13 @@ package Logica;
 
 public class Empresa extends Contacto{
     private String razonSocial;
-    private String numeroRegistro;
     private String tipoEmpresa;
 
-    public Empresa(String razonSocial, String numeroRegistro, String tipoEmpresa, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<Telefono> telefonos) {
+    public Empresa(String razonSocial, String tipoEmpresa, String nombre, DoubleLinkedList<Direccion> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<RedSocial> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<Fecha> fechas, DoubleLinkedList<Telefono> telefonos) {
         super(nombre, direcciones, emails, redes, fotos, fechas, telefonos);
         this.razonSocial = razonSocial;
-        this.numeroRegistro = numeroRegistro;
         this.tipoEmpresa = tipoEmpresa;
     }
-
-   
-   
 
     public String getRazonSocial() {
         return razonSocial;
@@ -27,14 +22,6 @@ public class Empresa extends Contacto{
         this.razonSocial = razonSocial;
     }
 
-    public String getNumeroRegistro() {
-        return numeroRegistro;
-    }
-
-    public void setNumeroRegistro(String numeroRegistro) {
-        this.numeroRegistro = numeroRegistro;
-    }
-
     public String getTipoEmpresa() {
         return tipoEmpresa;
     }
@@ -42,6 +29,8 @@ public class Empresa extends Contacto{
     public void setTipoEmpresa(String tipoEmpresa) {
         this.tipoEmpresa = tipoEmpresa;
     }
+
+   
 
    
    

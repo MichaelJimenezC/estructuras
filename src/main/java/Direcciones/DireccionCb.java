@@ -15,12 +15,12 @@ import javafx.scene.image.ImageView;
  *
  * @author marle
  */
-public class Direccion {
+public class DireccionCb {
 
     private Image imagenDireccion;
     private String tipoDireccion;
 
-    public Direccion(Image imagenDireccion, String tipoDireccion) {
+    public DireccionCb(Image imagenDireccion, String tipoDireccion) {
         this.imagenDireccion = imagenDireccion;
         this.tipoDireccion = tipoDireccion;
     }
@@ -41,26 +41,27 @@ public class Direccion {
         this.tipoDireccion = tipoDireccion;
     }
 
-    public static List<Direccion> obtenerDireccion() {
-        List<Direccion> listaDirecciones = new ArrayList<>();
-        listaDirecciones.add(new Direccion(new Image(Direccion.class.getResourceAsStream("/Imagenes/casa.png")), " Casa"));
-        listaDirecciones.add(new Direccion(new Image(Direccion.class.getResourceAsStream("/Imagenes/maleta.png")), " Trabajo"));
-        listaDirecciones.add(new Direccion(new Image(Direccion.class.getResourceAsStream("/Imagenes/colegio.png")), " Universidad"));
-        listaDirecciones.add(new Direccion(new Image(Direccion.class.getResourceAsStream("/Imagenes/colegio (1).png")), " Colegio"));
+    public static List<DireccionCb> obtenerDireccion() {
+        List<DireccionCb> listaDirecciones = new ArrayList<>();
+        listaDirecciones.add(new DireccionCb(new Image(DireccionCb.class.getResourceAsStream("/Imagenes/casa.png")), " Casa"));
+        listaDirecciones.add(new DireccionCb(new Image(DireccionCb.class.getResourceAsStream("/Imagenes/maleta.png")), " Trabajo"));
+        listaDirecciones.add(new DireccionCb(new Image(DireccionCb.class.getResourceAsStream("/Imagenes/colegio.png")), " Universidad"));
+        listaDirecciones.add(new DireccionCb(new Image(DireccionCb.class.getResourceAsStream("/Imagenes/colegio (1).png")), " Colegio"));
         return listaDirecciones;
     }
-      public static void configurarComboBoxConDirecciones(ComboBox<Direccion> comboBox) {
+
+    public static void configurarComboBoxConDirecciones(ComboBox<DireccionCb> comboBox) {
         // Asegurarse de que el ComboBox no se haya cargado previamente
         if (comboBox.getItems().isEmpty()) {
             // Cargar datos en el ComboBox
-            comboBox.getItems().addAll(Direccion.obtenerDireccion());
+            comboBox.getItems().addAll(DireccionCb.obtenerDireccion());
 
             // Configurar cómo se muestra cada item con una celda personalizada
-            comboBox.setCellFactory(lv -> new ListCell<Direccion>() {
+            comboBox.setCellFactory(lv -> new ListCell<DireccionCb>() {
                 private final ImageView imageView = new ImageView();
 
                 @Override
-                protected void updateItem(Direccion item, boolean empty) {
+                protected void updateItem(DireccionCb item, boolean empty) {
                     super.updateItem(item, empty);
                     if (empty || item == null) {
                         setText(null);
@@ -76,11 +77,11 @@ public class Direccion {
             });
 
             // Configurar cómo se muestra el item seleccionado en el botón del ComboBox
-            comboBox.setButtonCell(new ListCell<Direccion>() {
+            comboBox.setButtonCell(new ListCell<DireccionCb>() {
                 private final ImageView imageView = new ImageView();
 
                 @Override
-                protected void updateItem(Direccion item, boolean empty) {
+                protected void updateItem(DireccionCb item, boolean empty) {
                     super.updateItem(item, empty);
                     if (empty || item == null) {
                         setText(null);
@@ -95,6 +96,11 @@ public class Direccion {
                 }
             });
         }
+    }
+
+    @Override
+    public String toString() {
+        return tipoDireccion;
     }
 
 }

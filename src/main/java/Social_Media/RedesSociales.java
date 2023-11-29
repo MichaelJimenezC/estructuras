@@ -96,5 +96,10 @@ public static void configurarComboBoxConRedes(ComboBox<RedesSociales> comboBox) 
             });
         }
     }
+     @Override
+    public String toString() {
+        return nombreRedSocial;
+    }
+
     
 }

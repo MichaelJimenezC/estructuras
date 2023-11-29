@@ -16,11 +16,12 @@ import javafx.scene.image.ImageView;
  *
  * @author marle
  */
-public class Fecha {
+public class FechaCb {
+
     private Image ImagenFecha;
     private String festividad;
 
-    public Fecha(Image ImagenFecha, String festividad) {
+    public FechaCb(Image ImagenFecha, String festividad) {
         this.ImagenFecha = ImagenFecha;
         this.festividad = festividad;
     }
@@ -41,25 +42,26 @@ public class Fecha {
         this.festividad = festividad;
     }
 
-     public static List<Fecha> obtenerFechas() {
-        List<Fecha> listaFechas = new ArrayList<>();
-        listaFechas.add(new Fecha(new Image(RedesSociales.class.getResourceAsStream("/Imagenes/calendario.png")), " Cumpleaños"));
-        listaFechas.add(new Fecha(new Image(RedesSociales.class.getResourceAsStream("/Imagenes/aniversario.png")), " Aniversario"));
-        listaFechas.add(new Fecha(new Image(RedesSociales.class.getResourceAsStream("/Imagenes/otro.png")), " Otro"));
+    public static List<FechaCb> obtenerFechas() {
+        List<FechaCb> listaFechas = new ArrayList<>();
+        listaFechas.add(new FechaCb(new Image(RedesSociales.class.getResourceAsStream("/Imagenes/calendario.png")), " Cumpleaños"));
+        listaFechas.add(new FechaCb(new Image(RedesSociales.class.getResourceAsStream("/Imagenes/aniversario.png")), " Aniversario"));
+        listaFechas.add(new FechaCb(new Image(RedesSociales.class.getResourceAsStream("/Imagenes/otro.png")), " Otro"));
         return listaFechas;
     }
-public static void configurarComboBoxConFechas(ComboBox<Fecha> comboBox) {
+
+    public static void configurarComboBoxConFechas(ComboBox<FechaCb> comboBox) {
         // Asegurarse de que el ComboBox no se haya cargado previamente
         if (comboBox.getItems().isEmpty()) {
             // Cargar datos en el ComboBox
-            comboBox.getItems().addAll(Fecha.obtenerFechas());
+            comboBox.getItems().addAll(FechaCb.obtenerFechas());
 
             // Configurar cómo se muestra cada item con una celda personalizada
-            comboBox.setCellFactory(lv -> new ListCell<Fecha>() {
+            comboBox.setCellFactory(lv -> new ListCell<FechaCb>() {
                 private final ImageView imageView = new ImageView();
 
                 @Override
-                protected void updateItem(Fecha item, boolean empty) {
+                protected void updateItem(FechaCb item, boolean empty) {
                     super.updateItem(item, empty);
                     if (empty || item == null) {
                         setText(null);
@@ -75,11 +77,11 @@ public static void configurarComboBoxConFechas(ComboBox<Fecha> comboBox) {
             });
 
             // Configurar cómo se muestra el item seleccionado en el botón del ComboBox
-            comboBox.setButtonCell(new ListCell<Fecha>() {
+            comboBox.setButtonCell(new ListCell<FechaCb>() {
                 private final ImageView imageView = new ImageView();
 
                 @Override
-                protected void updateItem(Fecha item, boolean empty) {
+                protected void updateItem(FechaCb item, boolean empty) {
                     super.updateItem(item, empty);
                     if (empty || item == null) {
                         setText(null);
@@ -95,5 +97,10 @@ public static void configurarComboBoxConFechas(ComboBox<Fecha> comboBox) {
             });
         }
     }
-    
+
+    @Override
+    public String toString() {
+        return festividad;
+    }
+
 }

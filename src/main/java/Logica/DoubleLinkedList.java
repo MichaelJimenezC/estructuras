@@ -14,12 +14,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public class DoubleLinkedList<E> implements List<E>, Serializable {
 
     Nodo<E> primero;
     Nodo<E> ultimo;
     int n;
+    private static final long serialVersionUID = 2520951784067513363L;
 
     private static class Nodo<E> {
 
@@ -58,7 +60,25 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
 
     @Override
     public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Nodo<E> actual = primero;
+
+        if (o == null) {
+            do {
+                if (actual == null || actual.contenido == null) {
+                    return true;
+                }
+                actual = actual.sig;
+            } while (actual != primero);
+        } else {
+            do {
+                if (o.equals(actual.contenido)) {
+                    return true;
+                }
+                actual = actual.sig;
+            } while (actual != primero);
+        }
+
+        return false;
     }
 
     @Override
@@ -300,7 +320,74 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
 
     @Override
     public ListIterator<E> listIterator() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new ListIterator<E>() {
+            private Nodo<E> current = primero;
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+
+                E data = current.contenido;
+                current = current.sig;
+                currentIndex++;
+                return data;
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return current != primero;
+            }
+
+            @Override
+            public E previous() {
+                if (!hasPrevious()) {
+                    throw new NoSuchElementException();
+                }
+
+                if (current == null) {
+                    // Estamos al final de la lista, retrocedemos al último elemento
+                    current = ultimo;
+                } else {
+                    current = current.anterior;
+                }
+
+                currentIndex--;
+                return current.contenido;
+            }
+
+            @Override
+            public int nextIndex() {
+                return currentIndex;
+            }
+
+            @Override
+            public int previousIndex() {
+                return currentIndex - 1;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            @Override
+            public void set(E e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            @Override
+            public void add(E e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+        };
     }
 
     @Override
@@ -360,6 +447,11 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
             System.out.print(actual.contenido + " ");
             actual = actual.sig;
         } while (actual != this.primero);
+    }
+
+    @Override
+    public String toString() {
+        return "DoubleLinkedList{" + "n=" + n + '}';
     }
 
 }

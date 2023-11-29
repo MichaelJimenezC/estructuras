@@ -4,6 +4,8 @@
  */
 package Logica;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author marle
@@ -14,11 +16,11 @@ package Logica;
 public class Persona extends Contacto{
     private String apellido;
     private String genero;
-    private String fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String ocupacion;
     private String Nacionalidad;
 
-    public Persona(String apellido , String genero, String fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, DoubleLinkedList<String[]> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<String> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas, DoubleLinkedList<Telefono> telefonos) {
+    public Persona(String apellido, String genero, LocalDate fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, DoubleLinkedList<Direccion> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<RedSocial> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<Fecha> fechas, DoubleLinkedList<Telefono> telefonos) {
         super(nombre, direcciones, emails, redes, fotos, fechas, telefonos);
         this.apellido = apellido;
         this.genero = genero;
@@ -26,11 +28,6 @@ public class Persona extends Contacto{
         this.ocupacion = ocupacion;
         this.Nacionalidad = Nacionalidad;
     }
-
-    
-
- 
-   
 
     public String getApellido() {
         return apellido;
@@ -40,8 +37,6 @@ public class Persona extends Contacto{
         this.apellido = apellido;
     }
 
-   
-
     public String getGenero() {
         return genero;
     }
@@ -50,11 +45,11 @@ public class Persona extends Contacto{
         this.genero = genero;
     }
 
-    public String getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -74,6 +69,11 @@ public class Persona extends Contacto{
         this.Nacionalidad = Nacionalidad;
     }
 
+    
+
+    
+
+ 
     @Override
     public String toString() {
         return super.toString()+" , "+"Persona{" + "apellido=" + apellido + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + ", ocupacion=" + ocupacion + ", Nacionalidad=" + Nacionalidad + '}';
