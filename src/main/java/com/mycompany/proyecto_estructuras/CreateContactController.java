@@ -35,6 +35,7 @@ import java.util.ListIterator;
 import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -276,10 +277,8 @@ public class CreateContactController implements Initializable {
             DoubleLinkedList<Direccion> lldirecciones = new DoubleLinkedList();
             DoubleLinkedList<String> llemails = new DoubleLinkedList();
             DoubleLinkedList<RedSocial> llredes = new DoubleLinkedList();
-            DoubleLinkedList<String> llfotos = new DoubleLinkedList();
             DoubleLinkedList<Fecha> llfechas = new DoubleLinkedList();
             DoubleLinkedList<Telefono> lltelefonos = new DoubleLinkedList();
-            llfotos.addAll(fotos);
             //añadir telefonos
             String[] telefonosArray = telefonos.split("\\|");
             String[] emailsArray = emails.split("\\|");
@@ -328,7 +327,7 @@ public class CreateContactController implements Initializable {
 //            , DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas
 //            , DoubleLinkedList<String[]> telefonos
 //            ) 
-            Persona contacto = new Persona(apellidos, genero, cumpleaños, ocupacion, Nacionalidad, nombres, lldirecciones, llemails, llredes, llfotos, llfechas, lltelefonos);
+            Persona contacto = new Persona(apellidos, genero, cumpleaños, ocupacion, Nacionalidad, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos);
             System.out.println("Contacto: " + contacto);
             App.usuario.getContactos().add(contacto);
             for (Usuario usuario : App.listaUsuarios) {
@@ -338,6 +337,16 @@ public class CreateContactController implements Initializable {
                 }
             }
             Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("!Se ha creado con éxito el contacto!");
+            try {
+                App.setRoot("ContactosPage");
+            } catch (IOException ex) {
+                System.out.println("Estamos dentro del cambio de escena");
+            }
+            System.out.println("si llegue");
 
         }
     }
