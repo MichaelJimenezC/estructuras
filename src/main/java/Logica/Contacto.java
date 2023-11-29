@@ -27,6 +27,7 @@ public class Contacto {
         this.fotos = fotos;
         this.fechas = fechas;
         this.telefonos = telefonos;
+        contactosRelacionados=new DoubleLinkedList<>();
         
     }
 

@@ -122,7 +122,7 @@
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
                                                 <ComboBox fx:id="comboPrefijos2" onShowing="#handleComboBoxPersona" prefHeight="27.0" prefWidth="156.0" />
-                                                <TextField prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                                <TextField fx:id="txtTelefono" prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
                                     </children>

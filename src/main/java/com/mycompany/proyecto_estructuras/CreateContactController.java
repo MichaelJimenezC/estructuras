@@ -86,7 +86,8 @@ public class CreateContactController implements Initializable {
     private ComboBox<FechaCb> comboFechas;
     private DoubleLinkedList<String> fotos = new DoubleLinkedList<>();
     private ListIterator<String> iterator = fotos.listIterator();
-
+    @FXML
+    private TextField txtTelefono;
     @FXML
     private void cambiarTipo(ActionEvent event) {
         String opcionSeleccionada = (String) cbTipo.getValue();
@@ -251,11 +252,11 @@ public class CreateContactController implements Initializable {
 
     @FXML
     private void guardarContacto(ActionEvent event) {
-        String telefonos = obtenerValores(cajaTelefonos);
+        
 
-        if (!txtNombres.getText().isEmpty() && !telefonos.isEmpty()) {
+        if (!txtNombres.getText().isEmpty() &&comboPrefijos2.getValue()!=null && !txtTelefono.getText().isEmpty()) {
             String nombres = txtNombres.getText();
-            String apellidos = txtApellidos.getText();
+            String apellidos = txtApellidos.getText();            
             String genero = "";
             if (generos.getSelectedToggle() != null) {
                 RadioButton select = (RadioButton) generos.getSelectedToggle();
@@ -263,6 +264,7 @@ public class CreateContactController implements Initializable {
                 genero = select.getText();
             }
             String ocupacion = txtOcupación.getText();
+            String telefonos = obtenerValores(cajaTelefonos);
             String Nacionalidad = txtNacionalidad.getText();
             // Recuperar valores dinámicos de los componentes
             String emails = obtenerValores(cajaEmails);
@@ -282,9 +284,16 @@ public class CreateContactController implements Initializable {
             //añadir telefonos
             String[] telefonosArray = telefonos.split("\\|");
             String[] emailsArray = emails.split("\\|");
+            System.out.println("emails: " + emailsArray.length);
             String[] redesSocialesArray = redesSociales.split("\\|");
+            System.out.println("redes: " + redesSocialesArray.length);
+
             String[] direccionesArray = direcciones.split("\\|");
+            System.out.println("direcciones: " + direccionesArray.length);
+
             String[] fechasRelevantesArray = fechasRelevantes.split("\\,");
+            System.out.println("fechas: " + fechasRelevantesArray.length);
+
             DateTimeFormatter formateo = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate cumpleaños = null;
             for (String algo : telefonosArray) {
@@ -294,30 +303,39 @@ public class CreateContactController implements Initializable {
                     lltelefonos.add(telefono);
                 }
             }
-            for (String algo : emailsArray) {
-                llemails.add(algo);
-            }
-            for (String algo : redesSocialesArray) {
-                String[] red = algo.split(" ");
-                RedSocial rs = new RedSocial(red[0], red[1]);
-                llredes.add(rs);
-            }
-            for (String algo : direccionesArray) {
-                String[] direccion = algo.split(" ");
-                Direccion d = new Direccion(direccion[0], direccion[1]);
-                lldirecciones.add(d);
-            }
-            for (String algo : fechasRelevantesArray) {
-                String[] fecha = algo.split(" ");
-                if (fecha[0].equals("Cumpleaños")) {
-                    LocalDate fechaComoLocalDate = LocalDate.parse(fecha[1], formateo);
-                    cumpleaños = fechaComoLocalDate;
+            if (emailsArray.length > 0) {
+                for (String algo : emailsArray) {
+                    llemails.add(algo);
                 }
-                LocalDate localD = LocalDate.parse(fecha[1], formateo);
-                Fecha f = new Fecha(fecha[0], localD);
+            }
+            if (!redesSocialesArray[0].trim().equals("null")) {
+                for (String algo : redesSocialesArray) {
+                    String[] red = algo.split(" ");
+                    System.out.println(red[0]);
+                    RedSocial rs = new RedSocial(red[0], red[1]);
+                    llredes.add(rs);
+                }
+            }
+            if (!direccionesArray[0].trim().equals("null")) {
+                for (String algo : direccionesArray) {
+                    String[] direccion = algo.split(" ");
+                    Direccion d = new Direccion(direccion[0], direccion[1]);
+                    lldirecciones.add(d);
+                }
+            }
+            if (!fechasRelevantesArray[0].trim().equals("nullnull")) {
+                for (String algo : fechasRelevantesArray) {
+                    String[] fecha = algo.split(" ");
+                    if (fecha[0].equals("Cumpleaños")) {
+                        LocalDate fechaComoLocalDate = LocalDate.parse(fecha[1], formateo);
+                        cumpleaños = fechaComoLocalDate;
+                    }
+                    LocalDate localD = LocalDate.parse(fecha[1], formateo);
+                    Fecha f = new Fecha(fecha[0], localD);
 
-                llfechas.add(f);
+                    llfechas.add(f);
 
+                }
             }
 
 //            Persona(String apellido , String genero, String fechaNacimiento
