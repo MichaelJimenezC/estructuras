@@ -200,6 +200,7 @@ public class CreateContactController implements Initializable {
                 Image image = new Image(rutaImagen);
                 ImgFotoPersona.setImage(image);
                 fotos.add(rutaImagen);
+                fotos.esCircular();
                 System.out.println("se agregó");
                 if (iterator.hasNext()) {
                     iterator.next();
@@ -403,14 +404,7 @@ public class CreateContactController implements Initializable {
                 System.out.println("pa delante");
                 String siguienteFoto = iterator.next();
                 mostrarImagenActual(siguienteFoto);
-            } else {
-                // Volvemos al principio de la lista
-                iterator = fotos.listIterator();
-                if (iterator.hasNext()) {
-                    String siguienteFoto = iterator.next();
-                    mostrarImagenActual(siguienteFoto);
-                }
-            }
+            } 
         } else {
             System.out.println("bug");
         }
@@ -423,16 +417,7 @@ public class CreateContactController implements Initializable {
             if (iterator.hasPrevious()) {
                 String anteriorFoto = iterator.previous();
                 mostrarImagenActual(anteriorFoto);
-            } else {
-                // Vamos al final de la lista
-                while (iterator.hasNext()) {
-                    iterator.next();
-                }
-                if (iterator.hasPrevious()) {
-                    String anteriorFoto = iterator.previous();
-                    mostrarImagenActual(anteriorFoto);
-                }
-            }
+            } 
         } else {
             System.out.println("bug 2");
         }
