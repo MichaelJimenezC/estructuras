@@ -21,7 +21,7 @@ public class Usuario implements Serializable{
         this.prefijo=prefijo;
         this.telefono = telefono;
         this.contraseña = contraseña;
-        this.contactos=new DoubleLinkedList();
+        this.contactos=new DoubleLinkedList<>();
     } 
 
     public String getPrefijo() {
