@@ -321,114 +321,8 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
     @Override
     public ListIterator<E> listIterator() {
         return new ListIterator<E>() {
-            private Nodo<E> current = null;  // El iterador comienza antes del primer elemento
-            private int currentIndex = -1;
-
-            @Override
-            public boolean hasNext() {
-                return n > 0;
-            }
-
-            @Override
-            public E next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-
-                if (current == null) {
-                    current = primero;
-                } else {
-                    current = current.sig;
-                }
-
-                currentIndex++;
-
-                // Si hemos llegado al final, volvemos al principio
-                if (currentIndex == n) {
-                    current = primero;
-                    currentIndex = 0;
-                }
-
-                return current.contenido;
-            }
-
-            @Override
-            public boolean hasPrevious() {
-                return n > 0;
-            }
-
-            @Override
-            public E previous() {
-                if (!hasPrevious()) {
-                    throw new NoSuchElementException();
-                }
-
-                if (current == null) {
-                    current = ultimo;
-                } else {
-                    current = current.anterior;
-                }
-
-                currentIndex--;
-
-                // Si hemos llegado al principio, volvemos al final
-                if (currentIndex < 0) {
-                    current = ultimo;
-                    currentIndex = n - 1;
-                }
-
-                return current.contenido;
-            }
-
-            @Override
-            public int nextIndex() {
-                return currentIndex + 1;
-            }
-
-            @Override
-            public int previousIndex() {
-                return currentIndex;
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public void set(E e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            @Override
-            public void add(E e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        };
-    }
-
-    @Override
-    public ListIterator<E> listIterator(int index) {
-        if (index < 0 || index > n) {
-            throw new IndexOutOfBoundsException("Index out of bounds");
-        }
-
-        return new ListIterator<E>() {
-            private Nodo<E> current = getNode(index);
-            private int currentIndex = index;
-
-            private Nodo<E> getNode(int index) {
-                if (index < 0 || index >= n) {
-                    throw new IndexOutOfBoundsException("Index out of bounds");
-                }
-
-                Nodo<E> node = primero;
-                for (int i = 0; i < index; i++) {
-                    node = node.sig;
-                }
-
-                return node;
-            }
+            private Nodo<E> current = primero;
+            private int currentIndex = 0;
 
             @Override
             public boolean hasNext() {
@@ -494,6 +388,11 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
                 throw new UnsupportedOperationException("Not supported yet.");
             }
         };
+    }
+
+    @Override
+    public ListIterator<E> listIterator(int index) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
