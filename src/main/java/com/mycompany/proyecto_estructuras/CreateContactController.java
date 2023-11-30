@@ -353,8 +353,9 @@ public class CreateContactController implements Initializable {
 //            ) 
             Persona contacto = new Persona(apellidos, genero, cumpleaños, ocupacion, Nacionalidad, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos);
             System.out.println("Contacto: " + contacto);
-            App.usuario.getContactos().add(contacto);
+            
             for (Usuario usuario : App.listaUsuarios) {
+                System.out.println(usuario);
                 if (usuario.equals(App.usuario)) {
                     usuario.getContactos().add(contacto);
                     break;

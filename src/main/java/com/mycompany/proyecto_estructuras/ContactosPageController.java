@@ -39,6 +39,7 @@ public class ContactosPageController implements Initializable {
             Label label = new Label("NO TIENES CONTACTOS");
             vboxVerContactos.getChildren().add(label);
         } else {
+            System.out.println(contactos.size());
             for (Contacto contacto : contactos) {
                 System.out.println(contacto);
                 HBox principal = new HBox();

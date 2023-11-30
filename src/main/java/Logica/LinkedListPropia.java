@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Logica;
 
 import java.io.Serializable;
@@ -11,15 +7,12 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-/**
- *
- * @author Michael
- */
-public class LinkedListPropia<E> implements List<E>,Serializable {
-    
-    Nodo<E> primero;
+public class LinkedListPropia<E> implements List<E>, Serializable {
 
-    private class Nodo<E> implements Serializable{
+    private Nodo<E> primero;
+    private Nodo<E> ultimo;  // Nuevo atributo para mantener el último nodo
+
+    private class Nodo<E> implements Serializable {
 
         E contenido;
         Nodo<E> sig;
@@ -33,37 +26,30 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
 
     public LinkedListPropia() {
         primero = null;
+        ultimo = null;
     }
 
     @Override
     public int size() {
-        if (!isEmpty()) {
-            int tamaño = 0;
-            Nodo nodo = primero;
-            while (nodo != null) {
-                nodo = nodo.sig;
-                tamaño++;
-
-            }
-            return tamaño;
-        } else {
-            return 0;
+        int tamaño = 0;
+        Nodo<E> nodo = primero;
+        while (nodo != null) {
+            tamaño++;
+            nodo = nodo.sig;
         }
-
+        return tamaño;
     }
 
     public void recorrerLista() {
         if (!isEmpty()) {
-            Nodo nodo = primero;
+            Nodo<E> nodo = primero;
             while (nodo != null) {
                 System.out.println(nodo.contenido);
                 nodo = nodo.sig;
-
             }
         } else {
             throw new NullPointerException("No hay elementos");
         }
-
     }
 
     @Override
@@ -73,11 +59,20 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
 
     @Override
     public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Implementación de contains
+        Nodo<E> nodo = primero;
+        while (nodo != null) {
+            if (nodo.contenido.equals(o)) {
+                return true;
+            }
+            nodo = nodo.sig;
+        }
+        return false;
     }
 
     @Override
     public Iterator<E> iterator() {
+        // Implementación del iterator
         return new Iterator<E>() {
             private Nodo<E> current = primero;
 
@@ -100,62 +95,96 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
 
     @Override
     public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Implementación de toArray
+        Object[] array = new Object[size()];
+        Nodo<E> nodo = primero;
+        int index = 0;
+        while (nodo != null) {
+            array[index++] = nodo.contenido;
+            nodo = nodo.sig;
+        }
+        return array;
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Implementación de toArray con arreglo específico
+        if (a.length < size()) {
+            a = (T[]) new Object[size()];
+        }
+        Nodo<E> nodo = primero;
+        int index = 0;
+        while (nodo != null) {
+            a[index++] = (T) nodo.contenido;
+            nodo = nodo.sig;
+        }
+        return a;
     }
 
     @Override
     public boolean add(E e) {
+        // Implementación de add
+        Nodo<E> nuevoNodo = new Nodo<>(e);
         if (isEmpty()) {
-            primero = new Nodo(e);
-            return true;
-        } else if (this.size() == 1) {
-            primero.sig = new Nodo(e);
-            return true;
+            primero = nuevoNodo;
+            ultimo = nuevoNodo;
         } else {
-            Nodo<E> actual = primero;
-            while (actual != null) {
-                actual = actual.sig;
-                if (actual.sig == null) {
-                    actual.sig = new Nodo(e);
-                    return true;
-                }
-            }
-
+            ultimo.sig = nuevoNodo;
+            ultimo = nuevoNodo;
         }
         return true;
     }
 
     public LinkedListPropia invertirLista() {
+        // Implementación de invertirLista
         LinkedListPropia nuevaLista = new LinkedListPropia();
 
         for (int i = this.size(); i > 0; i--) {
             E contenido = this.get(i - 1);
             nuevaLista.add(contenido);
-
         }
 
         return nuevaLista;
-
     }
 
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // Implementación de remove
+        if (isEmpty()) {
+            return false;
+        }
+
+        if (primero.contenido.equals(o)) {
+            primero = primero.sig;
+            if (primero == null) {
+                ultimo = null;  // La lista está vacía
+            }
+            return true;
+        }
+
+        Nodo<E> actual = primero;
+        while (actual.sig != null && !actual.sig.contenido.equals(o)) {
+            actual = actual.sig;
+        }
+
+        if (actual.sig != null) {
+            actual.sig = actual.sig.sig;
+            if (actual.sig == null) {
+                ultimo = actual;  // Se eliminó el último elemento
+            }
+            return true;
+        }
+
+        return false;
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
-
         for (E actual : c) {
             this.add(actual);
         }
@@ -164,22 +193,22 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -200,7 +229,7 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
 
     @Override
     public E set(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -213,6 +242,9 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
             Nodo<E> nuevoNodo = new Nodo<>(element);
             nuevoNodo.sig = primero;
             primero = nuevoNodo;
+            if (nuevoNodo.sig == null) {
+                ultimo = nuevoNodo;  // Se añadió al inicio de la lista vacía
+            }
         } else {
             Nodo<E> actual = primero;
             for (int i = 0; i < index - 1; i++) {
@@ -221,6 +253,9 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
             Nodo<E> nuevoNodo = new Nodo<>(element);
             nuevoNodo.sig = actual.sig;
             actual.sig = nuevoNodo;
+            if (nuevoNodo.sig == null) {
+                ultimo = nuevoNodo;  // Se añadió al final de la lista
+            }
         }
     }
 
@@ -235,6 +270,9 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
         if (index == 0) {
             removido = primero.contenido;
             primero = primero.sig;
+            if (primero == null) {
+                ultimo = null;  // Se eliminó el único elemento
+            }
         } else {
             Nodo<E> actual = primero;
             for (int i = 0; i < index - 1; i++) {
@@ -242,6 +280,9 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
             }
             removido = actual.sig.contenido;
             actual.sig = actual.sig.sig;
+            if (actual.sig == null) {
+                ultimo = actual;  // Se eliminó el último elemento
+            }
         }
 
         return removido;
@@ -249,40 +290,35 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
 
     @Override
     public int indexOf(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public ListIterator<E> listIterator() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public ListIterator<E> listIterator(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    // Métodos adicionales para obtener y remover el último elemento
     public E getLast() {
         if (isEmpty()) {
             throw new NoSuchElementException("La lista está vacía");
         }
-
-        Nodo<E> actual = primero;
-        while (actual.sig != null) {
-            actual = actual.sig;
-        }
-
-        return actual.contenido;
+        return ultimo.contenido;
     }
 
     public E removeLast() {
@@ -290,20 +326,20 @@ public class LinkedListPropia<E> implements List<E>,Serializable {
             throw new NoSuchElementException("La lista está vacía");
         }
 
+        E removido = ultimo.contenido;
+
         if (size() == 1) {
-            E removido = primero.contenido;
             primero = null;
-            return removido;
+            ultimo = null;
         } else {
             Nodo<E> actual = primero;
-            while (actual.sig.sig != null) {
+            while (actual.sig != ultimo) {
                 actual = actual.sig;
             }
-            E removido = actual.sig.contenido;
             actual.sig = null;
-            return removido;
+            ultimo = actual;
         }
 
+        return removido;
     }
-    
 }
