@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: FFFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.ContactosPageController">
+<ScrollPane prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: FFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.ContactosPageController">
    <content>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="340.0" style="-fx-background-color: fff;">
          <children>
@@ -46,42 +46,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="vboxVerContactos" alignment="CENTER" prefHeight="126.0" prefWidth="304.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="106.0" prefWidth="276.0" spacing="20.0" style="-fx-border-radius: 20;">
-                     <children>
-                        <ImageView fitHeight="73.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../Img/ef75d90df2e65ce326acf30262df5918_400x400.jpeg" />
-                           </image>
-                        </ImageView>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="Jim Halpert">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label text="My details" textFill="#7f65ff">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets top="20.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets right="60.0" />
-                     </padding>
-                  </HBox>
-               </children></VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="vboxVerContactos1" alignment="CENTER" prefHeight="14.0" prefWidth="340.0">
                <children>
                   <Label text="My contacts" textFill="#6735a4">
                      <font>
@@ -89,14 +54,9 @@
                      </font>
                   </Label>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="25.0" />
-               </padding>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="vboxVerContactos" alignment="CENTER" prefHeight="325.0" prefWidth="340.0" />
+            <VBox alignment="CENTER" prefHeight="74.0" prefWidth="340.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#agregar" prefHeight="35.0" prefWidth="193.0" style="-fx-background-color: #6735a4;" text="Agregar Contactos" textFill="WHITE">
                      <font>

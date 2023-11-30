@@ -53,6 +53,9 @@ public class PrimaryController implements Initializable {
         String PrefijoSeleccionado = seleccion.getPrefijo();
         String numero = telefono.getText().trim();
         String contrasenia = password.getText().trim();
+        System.out.println("prefijo:"+PrefijoSeleccionado);
+        System.out.println("numero:"+numero);
+        System.out.println("contrasenia:"+contrasenia);
         App.usuario = verificarUsuario(PrefijoSeleccionado, numero, contrasenia);
         if (App.usuario != null) {
             try {
@@ -80,7 +83,7 @@ public class PrimaryController implements Initializable {
     public static Usuario verificarUsuario(String prefijo, String number, String contra) {
         for (Usuario usuario : listaUsuarios) {
             if (usuario.getPrefijo().equals(prefijo) && usuario.getTelefono().equals(number) && usuario.getContraseña().equals(contra)) {
-
+                
                 System.out.println(usuario);
                 System.out.println("Usuario verificado");
                 return usuario;

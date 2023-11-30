@@ -4,12 +4,14 @@
  */
 package Logica;
 
+import java.io.Serializable;
+
 
    /**
  *
  * @author Michael
  */
-public class Contacto {
+public class Contacto implements Serializable{
     private String nombre;
     private DoubleLinkedList<Direccion> direcciones;
     private DoubleLinkedList<String> emails;

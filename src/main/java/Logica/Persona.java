@@ -4,6 +4,7 @@
  */
 package Logica;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -13,7 +14,7 @@ import java.time.LocalDate;
  *
  * @author Michael
  */
-public class Persona extends Contacto{
+public class Persona extends Contacto implements Serializable{
     private String apellido;
     private String genero;
     private LocalDate fechaNacimiento;

@@ -4,6 +4,7 @@
  */
 package Logica;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
  *
  * @author Michael
  */
-public class Fecha {
+public class Fecha implements Serializable{
     private String festividad;
     private LocalDate fecha;
 

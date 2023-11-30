@@ -88,6 +88,7 @@ public class CreateContactController implements Initializable {
     private ListIterator<String> iterator = fotos.listIterator();
     @FXML
     private TextField txtTelefono;
+
     @FXML
     private void cambiarTipo(ActionEvent event) {
         String opcionSeleccionada = (String) cbTipo.getValue();
@@ -252,11 +253,10 @@ public class CreateContactController implements Initializable {
 
     @FXML
     private void guardarContacto(ActionEvent event) {
-        
 
-        if (!txtNombres.getText().isEmpty() &&comboPrefijos2.getValue()!=null && !txtTelefono.getText().isEmpty()) {
+        if (!txtNombres.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty()) {
             String nombres = txtNombres.getText();
-            String apellidos = txtApellidos.getText();            
+            String apellidos = txtApellidos.getText();
             String genero = "";
             if (generos.getSelectedToggle() != null) {
                 RadioButton select = (RadioButton) generos.getSelectedToggle();
@@ -311,29 +311,35 @@ public class CreateContactController implements Initializable {
             if (!redesSocialesArray[0].trim().equals("null")) {
                 for (String algo : redesSocialesArray) {
                     String[] red = algo.split(" ");
-                    System.out.println(red[0]);
-                    RedSocial rs = new RedSocial(red[0], red[1]);
-                    llredes.add(rs);
+                    if (red.length > 1) {
+                        RedSocial rs = new RedSocial(red[0], red[1]);
+                        llredes.add(rs);
+                    }
                 }
             }
             if (!direccionesArray[0].trim().equals("null")) {
                 for (String algo : direccionesArray) {
                     String[] direccion = algo.split(" ");
-                    Direccion d = new Direccion(direccion[0], direccion[1]);
-                    lldirecciones.add(d);
+                    if (direccion.length > 1) {
+                        Direccion d = new Direccion(direccion[0], direccion[1]);
+                        lldirecciones.add(d);
+                    }
                 }
             }
-            if (!fechasRelevantesArray[0].trim().equals("nullnull")) {
+            System.out.println(fechasRelevantesArray[0].trim());
+            if (!fechasRelevantesArray[0].trim().equals("null null")) {
                 for (String algo : fechasRelevantesArray) {
                     String[] fecha = algo.split(" ");
-                    if (fecha[0].equals("Cumpleaños")) {
-                        LocalDate fechaComoLocalDate = LocalDate.parse(fecha[1], formateo);
-                        cumpleaños = fechaComoLocalDate;
-                    }
-                    LocalDate localD = LocalDate.parse(fecha[1], formateo);
-                    Fecha f = new Fecha(fecha[0], localD);
+                    if (!fecha[0].equals("null") && !fecha[1].equals("null")) {
+                        if (fecha[0].equals("Cumpleaños")) {
+                            LocalDate fechaComoLocalDate = LocalDate.parse(fecha[1], formateo);
+                            cumpleaños = fechaComoLocalDate;
+                        }
+                        LocalDate localD = LocalDate.parse(fecha[1], formateo);
+                        Fecha f = new Fecha(fecha[0], localD);
 
-                    llfechas.add(f);
+                        llfechas.add(f);
+                    }
 
                 }
             }
@@ -359,6 +365,7 @@ public class CreateContactController implements Initializable {
             alert.setTitle("Confirmación");
             alert.setHeaderText(null);
             alert.setContentText("!Se ha creado con éxito el contacto!");
+            alert.showAndWait();
             try {
                 App.setRoot("ContactosPage");
             } catch (IOException ex) {

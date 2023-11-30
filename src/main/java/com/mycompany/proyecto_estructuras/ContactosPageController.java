@@ -6,6 +6,7 @@ package com.mycompany.proyecto_estructuras;
 
 import Logica.Contacto;
 import Logica.DoubleLinkedList;
+import Logica.LinkedListPropia;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,28 +34,30 @@ public class ContactosPageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        DoubleLinkedList<Contacto> contactos = App.usuario.getContactos();
-//        if (contactos.isEmpty()) {
-//            Label label = new Label("NO TIENES CONTACTOS");
-//            vboxVerContactos.getChildren().add(label);
-//        } else {
-//            for (Contacto contacto : contactos) {
-//                HBox principal = new HBox();
-//                ImageView imgv = new ImageView();
-//                Label nombre = new Label(contacto.getNombre());
-//                Button boton = new Button("Ver");
-//                boton.setOnAction(event -> {
-//                    try {
-//                        App.setRoot("Menu");
-//                    } catch (IOException ex) {
-//                        ex.printStackTrace();
-//                    }
-//                });
-//                principal.getChildren().addAll(imgv, nombre, boton);
-//
-//            }
-//        }
-        // TODO
+        LinkedListPropia<Contacto> contactos = App.usuario.getContactos();
+        if (contactos.isEmpty()) {
+            Label label = new Label("NO TIENES CONTACTOS");
+            vboxVerContactos.getChildren().add(label);
+        } else {
+            for (Contacto contacto : contactos) {
+                System.out.println(contacto);
+                HBox principal = new HBox();
+                ImageView imgv = new ImageView();
+                Label nombre = new Label(contacto.getNombre());
+                Button boton = new Button("Ver");
+                boton.setOnAction(event -> {
+                    try {
+                        App.setRoot("Menu");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                principal.getChildren().addAll(imgv, nombre, boton);
+                vboxVerContactos.getChildren().add(principal);
+
+            }
+        }
+         
     }
 
     @FXML

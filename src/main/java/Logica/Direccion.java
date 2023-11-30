@@ -4,11 +4,13 @@
  */
 package Logica;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Michael
  */
-public class Direccion {
+public class Direccion implements Serializable{
     private String tipo;
     private String ubicacion;
 

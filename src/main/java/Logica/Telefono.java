@@ -4,11 +4,13 @@
  */
 package Logica;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Michael
  */
-public class Telefono {
+public class Telefono implements Serializable{
     private String pais;
     private String prefijo;
     private String numero;

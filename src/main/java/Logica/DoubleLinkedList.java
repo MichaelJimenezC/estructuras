@@ -23,7 +23,7 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
     int n;
     private static final long serialVersionUID = 2520951784067513363L;
 
-    private static class Nodo<E> {
+    private static class Nodo<E> implements Serializable {
 
         E contenido;
         Nodo<E> sig;

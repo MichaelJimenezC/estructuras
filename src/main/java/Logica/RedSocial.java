@@ -4,11 +4,13 @@
  */
 package Logica;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Michael
  */
-public class RedSocial {
+public class RedSocial implements Serializable{
     private String red;
     private String usuario;
 

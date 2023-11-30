@@ -15,13 +15,13 @@ public class Usuario implements Serializable{
     private String prefijo;
     private String telefono;
     private String contraseña;
-    private DoubleLinkedList<Contacto> contactos;
+    private LinkedListPropia<Contacto> contactos;
 
     public Usuario(String prefijo,String telefono, String contraseña) {
         this.prefijo=prefijo;
         this.telefono = telefono;
         this.contraseña = contraseña;
-        this.contactos=new DoubleLinkedList<>();
+        this.contactos=new LinkedListPropia<>();
     } 
 
     public String getPrefijo() {
@@ -48,11 +48,11 @@ public class Usuario implements Serializable{
         this.contraseña = contraseña;
     }
 
-    public DoubleLinkedList<Contacto> getContactos() {
+    public LinkedListPropia<Contacto> getContactos() {
         return contactos;
     }
 
-    public void setContactos(DoubleLinkedList<Contacto> contactos) {
+    public void setContactos(LinkedListPropia<Contacto> contactos) {
         this.contactos = contactos;
     }
 

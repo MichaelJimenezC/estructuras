@@ -4,6 +4,7 @@
  */
 package Logica;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.ListIterator;
  *
  * @author CltControl
  */
-public class AL<E> implements java.util.List<E> {
+public class AL<E> implements java.util.List<E>, Serializable {
 
     private E arreglo[];
     private int size;

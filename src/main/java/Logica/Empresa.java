@@ -4,7 +4,9 @@
  */
 package Logica;
 
-public class Empresa extends Contacto{
+import java.io.Serializable;
+
+public class Empresa extends Contacto implements Serializable{
     private String razonSocial;
     private String tipoEmpresa;
 
