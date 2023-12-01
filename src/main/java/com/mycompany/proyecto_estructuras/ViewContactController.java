@@ -215,17 +215,14 @@ public class ViewContactController implements Initializable {
                 vboxRedesDinamico.getChildren().add(txtRed);
             }
             for (Direccion direccion : p1.getDirecciones()) {
-                HBox hbooxDirecciones = new HBox();
-
-
                 TextField txtDirecion1 = new TextField(direccion.getUbicacion());
                 txtDirecion1.setPrefHeight(23.0);
                 txtDirecion1.setPrefWidth(153.0);
                 txtDirecion1.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
 
                 txtDirecion1.setEditable(false);
-                hbooxDirecciones.getChildren().addAll(txtDirecion1);
-                vboxDireccionesDinamico.getChildren().add(hbooxDirecciones);
+           
+                vboxDireccionesDinamico.getChildren().add(txtDirecion1);
 
             }
             txtNacionalidad.setText(p1.getNacionalidad());
