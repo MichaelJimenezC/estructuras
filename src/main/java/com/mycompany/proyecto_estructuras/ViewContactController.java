@@ -182,7 +182,7 @@ public class ViewContactController implements Initializable {
                 comboBoxTelefono.setFocusTraversable(false);
 
                 TextField txtNumero = new TextField(telefono.getNumero());
-                txtNumero.setPrefHeight(27.0);
+                txtNumero.setPrefHeight(23.0);
                 txtNumero.setPrefWidth(153.0);
                 txtNumero.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
 
@@ -200,14 +200,35 @@ public class ViewContactController implements Initializable {
 
             }
             for (RedSocial red2 : p1.getRedes()) {
+                HBox hboxRedes = new HBox();
+                ComboBox<RedesSociales> comboRedes= new ComboBox<>();
+                comboRedes.setEditable(false);
+                RedesSociales.configurarComboBoxConRedes(comboRedes);
+                RedesSociales redseleccionada= encontrarRedSocial(red2.getRed());
+                comboRedes.setValue(redseleccionada);
                 TextField txtRed = new TextField(red2.getRed() + " " + red2.getUsuario());
                 txtRed.setEditable(false);
                 vboxRedesDinamico.getChildren().add(txtRed);
             }
             for (Direccion direccion : p1.getDirecciones()) {
+                HBox hbooxDirecciones = new HBox();
+
+                ComboBox<DireccionCb> comboBoxredes = new ComboBox<>();
+                comboBoxredes.setEditable(false);
+                DireccionCb.configurarComboBoxConDirecciones(comboBoxredes);
+                DireccionCb direccionselecionada = encontrarDireccion(direccion.getTipo());
+                comboBoxredes.setValue(direccionselecionada);
+                comboBoxredes.setMouseTransparent(true);
+                comboBoxredes.setFocusTraversable(false);
+
                 TextField txtDirecion1 = new TextField(direccion.getTipo() + " " + direccion.getUbicacion());
+                txtDirecion1.setPrefHeight(23.0);
+                txtDirecion1.setPrefWidth(153.0);
+                txtDirecion1.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
+
                 txtDirecion1.setEditable(false);
-                vboxDireccionesDinamico.getChildren().add(txtDirecion1);
+                hbooxDirecciones.getChildren().addAll(comboBoxredes,txtDirecion1);
+                vboxDireccionesDinamico.getChildren().add(hbooxDirecciones);
 
             }
             txtNacionalidad.setText(p1.getNacionalidad());
@@ -226,5 +247,22 @@ public class ViewContactController implements Initializable {
             }
         }
         return null; // O manejar de otra manera si no se encuentra el prefijo del país
+    }
+
+    private DireccionCb encontrarDireccion(String direccion) {
+        for (DireccionCb direccionCombo : DireccionCb.obtenerDireccion()) {
+            if (DireccionCb.obtenerDireccion().equals(direccion)) {
+                return direccionCombo;
+            }
+        }
+        return null;
+    }
+        private RedesSociales encontrarRedSocial(String redSocial) {
+        for (RedesSociales redesCombo : RedesSociales.obtenerRedSocial()) {
+            if (RedesSociales.obtenerRedSocial().equals(redSocial)) {
+                return redesCombo;
+            }
+        }
+        return null;
     }
 }
