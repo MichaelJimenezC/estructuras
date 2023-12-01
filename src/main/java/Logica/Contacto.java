@@ -13,15 +13,15 @@ import java.io.Serializable;
  */
 public class Contacto implements Serializable{
     private String nombre;
-    private DoubleLinkedList<Direccion> direcciones;
-    private DoubleLinkedList<String> emails;
-    private DoubleLinkedList<RedSocial> redes;
+    private LinkedListPropia<Direccion> direcciones;
+    private LinkedListPropia<String> emails;
+    private LinkedListPropia<RedSocial> redes;
     private DoubleLinkedList<String> fotos;
-    private DoubleLinkedList<Fecha> fechas;
-    private DoubleLinkedList<Telefono> telefonos;
-    private DoubleLinkedList<Contacto> contactosRelacionados;
+    private LinkedListPropia<Fecha> fechas;
+    private LinkedListPropia<Telefono> telefonos;
+    private LinkedListPropia<Contacto> contactosRelacionados;
 
-    public Contacto(String nombre, DoubleLinkedList<Direccion> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<RedSocial> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<Fecha> fechas, DoubleLinkedList<Telefono> telefonos) {
+    public Contacto(String nombre, LinkedListPropia<Direccion> direcciones, LinkedListPropia<String> emails, LinkedListPropia<RedSocial> redes, DoubleLinkedList<String> fotos, LinkedListPropia<Fecha> fechas, LinkedListPropia<Telefono> telefonos) {
         this.nombre = nombre;
         this.direcciones = direcciones;
         this.emails = emails;
@@ -29,8 +29,7 @@ public class Contacto implements Serializable{
         this.fotos = fotos;
         this.fechas = fechas;
         this.telefonos = telefonos;
-        contactosRelacionados=new DoubleLinkedList<>();
-        
+        this.contactosRelacionados = new LinkedListPropia<>();
     }
 
     public String getNombre() {
@@ -41,27 +40,27 @@ public class Contacto implements Serializable{
         this.nombre = nombre;
     }
 
-    public DoubleLinkedList<Direccion> getDirecciones() {
+    public LinkedListPropia<Direccion> getDirecciones() {
         return direcciones;
     }
 
-    public void setDirecciones(DoubleLinkedList<Direccion> direcciones) {
+    public void setDirecciones(LinkedListPropia<Direccion> direcciones) {
         this.direcciones = direcciones;
     }
 
-    public DoubleLinkedList<String> getEmails() {
+    public LinkedListPropia<String> getEmails() {
         return emails;
     }
 
-    public void setEmails(DoubleLinkedList<String> emails) {
+    public void setEmails(LinkedListPropia<String> emails) {
         this.emails = emails;
     }
 
-    public DoubleLinkedList<RedSocial> getRedes() {
+    public LinkedListPropia<RedSocial> getRedes() {
         return redes;
     }
 
-    public void setRedes(DoubleLinkedList<RedSocial> redes) {
+    public void setRedes(LinkedListPropia<RedSocial> redes) {
         this.redes = redes;
     }
 
@@ -73,27 +72,27 @@ public class Contacto implements Serializable{
         this.fotos = fotos;
     }
 
-    public DoubleLinkedList<Fecha> getFechas() {
+    public LinkedListPropia<Fecha> getFechas() {
         return fechas;
     }
 
-    public void setFechas(DoubleLinkedList<Fecha> fechas) {
+    public void setFechas(LinkedListPropia<Fecha> fechas) {
         this.fechas = fechas;
     }
 
-    public DoubleLinkedList<Telefono> getTelefonos() {
+    public LinkedListPropia<Telefono> getTelefonos() {
         return telefonos;
     }
 
-    public void setTelefonos(DoubleLinkedList<Telefono> telefonos) {
+    public void setTelefonos(LinkedListPropia<Telefono> telefonos) {
         this.telefonos = telefonos;
     }
 
-    public DoubleLinkedList<Contacto> getContactosRelacionados() {
+    public LinkedListPropia<Contacto> getContactosRelacionados() {
         return contactosRelacionados;
     }
 
-    public void setContactosRelacionados(DoubleLinkedList<Contacto> contactosRelacionados) {
+    public void setContactosRelacionados(LinkedListPropia<Contacto> contactosRelacionados) {
         this.contactosRelacionados = contactosRelacionados;
     }
 
@@ -101,8 +100,8 @@ public class Contacto implements Serializable{
     public String toString() {
         return "Contacto{" + "nombre=" + nombre + ", direcciones=" + direcciones + ", emails=" + emails + ", redes=" + redes + ", fotos=" + fotos + ", fechas=" + fechas + ", telefonos=" + telefonos + ", contactosRelacionados=" + contactosRelacionados + '}';
     }
+
     
-   
    
    
    

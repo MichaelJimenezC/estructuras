@@ -21,7 +21,7 @@ public class Persona extends Contacto implements Serializable{
     private String ocupacion;
     private String Nacionalidad;
 
-    public Persona(String apellido, String genero, LocalDate fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, DoubleLinkedList<Direccion> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<RedSocial> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<Fecha> fechas, DoubleLinkedList<Telefono> telefonos) {
+    public Persona(String apellido, String genero, LocalDate fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, LinkedListPropia<Direccion> direcciones, LinkedListPropia<String> emails, LinkedListPropia<RedSocial> redes, DoubleLinkedList<String> fotos, LinkedListPropia<Fecha> fechas, LinkedListPropia<Telefono> telefonos) {
         super(nombre, direcciones, emails, redes, fotos, fechas, telefonos);
         this.apellido = apellido;
         this.genero = genero;
@@ -29,6 +29,8 @@ public class Persona extends Contacto implements Serializable{
         this.ocupacion = ocupacion;
         this.Nacionalidad = Nacionalidad;
     }
+
+   
 
     public String getApellido() {
         return apellido;

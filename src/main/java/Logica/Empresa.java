@@ -10,12 +10,15 @@ public class Empresa extends Contacto implements Serializable{
     private String razonSocial;
     private String tipoEmpresa;
 
-    public Empresa(String razonSocial, String tipoEmpresa, String nombre, DoubleLinkedList<Direccion> direcciones, DoubleLinkedList<String> emails, DoubleLinkedList<RedSocial> redes, DoubleLinkedList<String> fotos, DoubleLinkedList<Fecha> fechas, DoubleLinkedList<Telefono> telefonos) {
+    public Empresa(String razonSocial, String tipoEmpresa, String nombre, LinkedListPropia<Direccion> direcciones, LinkedListPropia<String> emails, LinkedListPropia<RedSocial> redes, DoubleLinkedList<String> fotos, LinkedListPropia<Fecha> fechas, LinkedListPropia<Telefono> telefonos) {
         super(nombre, direcciones, emails, redes, fotos, fechas, telefonos);
         this.razonSocial = razonSocial;
         this.tipoEmpresa = tipoEmpresa;
     }
 
+  
+
+   
     public String getRazonSocial() {
         return razonSocial;
     }

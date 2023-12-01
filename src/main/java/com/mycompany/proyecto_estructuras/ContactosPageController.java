@@ -28,6 +28,7 @@ public class ContactosPageController implements Initializable {
 
     @FXML
     VBox vboxVerContactos;
+    public static Contacto contactoSelecionado  = null;
 
     /**
      * Initializes the controller class.
@@ -47,8 +48,9 @@ public class ContactosPageController implements Initializable {
                 Label nombre = new Label(contacto.getNombre());
                 Button boton = new Button("Ver");
                 boton.setOnAction(event -> {
+                    contactoSelecionado=contacto;
                     try {
-                        App.setRoot("Menu");
+                        App.setRoot("MenuPersona");
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -58,7 +60,7 @@ public class ContactosPageController implements Initializable {
 
             }
         }
-         
+
     }
 
     @FXML

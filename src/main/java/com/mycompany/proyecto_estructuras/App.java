@@ -22,7 +22,7 @@ public class App extends Application{
 
     public static Usuario usuario = null;
     private static Scene scene;
-    public static ArrayList<Usuario> listaUsuarios= crearListaUsuarios("usuarios.txt");
+    public static ArrayList<Usuario> listaUsuarios= App.crearListaUsuarios("usuarios.txt");
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -32,6 +32,7 @@ public class App extends Application{
         stage.setScene(scene);
         stage.show();
         System.out.println(listaUsuarios);
+        
     }
 
     static void setRoot(String fxml) throws IOException {

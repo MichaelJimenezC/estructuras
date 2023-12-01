@@ -6,6 +6,7 @@ import Logica.Archivos;
 import Logica.Direccion;
 import Logica.DoubleLinkedList;
 import Logica.Fecha;
+import Logica.LinkedListPropia;
 import Logica.Persona;
 import Logica.RedSocial;
 import Logica.Telefono;
@@ -276,11 +277,11 @@ public class CreateContactController implements Initializable {
             System.out.println("redesSociales: " + redesSociales);
             System.out.println("direcciones: " + direcciones);
             System.out.println("fechasRelevantes: " + fechasRelevantes);
-            DoubleLinkedList<Direccion> lldirecciones = new DoubleLinkedList();
-            DoubleLinkedList<String> llemails = new DoubleLinkedList();
-            DoubleLinkedList<RedSocial> llredes = new DoubleLinkedList();
-            DoubleLinkedList<Fecha> llfechas = new DoubleLinkedList();
-            DoubleLinkedList<Telefono> lltelefonos = new DoubleLinkedList();
+            LinkedListPropia<Direccion> lldirecciones = new LinkedListPropia();
+            LinkedListPropia<String> llemails = new LinkedListPropia();
+            LinkedListPropia<RedSocial> llredes = new LinkedListPropia();
+            LinkedListPropia<Fecha> llfechas = new LinkedListPropia();
+            LinkedListPropia<Telefono> lltelefonos = new LinkedListPropia();
             //añadir telefonos
             String[] telefonosArray = telefonos.split("\\|");
             String[] emailsArray = emails.split("\\|");

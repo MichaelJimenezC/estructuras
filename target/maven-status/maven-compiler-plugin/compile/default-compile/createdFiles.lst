@@ -24,10 +24,14 @@ com\mycompany\proyecto_estructuras\CreateContactPage2Controller.class
 com\mycompany\proyecto_estructuras\ViewContactController.class
 Logica\DoubleLinkedList$2.class
 Fechas\FechaCb.class
+Logica\LinkedListPropia$Nodo.class
 Logica\RedSocial.class
 Fechas\FechaCb$1.class
+Logica\LinkedListPropia.class
 module-info.class
+com\mycompany\proyecto_estructuras\ContactosPageController.class
 Social_Media\RedesSociales$1.class
+Logica\LinkedListPropia$1.class
 Logica\DoubleLinkedList.class
 com\mycompany\proyecto_estructuras\App.class
 Fechas\FechaCb$2.class

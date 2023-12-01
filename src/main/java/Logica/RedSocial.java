@@ -18,5 +18,22 @@ public class RedSocial implements Serializable{
         this.red = red;
         this.usuario = usuario;
     }
+
+    public String getRed() {
+        return red;
+    }
+
+    public void setRed(String red) {
+        this.red = red;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
     
 }

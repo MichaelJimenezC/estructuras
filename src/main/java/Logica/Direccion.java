@@ -18,5 +18,21 @@ public class Direccion implements Serializable{
         this.tipo = tipo;
         this.ubicacion = ubicacion;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
     
 }
