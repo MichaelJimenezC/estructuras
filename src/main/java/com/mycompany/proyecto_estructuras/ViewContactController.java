@@ -217,13 +217,6 @@ public class ViewContactController implements Initializable {
             for (Direccion direccion : p1.getDirecciones()) {
                 HBox hbooxDirecciones = new HBox();
 
-                ComboBox<DireccionCb> comboBoxredes = new ComboBox<>();
-                comboBoxredes.setEditable(false);
-                DireccionCb.configurarComboBoxConDirecciones(comboBoxredes);
-                DireccionCb direccionselecionada = encontrarDireccion(direccion.getTipo());
-                comboBoxredes.setValue(direccionselecionada);
-                comboBoxredes.setMouseTransparent(true);
-                comboBoxredes.setFocusTraversable(false);
 
                 TextField txtDirecion1 = new TextField(direccion.getUbicacion());
                 txtDirecion1.setPrefHeight(23.0);
@@ -231,7 +224,7 @@ public class ViewContactController implements Initializable {
                 txtDirecion1.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
 
                 txtDirecion1.setEditable(false);
-                hbooxDirecciones.getChildren().addAll(comboBoxredes,txtDirecion1);
+                hbooxDirecciones.getChildren().addAll(txtDirecion1);
                 vboxDireccionesDinamico.getChildren().add(hbooxDirecciones);
 
             }
