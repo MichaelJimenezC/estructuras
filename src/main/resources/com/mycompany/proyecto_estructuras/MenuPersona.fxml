@@ -98,10 +98,10 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtNombres" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                        <TextField fx:id="txtNombres" prefHeight="27.0" prefWidth="327.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
-                        <Insets left="25.0" right="54.0" top="5.0" />
+                        <Insets left="25.0" right="40.0" top="5.0" />
                     </padding>
                <VBox.margin>
                   <Insets />
@@ -117,7 +117,7 @@
                         <TextField fx:id="txtApellidos" prefHeight="27.0" prefWidth="322.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
-                        <Insets left="25.0" right="54.0" top="5.0" />
+                        <Insets left="25.0" right="40.0" top="5.0" />
                     </padding>
                 </VBox>
                 <VBox fx:id="vboxTelefonos" prefHeight="200.0" prefWidth="100.0" spacing="10.0">

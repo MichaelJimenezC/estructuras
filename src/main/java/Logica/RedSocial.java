@@ -34,6 +34,11 @@ public class RedSocial implements Serializable{
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
+    @Override
+    public String toString() {
+        return "RedSocial{" + "red=" + red + ", usuario=" + usuario + '}';
+    }
     
     
 }

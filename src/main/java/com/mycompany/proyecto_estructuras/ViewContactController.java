@@ -207,7 +207,11 @@ public class ViewContactController implements Initializable {
                 RedesSociales redseleccionada= encontrarRedSocial(red2.getRed());
                 comboRedes.setValue(redseleccionada);
                 TextField txtRed = new TextField(red2.getRed() + " " + red2.getUsuario());
+                txtRed.setPrefHeight(23.0);
+                txtRed.setPrefWidth(153.0);
+                txtRed.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
                 txtRed.setEditable(false);
+                hboxRedes.getChildren().addAll(comboRedes,txtRed);
                 vboxRedesDinamico.getChildren().add(txtRed);
             }
             for (Direccion direccion : p1.getDirecciones()) {
@@ -221,7 +225,7 @@ public class ViewContactController implements Initializable {
                 comboBoxredes.setMouseTransparent(true);
                 comboBoxredes.setFocusTraversable(false);
 
-                TextField txtDirecion1 = new TextField(direccion.getTipo() + " " + direccion.getUbicacion());
+                TextField txtDirecion1 = new TextField(direccion.getUbicacion());
                 txtDirecion1.setPrefHeight(23.0);
                 txtDirecion1.setPrefWidth(153.0);
                 txtDirecion1.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
@@ -251,7 +255,7 @@ public class ViewContactController implements Initializable {
 
     private DireccionCb encontrarDireccion(String direccion) {
         for (DireccionCb direccionCombo : DireccionCb.obtenerDireccion()) {
-            if (DireccionCb.obtenerDireccion().equals(direccion)) {
+            if (direccionCombo.getTipoDireccion().equals(direccion)) {
                 return direccionCombo;
             }
         }
@@ -259,7 +263,7 @@ public class ViewContactController implements Initializable {
     }
         private RedesSociales encontrarRedSocial(String redSocial) {
         for (RedesSociales redesCombo : RedesSociales.obtenerRedSocial()) {
-            if (RedesSociales.obtenerRedSocial().equals(redSocial)) {
+            if (redesCombo.getNombreRedSocial().equals(redSocial)) {
                 return redesCombo;
             }
         }

@@ -34,5 +34,11 @@ public class Direccion implements Serializable{
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    @Override
+    public String toString() {
+        return "Direccion{" + "tipo=" + tipo + ", ubicacion=" + ubicacion + '}';
+    }
+    
     
 }
