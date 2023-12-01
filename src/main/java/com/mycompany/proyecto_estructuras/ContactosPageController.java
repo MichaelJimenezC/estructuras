@@ -17,10 +17,12 @@ import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -48,21 +50,28 @@ public class ContactosPageController implements Initializable {
         } else {
             System.out.println(contactos.size());
             for (Contacto contacto : contactos) {
+                if (contacto instanceof Persona){
                 Persona p1 = (Persona) contacto;
+                 ImageView imgv = new ImageView ();
+                if (!p1.getFotos().isEmpty()){
+                imgv.setImage(new Image(p1.getFotos().get(0)));
+                imgv.setFitWidth(80); // Establecer el ancho de la imagen
+                imgv.setFitHeight(80); // Establecer la altura de la imagen
+                imgv.setPreserveRatio(true);
+                imgv.setSmooth(true);
+                imgv.setCache(true);
+
+                
+                }
                 System.out.println(contacto);
                 HBox principal = new HBox(40);
                 principal.setAlignment(Pos.CENTER);
                 VBox contactoInformacion = new VBox(5);
                 contactoInformacion.setAlignment(Pos.CENTER);
-                ImageView imgv = new ImageView();
-                imgv.setFitWidth(40); // Establecer el ancho de la imagen
-                imgv.setFitHeight(40); // Establecer la altura de la imagen
-                imgv.setPreserveRatio(true);
-                imgv.setSmooth(true);
-                imgv.setCache(true);
-
+              
                 Label nombre = null;
                 Label numero = null;
+                
                 for (Telefono telefono : p1.getTelefonos()) {
                     nombre = new Label(p1.getNombre() + " " + p1.getApellido());
                     numero = new Label(telefono.getPrefijo() + " " + telefono.getNumero());
@@ -71,6 +80,8 @@ public class ContactosPageController implements Initializable {
                 nombre.setStyle("-fx-text-fill: #6735a4; -fx-font-weight: bold;");
                 numero.setStyle("-fx-text-fill: #7F65FF");
                 Button boton = new Button("Ver");
+                boton.setStyle("-fx-background-color: #FFFF;");
+                boton.setStyle("-fx-font-weight: bold; -fx-text-fill: #6735a4;"); // Fuente en negrita y color morado
                 boton.setOnAction(event -> {
                     contactoSelecionado = contacto;
                     try {
@@ -79,11 +90,17 @@ public class ContactosPageController implements Initializable {
                         ex.printStackTrace();
                     }
                 });
+                principal.setStyle("-fx-border-color: #D3D3D3");
+                 principal.setPadding(new Insets(5, 5, 5, 5));
                 contactoInformacion.getChildren().addAll(nombre, numero);
                 principal.getChildren().addAll(imgv, contactoInformacion, boton);
+                vboxVerContactos.setMargin(principal, new Insets(10, 10, 10, 10));
+
                 vboxVerContactos.getChildren().add(principal);
 
-            }
+            }else{
+                //para la empresa
+                }}
         }
 
     }
