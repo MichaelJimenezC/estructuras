@@ -20,5 +20,26 @@ public class Fecha implements Serializable{
         this.festividad = festividad;
         this.fecha = fecha;
     }
+
+    public String getFestividad() {
+        return festividad;
+    }
+
+    public void setFestividad(String festividad) {
+        this.festividad = festividad;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    @Override
+    public String toString() {
+        return "Fecha{" + "festividad=" + festividad + ", fecha=" + fecha + '}';
+    }
     
 }

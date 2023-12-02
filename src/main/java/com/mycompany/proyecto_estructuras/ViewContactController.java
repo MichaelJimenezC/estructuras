@@ -27,7 +27,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -81,7 +83,7 @@ public class ViewContactController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        mostrarContactos();
+        mostrarContactos(false);
     }
 
     @FXML
@@ -147,6 +149,8 @@ public class ViewContactController implements Initializable {
     private VBox vboxDireccionesDinamico;
     @FXML
     private VBox vboxFechasDinamico;
+    @FXML
+    private Button button;
 
     @FXML
     public void regresarBoton(ActionEvent event) {
@@ -157,45 +161,61 @@ public class ViewContactController implements Initializable {
         }
 
     }
-        @FXML
+    @FXML
     private ImageView ImagenContacto;
-        @FXML 
-        public void handleEditarBoton(ActionEvent event){
-       txtNombres.setEditable(true);
-       txtAp
+
+    @FXML
+    public void handleEditarBoton(ActionEvent event) {
+        vboxTelefonosDinamico.getChildren().clear();
+        vboxEmailsDinamico.getChildren().clear();
+        vboxRedesDinamico.getChildren().clear();
+        vboxDireccionesDinamico.getChildren().clear();
+        mostrarContactos(true);
+    }
+//haccer un set on action para el boton para que se cambie a la funcionalidad de guardar o editar 
+
+    private void mostrarContactos(boolean valor) {
+        if (valor) {
+            button.setText("Guardar");
+            //aquí debo actualizar el objeto 
+            //recorrer la lista del usuario actual y si coincide se obtiene, me voy a la lista de contacto
+            //obtengo la lista recorre la lista de contacto y si coincide con el contacto que quiero modificar, lo igualo al contacto 
+
+        } else {
+            button.setText("Editar");
         }
-    private static void mostrarContactos(ImageView ImagenContacto, Label labelNombreApellido, TextField txtNombres,boolean valor) {
+
         System.out.println(contactoSelecionado);
         if (contactoSelecionado instanceof Persona) {
             Persona p1 = (Persona) contactoSelecionado;
-           if (!p1.getFotos().isEmpty()){
-             
-           ImagenContacto.setImage(new Image(p1.getFotos().get(0)));
-           }
+            if (!p1.getFotos().isEmpty()) {
+
+                ImagenContacto.setImage(new Image(p1.getFotos().get(0)));
+            }
             labelNombreApellido.setText(p1.getNombre() + " " + p1.getApellido());
             txtNombres.setText(p1.getNombre());
-            txtNombres.setEditable(false);
+            txtNombres.setEditable(valor);
             txtApellidos.setText(p1.getApellido());
-            txtApellidos.setEditable(false);
-         
+            txtApellidos.setEditable(valor);
+
             for (Telefono telefono : p1.getTelefonos()) {
 
                 ComboBox<PrefijoPais> comboBoxTelefono = new ComboBox<>();
-                comboBoxTelefono.setEditable(false);
+                comboBoxTelefono.setEditable(valor);
                 PrefijoPais.configurarComboBoxConPrefijos(comboBoxTelefono);
 
                 // Encuentra y establece el país correspondiente al prefijo del teléfono
                 PrefijoPais prefijoPaisSeleccionado = encontrarPrefijoPaisPorPrefijo(telefono.getPrefijo());
                 comboBoxTelefono.setValue(prefijoPaisSeleccionado);
                 comboBoxTelefono.setMouseTransparent(true);
-                comboBoxTelefono.setFocusTraversable(false);
+                comboBoxTelefono.setFocusTraversable(valor);
 
                 TextField txtNumero = new TextField(telefono.getNumero());
                 txtNumero.setPrefHeight(23.0);
                 txtNumero.setPrefWidth(153.0);
                 txtNumero.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
 
-                txtNumero.setEditable(false);
+                txtNumero.setEditable(valor);
 
                 HBox hboxTelefono = new HBox(5);
                 hboxTelefono.getChildren().addAll(comboBoxTelefono, txtNumero);
@@ -204,33 +224,49 @@ public class ViewContactController implements Initializable {
             }
             for (String email : p1.getEmails()) {
                 TextField txtEmails = new TextField(email);
-                txtEmails.setEditable(false);
+                txtEmails.setEditable(valor);
+                txtEmails.setPrefHeight(27.0);
+                txtEmails.setPrefWidth(322.0);
+                txtEmails.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
+                vboxEmailsDinamico.setPadding(new Insets(5, 40, 15, 0));
+
                 vboxEmailsDinamico.getChildren().add(txtEmails);
 
             }
             for (RedSocial red2 : p1.getRedes()) {
                 TextField txtRed = new TextField(red2.getRed() + " " + red2.getUsuario());
-                txtRed.setPrefHeight(23.0);
-                txtRed.setPrefWidth(153.0);
+                txtRed.setPrefHeight(27.0);
+                txtRed.setPrefWidth(322.0);
                 txtRed.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
-                txtRed.setEditable(false);
+                txtRed.setEditable(valor);
+                vboxRedesDinamico.setPadding(new Insets(5, 40, 15, 0));
+
                 vboxRedesDinamico.getChildren().add(txtRed);
             }
             for (Direccion direccion : p1.getDirecciones()) {
                 TextField txtDirecion1 = new TextField(direccion.getUbicacion());
-                txtDirecion1.setPrefHeight(23.0);
-                txtDirecion1.setPrefWidth(153.0);
+                txtDirecion1.setPrefHeight(27.0);
+                txtDirecion1.setPrefWidth(322.0);
                 txtDirecion1.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
 
-                txtDirecion1.setEditable(false);
-           
+                txtDirecion1.setEditable(valor);
+                vboxDireccionesDinamico.setPadding(new Insets(5, 40, 15, 0));
                 vboxDireccionesDinamico.getChildren().add(txtDirecion1);
 
             }
+            for (Fecha fecha : p1.getFechas()) {
+                TextField txtfecha = new TextField(fecha.getFecha().toString());
+                txtfecha.setPrefWidth(322.0);
+                txtfecha.setPrefHeight(27.0);
+                txtfecha.setStyle("-fx-border-color: #7F65FF; -fx-border-radius: 6;");
+                txtfecha.setEditable(valor);
+                vboxFechasDinamico.setPadding(new Insets(5, 40, 15, 0));
+                vboxFechasDinamico.getChildren().add(txtfecha);
+            }
             txtNacionalidad.setText(p1.getNacionalidad());
-            txtNacionalidad.setEditable(false);
+            txtNacionalidad.setEditable(valor);
             txtOcupación.setText(p1.getOcupacion());
-            txtOcupación.setEditable(false);
+            txtOcupación.setEditable(valor);
 
         }
     }
