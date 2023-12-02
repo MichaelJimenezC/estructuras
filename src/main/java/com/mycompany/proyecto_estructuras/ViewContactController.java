@@ -9,6 +9,7 @@ import Fechas.FechaCb;
 import Logica.Contacto;
 import Logica.Direccion;
 import Logica.DoubleLinkedList;
+import Logica.Empresa;
 import Logica.Fecha;
 import Logica.LinkedListPropia;
 import Logica.Persona;
@@ -22,7 +23,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,7 +47,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
+ * FXML Controller class de la clase Persona
  *
  * @author marle
  */
@@ -103,41 +108,49 @@ public class ViewContactController implements Initializable {
         }
     }
 
-    private void saveContactAsVCard(File file) {
+private void saveContactAsVCard(File file) {
         try ( PrintWriter writer = new PrintWriter(file)) {
             LinkedListPropia<Contacto> contactos = App.usuario.getContactos();
-            for (Contacto contacto : contactos) { // Suponiendo que tienes una lista de contactos
-                writer.println("BEGIN:VCARD");
-                writer.println("VERSION:3.0");
-                writer.println("FN:" + contacto.getNombre());
-                for (Direccion direccion : contacto.getDirecciones()) {
-                    writer.println("ADR;TYPE=home:" + direccion);
+
+            for (Contacto contacto : contactos) {
+                if (contacto instanceof Empresa) { // Verificar que el contacto es una instancia de Empresa
+                    Persona p1 = (Persona) contacto;
+                   
+                    writer.println("BEGIN:VCARD");
+                    writer.println("VERSION:3.0");
+                    writer.println("FN:" + p1.getNombre() + " "+p1.getApellido());
+                    writer.println("TITLE:" +p1.getOcupacion());
+                    writer.println("NOTE: Nacionalidad - "+p1.getNacionalidad());
+             
+
+                    for (String email : p1.getEmails()) {
+                        writer.println("EMAIL;TYPE=INTERNET:" + email);
+                    }
+
+                    for (Direccion direccion : p1.getDirecciones()) {
+                        // Ajustar formato de la dirección según tus atributos
+                        writer.println("ADR;TYPE=" + direccion.getTipo() + ":;;" + direccion.getUbicacion() + ";;;;");
+                    }
+
+                    for (Telefono telefono : p1.getTelefonos()) {
+                        // Formatear el número de teléfono con el prefijo del país y el número
+                        String numeroCompleto = "+" + telefono.getPais() + telefono.getPrefijo() + telefono.getNumero();
+                        writer.println("TEL:" + numeroCompleto);
+                    }
+
+                    for (Contacto relacionado : p1.getContactosRelacionados()) {
+                        writer.println("RELATED;TYPE=contact:" + relacionado.getNombre());
+                    }
+
+                    writer.println("END:VCARD");
+                    writer.println(); // Línea vacía entre contactos
                 }
-                for (String email : contacto.getEmails()) {
-                    writer.println("EMAIL;TYPE=INTERNET: " + email);
-                }
-//          for (RedesSociales redes: contacto.getRedes()){
-//          writer.println("X-SOCIALPROFILE;TYPE= "+);
-//          }
-                for (String foto : contacto.getFotos()) {
-                    writer.println("PHOTO;TYPE=JPEG;VALUE=URI:" + foto);
-                }
-                for (Fecha fecha : contacto.getFechas()) {
-                    writer.println("BDAY:" + fecha);
-                }
-                // Teléfonos
-                for (Telefono telefono : contacto.getTelefonos()) {
-                    writer.println("TEL;TYPE=" + telefono.getPrefijo() + ":" + telefono.getNumero());
-                }
-                for (Contacto relacionado : contacto.getContactosRelacionados()) {
-                    writer.println("RELATED;TYPE=contact:" + relacionado.getNombre());
-                }
-                writer.println("END:VCARD");
-                writer.println(); // Línea vacía entre contactos
             }
         } catch (FileNotFoundException e) {
-            // Manejar la excepción
+            e.printStackTrace(); // Manejar la excepción mostrando el stack trace
+            // Considera mostrar un mensaje de error al usuario o registrar este error en un archivo de log
         }
+
     }
     @FXML
     private VBox vboxTelefonosDinamico;
