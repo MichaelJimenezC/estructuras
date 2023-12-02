@@ -266,7 +266,7 @@ public class CreateContactController implements Initializable {
             }
             String ocupacion = txtOcupación.getText();
             String telefonos = obtenerValores(cajaTelefonos);
-            String Nacionalidad = txtNacionalidad.getText();
+            String nacionalidad = txtNacionalidad.getText();
             // Recuperar valores dinámicos de los componentes
             String emails = obtenerValores(cajaEmails);
             String redesSociales = obtenerValores(cajaRedes);
@@ -352,7 +352,8 @@ public class CreateContactController implements Initializable {
 //            , DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas
 //            , DoubleLinkedList<String[]> telefonos
 //            ) 
-            Persona contacto = new Persona(apellidos, genero, cumpleaños, ocupacion, Nacionalidad, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos);
+
+            Persona contacto = new Persona(apellidos, genero, cumpleaños, ocupacion, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos,nacionalidad);
             System.out.println("Contacto: " + contacto);
             
             for (Usuario usuario : App.listaUsuarios) {

@@ -2,6 +2,7 @@ package Logica;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -300,7 +301,75 @@ public class LinkedListPropia<E> implements List<E>, Serializable {
 
     @Override
     public ListIterator<E> listIterator() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new ListIterator<E>() {
+            private Nodo<E> current = primero;
+            private Nodo<E> lastReturned = null;
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size();
+            }
+
+            @Override
+            public E next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                lastReturned = current;
+                current = current.sig;
+                currentIndex++;
+                return lastReturned.contenido;
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return currentIndex > 0;
+            }
+
+            @Override
+            public E previous() {
+                if (!hasPrevious()) {
+                    throw new NoSuchElementException();
+                }
+                if (current == null) {
+                    current = ultimo;
+                } else {
+                    current = current.sig;
+                }
+                lastReturned = current;
+                currentIndex--;
+                return lastReturned.contenido;
+            }
+
+            @Override
+            public int nextIndex() {
+                return currentIndex;
+            }
+
+            @Override
+            public int previousIndex() {
+                return currentIndex - 1;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+
+            @Override
+            public void set(E e) {
+                if (lastReturned == null) {
+                    throw new IllegalStateException();
+                }
+                lastReturned.contenido = e;
+            }
+
+            @Override
+            public void add(E e) {
+                throw new UnsupportedOperationException();
+            }
+        };
     }
 
     @Override
@@ -342,4 +411,28 @@ public class LinkedListPropia<E> implements List<E>, Serializable {
 
         return removido;
     }
+
+    public E find(Comparator<E> comparator, E encontrar) {
+        Nodo<E> actual = primero;
+        while (actual != null) {
+            if (comparator.compare(actual.contenido, encontrar) == 0) {
+                return actual.contenido;
+            }
+            actual = actual.sig;
+        }
+        return null;
+    }
+
+    public LinkedListPropia<E> findAll(Comparator<E> comparator, E encontrar) {
+        LinkedListPropia<E> encontrados = new LinkedListPropia<>();
+        Nodo<E> actual = primero;
+        while (actual != null) {
+            if (comparator.compare(actual.contenido, encontrar) == 0) {
+                encontrados.add(actual.contenido);
+            }
+            actual = actual.sig;
+        }
+        return encontrados;
+    }
+
 }

@@ -19,16 +19,16 @@ public class Persona extends Contacto implements Serializable{
     private String genero;
     private LocalDate fechaNacimiento;
     private String ocupacion;
-    private String Nacionalidad;
 
-    public Persona(String apellido, String genero, LocalDate fechaNacimiento, String ocupacion, String Nacionalidad, String nombre, LinkedListPropia<Direccion> direcciones, LinkedListPropia<String> emails, LinkedListPropia<RedSocial> redes, DoubleLinkedList<String> fotos, LinkedListPropia<Fecha> fechas, LinkedListPropia<Telefono> telefonos) {
-        super(nombre, direcciones, emails, redes, fotos, fechas, telefonos);
+    public Persona(String apellido, String genero, LocalDate fechaNacimiento, String ocupacion, String nombre, LinkedListPropia<Direccion> direcciones, LinkedListPropia<String> emails, LinkedListPropia<RedSocial> redes, DoubleLinkedList<String> fotos, LinkedListPropia<Fecha> fechas, LinkedListPropia<Telefono> telefonos, String Nacionalidad) {
+        super(nombre, direcciones, emails, redes, fotos, fechas, telefonos, Nacionalidad);
         this.apellido = apellido;
         this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
         this.ocupacion = ocupacion;
-        this.Nacionalidad = Nacionalidad;
     }
+    
+
 
    
 
@@ -64,14 +64,7 @@ public class Persona extends Contacto implements Serializable{
         this.ocupacion = ocupacion;
     }
 
-    public String getNacionalidad() {
-        return Nacionalidad;
-    }
-
-    public void setNacionalidad(String Nacionalidad) {
-        this.Nacionalidad = Nacionalidad;
-    }
-
+  
     
 
     
@@ -79,7 +72,7 @@ public class Persona extends Contacto implements Serializable{
  
     @Override
     public String toString() {
-        return super.toString()+" , "+"Persona{" + "apellido=" + apellido + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + ", ocupacion=" + ocupacion + ", Nacionalidad=" + Nacionalidad + '}';
+        return super.toString()+" , "+"Persona{" + "apellido=" + apellido + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + ", ocupacion=" + ocupacion +'}';
     }
 
     

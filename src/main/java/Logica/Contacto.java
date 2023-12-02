@@ -6,12 +6,12 @@ package Logica;
 
 import java.io.Serializable;
 
-
-   /**
+/**
  *
  * @author Michael
  */
-public class Contacto implements Serializable{
+public class Contacto implements Serializable, Comparable<Contacto> {
+
     private String nombre;
     private LinkedListPropia<Direccion> direcciones;
     private LinkedListPropia<String> emails;
@@ -20,8 +20,9 @@ public class Contacto implements Serializable{
     private LinkedListPropia<Fecha> fechas;
     private LinkedListPropia<Telefono> telefonos;
     private LinkedListPropia<Contacto> contactosRelacionados;
+    private String Nacionalidad;
 
-    public Contacto(String nombre, LinkedListPropia<Direccion> direcciones, LinkedListPropia<String> emails, LinkedListPropia<RedSocial> redes, DoubleLinkedList<String> fotos, LinkedListPropia<Fecha> fechas, LinkedListPropia<Telefono> telefonos) {
+    public Contacto(String nombre, LinkedListPropia<Direccion> direcciones, LinkedListPropia<String> emails, LinkedListPropia<RedSocial> redes, DoubleLinkedList<String> fotos, LinkedListPropia<Fecha> fechas, LinkedListPropia<Telefono> telefonos, String Nacionalidad) {
         this.nombre = nombre;
         this.direcciones = direcciones;
         this.emails = emails;
@@ -29,7 +30,7 @@ public class Contacto implements Serializable{
         this.fotos = fotos;
         this.fechas = fechas;
         this.telefonos = telefonos;
-        this.contactosRelacionados = new LinkedListPropia<>();
+        this.Nacionalidad = Nacionalidad;
     }
 
     public String getNombre() {
@@ -96,14 +97,20 @@ public class Contacto implements Serializable{
         this.contactosRelacionados = contactosRelacionados;
     }
 
-    @Override
-    public String toString() {
-        return "Contacto{" + "nombre=" + nombre + ", direcciones=" + direcciones + ", emails=" + emails + ", redes=" + redes + ", fotos=" + fotos + ", fechas=" + fechas + ", telefonos=" + telefonos + ", contactosRelacionados=" + contactosRelacionados + '}';
+    public String getNacionalidad() {
+        return Nacionalidad;
     }
 
-    
+    public void setNacionalidad(String Nacionalidad) {
+        this.Nacionalidad = Nacionalidad;
+    }
+
    
-   
-   
- 
+
+    @Override
+    public int compareTo(Contacto otroContacto) {
+        return this.nombre.compareTo(otroContacto.nombre);
+
+    }
+
 }

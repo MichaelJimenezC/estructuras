@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -447,6 +448,38 @@ public class DoubleLinkedList<E> implements List<E>, Serializable {
             System.out.print(actual.contenido + " ");
             actual = actual.sig;
         } while (actual != this.primero);
+    }
+    public E find(Comparator<E> comparator, E encontrar) {
+        if (isEmpty()) {
+            return null;
+        }
+
+        Nodo<E> actual = primero;
+        do {
+            if (comparator.compare(actual.contenido, encontrar) == 0) {
+                return actual.contenido;
+            }
+            actual = actual.sig;
+        } while (actual != primero);
+
+        return null;
+    }
+
+    public DoubleLinkedList<E> findAll(Comparator<E> comparator, E encontrar) {
+        DoubleLinkedList<E> encontrados = new DoubleLinkedList<>();
+        if (isEmpty()) {
+            return encontrados;
+        }
+
+        Nodo<E> actual = primero;
+        do {
+            if (comparator.compare(actual.contenido, encontrar) == 0) {
+                encontrados.add(actual.contenido);
+            }
+            actual = actual.sig;
+        } while (actual != primero);
+
+        return encontrados;
     }
 
     @Override
