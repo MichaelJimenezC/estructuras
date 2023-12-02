@@ -22,11 +22,10 @@ public class App extends Application{
 
     public static Usuario usuario = null;
     private static Scene scene;
-   public static ArrayList<Usuario> listaUsuarios= App.crearListaUsuarios("usuarios.txt");
+   public static ArrayList<Usuario> listaUsuarios= Archivos.deserializarListaUsuarios("usuarios.ser");
 
     @Override
     public void start(Stage stage) throws IOException {
-        Archivos.serializarListaUsuarios(listaUsuarios, "usuarios.ser");
         scene = new Scene(loadFXML("primary"), 353, 597);
         stage.setTitle("Loggin Page");
         stage.setScene(scene);
