@@ -94,7 +94,7 @@ public class ContactosPageController implements Initializable {
                     Persona p1 = (Persona) contacto;
                     ImageView imgv = new ImageView();
                     if (!p1.getFotos().isEmpty()) {
-                        imgv.setImage(new Image(p1.getFotos().get(0)));
+                        imgv.setImage(new Image("file:" +p1.getFotos().get(0)));
                         imgv.setFitWidth(80); // Establecer el ancho de la imagen
                         imgv.setFitHeight(80); // Establecer la altura de la imagen
                         imgv.setPreserveRatio(true);

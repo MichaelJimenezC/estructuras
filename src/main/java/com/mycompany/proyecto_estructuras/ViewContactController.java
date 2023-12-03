@@ -203,7 +203,7 @@ private void saveContactAsVCard(File file) {
             Persona p1 = (Persona) contactoSelecionado;
             if (!p1.getFotos().isEmpty()) {
 
-                ImagenContacto.setImage(new Image(p1.getFotos().get(0)));
+                ImagenContacto.setImage(new Image("file:" +p1.getFotos().get(0)));
             }
             labelNombreApellido.setText(p1.getNombre() + " " + p1.getApellido());
             txtNombres.setText(p1.getNombre());

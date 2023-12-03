@@ -179,39 +179,47 @@ public class CreateContactController implements Initializable {
     }
 
     @FXML
-    private void handleBtnFotoClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+private void handleBtnFotoClick(ActionEvent event) {
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Selecciona una imagen");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagenes", "*.png", "*.jpg", "*.jpeg"));
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Selecciona una imagen");
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagenes", "*.png", "*.jpg", "*.jpeg"));
 
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        if (selectedFile != null) {
-            // Asumiendo que "Img" es una carpeta en el mismo directorio que el directorio de salida del proyecto.
-            Path destPath = Paths.get("Img" + File.separator + selectedFile.getName());
+    File selectedFile = fileChooser.showOpenDialog(stage);
+    if (selectedFile != null) {
+        // Definir la ruta de destino en la carpeta "Img" dentro del directorio del proyecto
+        Path destPath = Paths.get("Img", selectedFile.getName());
 
-            // Verificar si el archivo ya existe en el directorio
-            if (Files.exists(destPath)) {
-                // El archivo ya existe, puedes mostrar un mensaje o realizar alguna acción.
-                System.out.println("La imagen ya existe en el directorio.");
-            } else {
-                // El archivo no existe, copiarlo y agregarlo a la lista
+        // Verificar si el archivo ya existe en el directorio
+        if (Files.exists(destPath)) {
+            System.out.println("La imagen ya existe en el directorio.");
+        } else {
+            try {
+                // Copiar el archivo seleccionado a la carpeta "Img"
                 Files.copy(selectedFile.toPath(), destPath, StandardCopyOption.REPLACE_EXISTING);
 
-                // Reflejar la imagen en la UI
-                String rutaImagen = destPath.toUri().toString();
-                Image image = new Image(rutaImagen);
+                // Obtener la ruta relativa para cargar la imagen en el ImageView
+                String rutaImagen = destPath.toString().replace("\\", "/");
+                System.out.println(rutaImagen);
+                Image image = new Image("file:" + rutaImagen);
                 ImgFotoPersona.setImage(image);
+
+                // Agregar la ruta relativa a la lista de fotos si es necesario
                 fotos.add(rutaImagen);
-                System.out.println("se agregó");
+
+                System.out.println("La imagen se agregó correctamente.");
+
                 if (iterator.hasNext()) {
                     iterator.next();
                 }
-
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
+}
+
 
     private void agregarTextFieldEnHBox(VBox parentVBox) {
         TextField textField = new TextField();
