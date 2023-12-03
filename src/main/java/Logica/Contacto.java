@@ -21,8 +21,9 @@ public class Contacto implements Serializable, Comparable<Contacto> {
     private LinkedListPropia<Telefono> telefonos;
     private LinkedListPropia<Contacto> contactosRelacionados;
     private String Nacionalidad;
-
+    private boolean favorito;
     public Contacto(String nombre, LinkedListPropia<Direccion> direcciones, LinkedListPropia<String> emails, LinkedListPropia<RedSocial> redes, DoubleLinkedList<String> fotos, LinkedListPropia<Fecha> fechas, LinkedListPropia<Telefono> telefonos, String Nacionalidad) {
+        this.favorito = false;
         this.nombre = nombre;
         this.direcciones = direcciones;
         this.emails = emails;
@@ -31,6 +32,7 @@ public class Contacto implements Serializable, Comparable<Contacto> {
         this.fechas = fechas;
         this.telefonos = telefonos;
         this.Nacionalidad = Nacionalidad;
+        contactosRelacionados= new LinkedListPropia<>();
     }
 
     public String getNombre() {
@@ -103,6 +105,14 @@ public class Contacto implements Serializable, Comparable<Contacto> {
 
     public void setNacionalidad(String Nacionalidad) {
         this.Nacionalidad = Nacionalidad;
+    }
+
+    public boolean isFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
     }
 
    

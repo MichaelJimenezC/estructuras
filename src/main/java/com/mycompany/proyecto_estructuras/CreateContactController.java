@@ -204,7 +204,7 @@ private void handleBtnFotoClick(ActionEvent event) {
                 System.out.println(rutaImagen);
                 Image image = new Image("file:" + rutaImagen);
                 ImgFotoPersona.setImage(image);
-
+                System.out.println(rutaImagen);
                 // Agregar la ruta relativa a la lista de fotos si es necesario
                 fotos.add(rutaImagen);
 
@@ -484,7 +484,7 @@ private void handleBtnFotoClick(ActionEvent event) {
     }
 
     private void mostrarImagenActual(String rutaImagen) {
-        Image image = new Image(rutaImagen);
+        Image image = new Image("file:" +rutaImagen);
         ImgFotoPersona.setImage(image);
     }
 

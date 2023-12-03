@@ -45,5 +45,6 @@ public class Empresa extends Contacto implements Serializable, Comparable<Contac
             return this.getNombre().compareTo(otroContacto.getNombre());
         }
     }
+    
 
 }

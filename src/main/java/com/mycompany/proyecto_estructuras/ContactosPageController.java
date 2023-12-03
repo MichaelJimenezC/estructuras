@@ -85,6 +85,7 @@ public class ContactosPageController implements Initializable {
     private void mostrarContactos(LinkedListPropia<Contacto> contactos) {
         vboxVerContactos.getChildren().clear();
         if (contactos.isEmpty()) {
+            
             Label label = new Label("NO TIENES CONTACTOS");
             vboxVerContactos.getChildren().add(label);
         } else {
@@ -132,7 +133,11 @@ public class ContactosPageController implements Initializable {
                     principal.setStyle("-fx-border-color: #D3D3D3");
                     principal.setPadding(new Insets(5, 5, 5, 5));
                     contactoInformacion.getChildren().addAll(nombre, numero);
-                    principal.getChildren().addAll(imgv, contactoInformacion, boton);
+                    ToggleButton botonFavorito= new ToggleButton("✰");
+                    botonFavorito.setUserData(contacto);
+                    botonFavorito.setSelected(contacto.isFavorito());
+                    botonFavorito.setOnAction(this::handleFavoritoAction);
+                    principal.getChildren().addAll(imgv, contactoInformacion, boton,botonFavorito);
                     vboxVerContactos.setMargin(principal, new Insets(10, 10, 10, 10));
 
                     vboxVerContactos.getChildren().add(principal);
@@ -143,6 +148,39 @@ public class ContactosPageController implements Initializable {
             }
         }
     }
+    private void handleFavoritoAction(ActionEvent event) {
+    ToggleButton botonFavorito = (ToggleButton) event.getSource();
+    Contacto contacto = (Contacto) botonFavorito.getUserData();
+
+    boolean esFavorito = botonFavorito.isSelected();
+    contacto.setFavorito(esFavorito);
+    botonFavorito.setText(esFavorito ? "★" : "✰");
+
+//    actualizarListaContactos(contacto);
+//    guardarCambios(); //llamda a metodo que tiene guarda las modificaciones
+}
+
+//    private void actualizarListaContactos(Contacto contactoActualizado) {
+//    for (Contacto contacto : ) {
+//        if (contacto instanceof Persona) {
+//            Persona persona = (Persona) contacto;
+//            for (Telefono telefono: persona.getTelefonos()){
+//                telefono.equals(contacttoActualizado.getNumero());
+//                persona.setFavorito(contactoActualizado.getEsFavorito());
+//            }
+//        } else if (contacto instanceof Empresa) {
+//            Empresa empresa = (Empresa) contacto;
+//            for (Telefono telefono: empresa.getTelefonos()){
+//            if (telefono.equals(contactoActualizado.getTelefono())) {
+//                empresa.setEsFavorito(contactoActualizado.getEsFavorito());
+//                break;
+//            }
+//            }
+//        }
+//    }
+
+    
+
 
     private void ordenarContactos(LinkedListPropia<Contacto> contactos, String opcionOrdenar) {
         switch (opcionOrdenar) {

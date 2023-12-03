@@ -1,4 +1,5 @@
 Logica\DoubleLinkedList$Nodo.class
+Logica\LinkedListPropia$2.class
 Direcciones\DireccionCb.class
 Social_Media\RedesSociales.class
 Direcciones\DireccionCb$1.class
@@ -13,18 +14,19 @@ Prefijos\PrefijoPais.class
 Logica\Telefono.class
 Logica\Direccion.class
 com\mycompany\proyecto_estructuras\CreateContactPageController.class
+com\mycompany\proyecto_estructuras\ContactosPageController$1.class
 Logica\AL.class
 Logica\DoubleLinkedList$1.class
 Prefijos\PrefijoPais$2.class
 Logica\Empresa.class
 Logica\Contacto.class
-com\mycompany\proyecto_estructuras\NewContactWindow.class
 Logica\Archivos.class
 com\mycompany\proyecto_estructuras\CreateContactPage2Controller.class
 com\mycompany\proyecto_estructuras\ViewContactController.class
 Logica\DoubleLinkedList$2.class
 Fechas\FechaCb.class
 Logica\LinkedListPropia$Nodo.class
+com\mycompany\proyecto_estructuras\EditarContactoEmpresaController.class
 Logica\RedSocial.class
 Fechas\FechaCb$1.class
 Logica\LinkedListPropia.class
@@ -36,5 +38,7 @@ Logica\DoubleLinkedList.class
 com\mycompany\proyecto_estructuras\App.class
 Fechas\FechaCb$2.class
 com\mycompany\proyecto_estructuras\CreateContactController.class
+com\mycompany\proyecto_estructuras\EditarContactoPersonaController.class
 Logica\Persona.class
+com\mycompany\proyecto_estructuras\EmpresaController.class
 com\mycompany\proyecto_estructuras\SecondaryController.class

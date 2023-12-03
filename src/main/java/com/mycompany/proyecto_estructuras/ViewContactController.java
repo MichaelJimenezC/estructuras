@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,6 +44,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -91,67 +93,7 @@ public class ViewContactController implements Initializable {
         mostrarContactos(false);
     }
 
-    @FXML
-    public void exportarVCard(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        // Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("vCard files (*.vcf)", "*.vcf");
-        fileChooser.getExtensionFilters().add(extFilter);
-        // Show save dialog
-        // Obtener el Stage
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        File file = fileChooser.showSaveDialog(stage);
-
-        if (file != null) {
-            saveContactAsVCard(file);
-        }
-    }
-
-private void saveContactAsVCard(File file) {
-        try ( PrintWriter writer = new PrintWriter(file)) {
-            LinkedListPropia<Contacto> contactos = App.usuario.getContactos();
-
-            for (Contacto contacto : contactos) {
-                if (contacto instanceof Empresa) { // Verificar que el contacto es una instancia de Empresa
-                    Persona p1 = (Persona) contacto;
-                   
-                    writer.println("BEGIN:VCARD");
-                    writer.println("VERSION:3.0");
-                    writer.println("FN:" + p1.getNombre() + " "+p1.getApellido());
-                    writer.println("TITLE:" +p1.getOcupacion());
-                    writer.println("NOTE: Nacionalidad - "+p1.getNacionalidad());
-             
-
-                    for (String email : p1.getEmails()) {
-                        writer.println("EMAIL;TYPE=INTERNET:" + email);
-                    }
-
-                    for (Direccion direccion : p1.getDirecciones()) {
-                        // Ajustar formato de la dirección según tus atributos
-                        writer.println("ADR;TYPE=" + direccion.getTipo() + ":;;" + direccion.getUbicacion() + ";;;;");
-                    }
-
-                    for (Telefono telefono : p1.getTelefonos()) {
-                        // Formatear el número de teléfono con el prefijo del país y el número
-                        String numeroCompleto = "+" + telefono.getPais() + telefono.getPrefijo() + telefono.getNumero();
-                        writer.println("TEL:" + numeroCompleto);
-                    }
-
-                    for (Contacto relacionado : p1.getContactosRelacionados()) {
-                        writer.println("RELATED;TYPE=contact:" + relacionado.getNombre());
-                    }
-
-                    writer.println("END:VCARD");
-                    writer.println(); // Línea vacía entre contactos
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace(); // Manejar la excepción mostrando el stack trace
-            // Considera mostrar un mensaje de error al usuario o registrar este error en un archivo de log
-        }
-
-    }
+ 
     @FXML
     private VBox vboxTelefonosDinamico;
     @FXML
@@ -179,31 +121,25 @@ private void saveContactAsVCard(File file) {
 
     @FXML
     public void handleEditarBoton(ActionEvent event) {
-        vboxTelefonosDinamico.getChildren().clear();
-        vboxEmailsDinamico.getChildren().clear();
-        vboxRedesDinamico.getChildren().clear();
-        vboxDireccionesDinamico.getChildren().clear();
-        mostrarContactos(true);
+        try {
+            App.setRoot("EditarContactoPersona");
+            mostrarContactos(true);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 //haccer un set on action para el boton para que se cambie a la funcionalidad de guardar o editar 
 
     private void mostrarContactos(boolean valor) {
-        if (valor) {
-            button.setText("Guardar");
-            //aquí debo actualizar el objeto 
-            //recorrer la lista del usuario actual y si coincide se obtiene, me voy a la lista de contacto
-            //obtengo la lista recorre la lista de contacto y si coincide con el contacto que quiero modificar, lo igualo al contacto 
-
-        } else {
-            button.setText("Editar");
-        }
-
+        
         System.out.println(contactoSelecionado);
         if (contactoSelecionado instanceof Persona) {
             Persona p1 = (Persona) contactoSelecionado;
             if (!p1.getFotos().isEmpty()) {
-
-                ImagenContacto.setImage(new Image("file:" +p1.getFotos().get(0)));
+                ImagenContacto.setImage(new Image("file:" + p1.getFotos().get(0)));
+                ImagenContacto.setFitWidth(80); // nuevo ancho
+                ImagenContacto.setFitHeight(80); // nueva altura
+                ImagenContacto.setPreserveRatio(false); // preserva la relación de aspecto
             }
             labelNombreApellido.setText(p1.getNombre() + " " + p1.getApellido());
             txtNombres.setText(p1.getNombre());

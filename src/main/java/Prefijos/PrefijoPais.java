@@ -4,13 +4,14 @@
  */
 package Prefijos;
 
-import com.mycompany.proyecto_estructuras.PrimaryController;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 /**
  * Clase bandera, creada con la finalidad de llenar el comboBox con la bandera
  * del país con su respectivo codigo y el numero de usuario para el respectivo
@@ -58,7 +59,8 @@ public class PrefijoPais {
     public String toString() {
         return nombrePais + " (" + prefijo + ")";
     }
-     /**
+
+    /**
      * Método que se creo con la finalidad de llenar un comboBox fácil de
      * interpretar por el usuario en donde se logré visualizar por pantalla la
      * bandera del país, el nombre del país y por último el prefijo del país
@@ -80,6 +82,7 @@ public class PrefijoPais {
         lista.add(new PrefijoPais(new Image(PrefijoPais.class.getResourceAsStream("/Imagenes/corea-del-sur.png")), "+82", "Corea"));
         lista.add(new PrefijoPais(new Image(PrefijoPais.class.getResourceAsStream("/Imagenes/estados-unidos.png")), "+1", "Estados Unidos"));
         lista.add(new PrefijoPais(new Image(PrefijoPais.class.getResourceAsStream("/Imagenes/chile.png")), "+56", "Chile"));
+        Collections.sort(lista, (PrefijoPais p1, PrefijoPais p2) -> p1.getNombrePais().compareTo(p2.getNombrePais()));
 
         return lista;
     }
@@ -132,5 +135,4 @@ public class PrefijoPais {
         }
     }
 
-   
 }

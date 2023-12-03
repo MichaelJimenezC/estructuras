@@ -59,65 +59,7 @@ public class MenuPersona2Controller implements Initializable {
             ex.printStackTrace();
         }
     }
-
-    @FXML
-    public void exportarVCard(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        // Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("vCard files (*.vcf)", "*.vcf");
-        fileChooser.getExtensionFilters().add(extFilter);
-        // Show save dialog
-        // Obtener el Stage
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        File file = fileChooser.showSaveDialog(stage);
-
-        if (file != null) {
-            saveContactAsVCard(file);
-        }
-    }
-
-    private void saveContactAsVCard(File file) {
-        try ( PrintWriter writer = new PrintWriter(file)) {
-            LinkedListPropia<Contacto> contactos = App.usuario.getContactos();
-
-            for (Contacto contacto : contactos) {
-                if (contacto instanceof Empresa) { // Verificar que el contacto es una instancia de Empresa
-                    Empresa e1 = (Empresa) contacto;
-
-                    writer.println("BEGIN:VCARD");
-                    writer.println("VERSION:3.0");
-                    writer.println("FN:" + e1.getNombre());
-
-                    for (String email : e1.getEmails()) {
-                        writer.println("EMAIL;TYPE=INTERNET:" + email);
-                    }
-
-                    for (Direccion direccion : e1.getDirecciones()) {
-                        // Ajustar formato de la dirección según tus atributos
-                        writer.println("ADR;TYPE=" + direccion.getTipo() + ":;;" + direccion.getUbicacion() + ";;;;");
-                    }
-
-                    for (Telefono telefono : e1.getTelefonos()) {
-                        // Formatear el número de teléfono con el prefijo del país y el número
-                        String numeroCompleto = "+" + telefono.getPais() + telefono.getPrefijo() + telefono.getNumero();
-                        writer.println("TEL:" + numeroCompleto);
-                    }
-
-                    for (Contacto relacionado : e1.getContactosRelacionados()) {
-                        writer.println("RELATED;TYPE=contact:" + relacionado.getNombre());
-                    }
-
-                    writer.println("END:VCARD");
-                    writer.println(); // Línea vacía entre contactos
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace(); // Manejar la excepción mostrando el stack trace
-            // Considera mostrar un mensaje de error al usuario o registrar este error en un archivo de log
-        }
-
-    }
+    
 @FXML
 private VBox vboxTelefonosEmpresa;
 @FXML 
@@ -136,17 +78,8 @@ private TextField txtNombresEmpresa;
 private ImageView ImagenEmpresa;
 @FXML 
 private Button buttonEmpresa;
-    private void mostrarContactos(boolean valor) {
-        if (valor) {
-            buttonEmpresa.setText("Guardar");
-            //aquí debo actualizar el objeto 
-            //recorrer la lista del usuario actual y si coincide se obtiene, me voy a la lista de contacto
-            //obtengo la lista recorre la lista de contacto y si coincide con el contacto que quiero modificar, lo igualo al contacto 
-
-        } else {
-            buttonEmpresa.setText("Editar");
-        }
-
+    public void mostrarContactos(boolean valor) {
+    
         System.out.println(contactoSelecionado);
         if (contactoSelecionado instanceof Persona) {
             Empresa e1 = (Empresa) contactoSelecionado;
@@ -228,6 +161,9 @@ private Button buttonEmpresa;
             
 
         }
+    }
+    public void EditarBoton(ActionEvent event) throws IOException{
+    App.setRoot("EditatContactoEmpresa");
     }
         private PrefijoPais encontrarPrefijoPaisPorPrefijo(String prefijo) {
         // Busca en la lista el prefijo del país que coincide y lo retorna
