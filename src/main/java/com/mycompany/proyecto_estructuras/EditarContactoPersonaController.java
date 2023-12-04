@@ -124,7 +124,13 @@ public class EditarContactoPersonaController implements Initializable {
         for (Contacto c : App.usuario.getContactos()) {
             if (c.equals(contactoSelecionado)) {
                 App.usuario.getContactos().remove(contactoSelecionado);
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Esta seguro de eliminar el contacto?");
+            alert.showAndWait();
                 break;
+                
             }
         }
         Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
@@ -670,7 +676,7 @@ public class EditarContactoPersonaController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Confirmación");
             alert.setHeaderText(null);
-            alert.setContentText("!Se ha editado con éxito el contacto!");
+            alert.setContentText("!Se ha modificado con éxito el contacto!");
             alert.showAndWait();
             try {
                 App.setRoot("ContactosPage");
