@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="915.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.EditarContactoPersonaController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="915.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.EditarContactoPersonaController">
     <content>
         <VBox prefHeight="665.0" prefWidth="410.0" style="-fx-background-color: ffff;">
             <children>
@@ -28,7 +28,7 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="210.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="69.0" style="-fx-background-color: FFFF;" text="Vista" textFill="#6735a4">
+                              <Button mnemonicParsing="false" onAction="#handleBotonRegresar" prefHeight="43.0" prefWidth="69.0" style="-fx-background-color: FFFF;" text="Vista" textFill="#6735a4">
                                  <graphic>
                                     <ImageView fitHeight="36.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -40,7 +40,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: FFF;" text="Delete" textFill="#6735a4">
+                              <Button mnemonicParsing="false" onAction="#EliminarContacto" style="-fx-background-color: FFF;" text="Delete" textFill="#6735a4">
                                  <graphic>
                                     <ImageView fitHeight="29.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -116,12 +116,12 @@
                         </Label>
                         <HBox prefHeight="17.0" prefWidth="424.0" spacing="40.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="Femenino">
+                        <RadioButton fx:id="rFemenino" mnemonicParsing="false" text="Femenino">
                            <toggleGroup>
                               <ToggleGroup fx:id="generos" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" text="Masculino" toggleGroup="$generos" />
+                        <RadioButton fx:id="rMasculino" mnemonicParsing="false" text="Masculino" toggleGroup="$generos" />
                      </children>
                      <padding>
                         <Insets left="75.0" right="45.0" />

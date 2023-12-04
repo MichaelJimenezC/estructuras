@@ -263,7 +263,7 @@ private void handleBtnFotoClick(ActionEvent event) {
     @FXML
     private void guardarContacto(ActionEvent event) {
 
-        if (!txtNombres.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty()) {
+        if (!txtNombres.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty()&&fotos.size()>=2) {
             String nombres = txtNombres.getText();
             String apellidos = txtApellidos.getText();
             String genero = "";
@@ -328,9 +328,13 @@ private void handleBtnFotoClick(ActionEvent event) {
             }
             if (!direccionesArray[0].trim().equals("null")) {
                 for (String algo : direccionesArray) {
+                    System.out.println("Direccion bug: "+algo);
                     String[] direccion = algo.split(" ");
+                    String direccionGuardar=algo.replace(direccion[0],"");
+                    System.out.println(direccionGuardar);
                     if (direccion.length > 1) {
-                        Direccion d = new Direccion(direccion[0], direccion[1]);
+                        
+                        Direccion d = new Direccion(direccion[0],direccionGuardar);
                         lldirecciones.add(d);
                     }
                 }

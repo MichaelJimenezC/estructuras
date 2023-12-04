@@ -103,11 +103,16 @@ public class EditarContactoPersonaController implements Initializable {
     private Button buttonGuardar;
     @FXML
     private Button btnFoto;
+    @FXML
+    private RadioButton rMasculino;
+    @FXML
+    private RadioButton rFemenino;
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-        mostrarImagenActual(fotos.get(0));
+        ImgFotoPersona.setImage(new Image("file:" +fotos.get(0)));
+        iterator.next();
         handleComboBoxPersona();
         handleComboBoxSocialMedia();
         handleComboBoxDirections();
@@ -116,8 +121,27 @@ public class EditarContactoPersonaController implements Initializable {
     }
 
     public void EliminarContacto(ActionEvent event) {
-        if (contactoSelecionado instanceof Persona) {
+        for (Contacto c : App.usuario.getContactos()) {
+            if (c.equals(contactoSelecionado)) {
+                App.usuario.getContactos().remove(contactoSelecionado);
+                break;
+            }
+        }
+        Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
 
+        try {
+            App.setRoot("ContactosPage");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void handleBotonRegresar(ActionEvent event) {
+        try {
+            App.setRoot("ContactosPage");
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -126,6 +150,13 @@ public class EditarContactoPersonaController implements Initializable {
         if (contactoSelecionado instanceof Persona) {
             Persona personallenar = (Persona) contactoSelecionado;
             txtNombresNuevos.setText(personallenar.getNombre()); //obligatorio
+            if(!personallenar.getGenero().isEmpty()){
+                if(personallenar.getGenero().equals("Femenino")){
+                    rFemenino.setSelected(true);
+                }else{
+                    rMasculino.setSelected(true);
+                }
+            }
             if (!personallenar.getApellido().isEmpty()) {
                 txtApellidosNuevos.setText(personallenar.getApellido());
             }
@@ -262,7 +293,9 @@ public class EditarContactoPersonaController implements Initializable {
 
     private DireccionCb buscarDireccionPorTipo(String tipoDireccion, List<DireccionCb> listaDirecciones) {
         for (DireccionCb direccionCb : listaDirecciones) {
-            if (direccionCb.getTipoDireccion().equals(tipoDireccion)) {
+            System.out.println("Direccion del user:" + tipoDireccion);
+            System.out.println("Direccion del combo: " + direccionCb);
+            if (direccionCb.getTipoDireccion().trim().equals(tipoDireccion)) {
                 return direccionCb;
             }
         }
@@ -291,8 +324,11 @@ public class EditarContactoPersonaController implements Initializable {
     }
 
     private FechaCb buscarFechaPorFestividad(String festividad, List<FechaCb> listaFechas) {
+
         for (FechaCb fechaCb : listaFechas) {
-            if (fechaCb.getFestividad().equals(festividad)) {
+            System.out.println("Festividad del user:" + festividad);
+            System.out.println("Festividad del combo: " + fechaCb);
+            if (fechaCb.getFestividad().trim().equals(festividad)) {
                 return fechaCb;
             }
         }
@@ -516,7 +552,7 @@ public class EditarContactoPersonaController implements Initializable {
     @FXML
     private void guardarContacto(ActionEvent event) {
 
-        if (!txtNombresNuevos.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty()) {
+        if (!txtNombresNuevos.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty()&&fotos.size()>=2) {
             String nombres = txtNombresNuevos.getText();
             String apellidos = txtApellidosNuevos.getText();
             String genero = "";
@@ -582,8 +618,10 @@ public class EditarContactoPersonaController implements Initializable {
             if (!direccionesArray[0].trim().equals("null")) {
                 for (String algo : direccionesArray) {
                     String[] direccion = algo.split(" ");
+                    String direccionGuardar = algo.replace(direccion[0], "");
+                    System.out.println(direccionGuardar);
                     if (direccion.length > 1) {
-                        Direccion d = new Direccion(direccion[0], direccion[1]);
+                        Direccion d = new Direccion(direccion[0], direccionGuardar);
                         lldirecciones.add(d);
                     }
                 }

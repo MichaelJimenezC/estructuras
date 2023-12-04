@@ -100,7 +100,7 @@ public class FechaCb {
 
     @Override
     public String toString() {
-        return festividad;
+        return festividad.trim();
     }
 
 }

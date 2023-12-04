@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="820.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.ViewContactController">
+<ScrollPane prefHeight="820.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.ViewContactController">
     <content>
         <VBox prefHeight="820.0" style="-fx-background-color: ffff;">
             <children>
@@ -86,7 +86,7 @@
                         <TextField fx:id="txtNombres" prefHeight="27.0" prefWidth="327.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
-                        <Insets left="25.0" right="40.0" top="5.0" />
+                        <Insets left="25.0" right="100.0" top="5.0" />
                     </padding>
                <VBox.margin>
                   <Insets />
@@ -102,7 +102,7 @@
                         <TextField fx:id="txtApellidos" prefHeight="27.0" prefWidth="322.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
-                        <Insets bottom="15.0" left="25.0" right="40.0" top="5.0" />
+                        <Insets left="25.0" right="100.0" top="5.0" />
                     </padding>
                 </VBox>
                 <VBox fx:id="vboxTelefonos" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -115,7 +115,7 @@
                   <VBox fx:id="vboxTelefonosDinamico" />
                                          </children>
                <padding>
-                  <Insets left="25.0" />
+                  <Insets bottom="20.0" left="25.0" right="65.0" top="5.0" />
                </padding>
                                      </VBox>
                                 <VBox fx:id="vboxEmails" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -128,7 +128,7 @@
                   <VBox fx:id="vboxEmailsDinamico" prefHeight="200.0" prefWidth="100.0" />
                                     </children>
                <padding>
-                  <Insets left="25.0" />
+                  <Insets left="25.0" right="65.0" top="5.0" />
                </padding>
                                 </VBox>
                                 <VBox fx:id="vboxRedesSociales" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -141,7 +141,7 @@
                   <VBox fx:id="vboxRedesDinamico" prefHeight="200.0" prefWidth="100.0" />
                                     </children>
                                     <padding>
-                                        <Insets left="25.0" top="5.0" />
+                                        <Insets left="25.0" right="65.0" top="5.0" />
                                     </padding>
                                 </VBox>
                               <VBox fx:id="vboxDirecciones" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
@@ -154,12 +154,12 @@
                   <VBox fx:id="vboxDireccionesDinamico" prefHeight="200.0" prefWidth="100.0" />
                                          </children>
                <padding>
-                  <Insets left="25.0" />
+                  <Insets left="25.0" right="65.0" />
                </padding>
                                              </VBox>
                                 <VBox fx:id="vboxFechasRelevantes" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                     <padding>
-                        <Insets left="25.0" top="10.0" />
+                        <Insets left="25.0" right="65.0" top="10.0" />
                     </padding>
                     <children>
                         <Label text="Fechas Relevantes" textFill="#6735a4">
@@ -170,30 +170,30 @@
                   <VBox fx:id="vboxFechasDinamico" prefHeight="200.0" prefWidth="100.0" />
                                          </children>
                                           </VBox>
+                                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
+                    <children>
+                        <Label text="Nacionalidad" textFill="#6735a4">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtNacionalidad" prefHeight="27.0" prefWidth="327.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                    </children>
+                    <padding>
+                        <Insets left="25.0" right="105.0" top="5.0" />
+                    </padding>
+                </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" style="-fx-background-color: ffff;">
                     <children>
-                                      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
-                          <children>
-                              <Label text="Nacionalidad" textFill="#6735a4">
-                                  <font>
-                                      <Font name="System Bold" size="12.0" />
-                                  </font>
-                              </Label>
-                              <TextField fx:id="txtNacionalidad" prefHeight="27.0" prefWidth="327.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
-                          </children>
-                          <padding>
-                              <Insets left="25.0" right="40.0" top="5.0" />
-                          </padding>
-                      </VBox>
                         <Label text="Ocupación" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtOcupación" prefHeight="27.0" prefWidth="279.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                        <TextField fx:id="txtOcupación" prefHeight="28.0" prefWidth="295.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
-                        <Insets bottom="20.0" left="25.0" right="40.0" top="5.0" />
+                        <Insets bottom="20.0" left="25.0" right="105.0" top="5.0" />
                     </padding>
                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="394.0" style="-fx-background-color: FFF;">
@@ -205,7 +205,7 @@
                                         </Button>
                                     </children>
                                     <padding>
-                                        <Insets top="10.0" />
+                                        <Insets right="50.0" top="10.0" />
                                     </padding>
                <VBox.margin>
                   <Insets bottom="40.0" left="20.0" right="20.0" top="20.0" />
