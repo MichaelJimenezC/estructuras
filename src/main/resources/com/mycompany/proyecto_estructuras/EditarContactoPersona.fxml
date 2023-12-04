@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="915.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.CreateContactController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="915.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.EditarContactoPersonaController">
     <content>
         <VBox prefHeight="665.0" prefWidth="410.0" style="-fx-background-color: ffff;">
             <children>
@@ -32,7 +32,7 @@
                                  <graphic>
                                     <ImageView fitHeight="36.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../Imagenes/boton-de-flecha-izquierda-del-teclado.png" />
+                                          <Image url="@../../../Imagenes/boton-de-flecha-izquierda-del-teclado.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -44,7 +44,7 @@
                                  <graphic>
                                     <ImageView fitHeight="29.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../Imagenes/basura.png" />
+                                          <Image url="@../../../Imagenes/basura.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -76,17 +76,6 @@
                     </children>
                     <padding>
                         <Insets top="5.0" />
-                    </padding>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                </VBox>
-                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
-                    <children>
-                        <ComboBox fx:id="cbTipo" onAction="#cambiarTipo" prefHeight="25.0" prefWidth="130.0" promptText="Persona" />
-                    </children>
-                    <padding>
-                        <Insets left="75.0" right="65.0" top="5.0" />
                     </padding>
                     <VBox.margin>
                         <Insets />
@@ -155,7 +144,7 @@
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboPrefijos2" onShowing="#handleComboBoxPersona" prefHeight="27.0" prefWidth="156.0" />
+                                                <ComboBox fx:id="comboPrefijos2" prefHeight="27.0" prefWidth="156.0" />
                                                 <TextField fx:id="txtTelefono" prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
@@ -167,7 +156,7 @@
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../Imagenes/agregar.png" />
+                                                        <Image url="@../../../Imagenes/agregar.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -204,7 +193,7 @@
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../Imagenes/agregar.png" />
+                                                        <Image url="@../../../Imagenes/agregar.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -234,7 +223,7 @@
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboBoxRedes" onShowing="#handleComboBoxSocialMedia" prefHeight="27.0" prefWidth="156.0" />
+                                                <ComboBox fx:id="comboBoxRedes" prefHeight="27.0" prefWidth="156.0" />
                                                 <TextField fx:id="txtRedes" prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
@@ -246,7 +235,7 @@
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../Imagenes/agregar.png" />
+                                                        <Image url="@../../../Imagenes/agregar.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -276,7 +265,7 @@
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboDirecciones" onShowing="#handleComboBoxDirections" prefHeight="27.0" prefWidth="156.0" />
+                                                <ComboBox fx:id="comboDirecciones" prefHeight="27.0" prefWidth="156.0" />
                                                 <TextField fx:id="txtDirecciones" prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
@@ -288,7 +277,7 @@
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../Imagenes/agregar.png" />
+                                                        <Image url="@../../../Imagenes/agregar.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -321,7 +310,7 @@
                                     <children>
                                         <HBox prefHeight="25.0" prefWidth="293.0" spacing="8.0">
                                             <children>
-                                    <ComboBox fx:id="comboFechas" onShowing="#handleComboBoxDates" prefHeight="25.0" prefWidth="180.0" />
+                                    <ComboBox fx:id="comboFechas" prefHeight="25.0" prefWidth="180.0" />
                                                 <DatePicker fx:id="dateFecha" prefHeight="25.0" prefWidth="160.0" />
                                             </children>
                                         </HBox>
@@ -333,7 +322,7 @@
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../Imagenes/agregar.png" />
+                                                        <Image url="@../../../Imagenes/agregar.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>

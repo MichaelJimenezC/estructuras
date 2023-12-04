@@ -230,7 +230,19 @@ public class LinkedListPropia<E> implements List<E>, Serializable {
 
     @Override
     public E set(int index, E element) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango");
+        }
+
+        Nodo<E> actual = primero;
+        for (int i = 0; i < index; i++) {
+            actual = actual.sig;
+        }
+
+        E antiguoContenido = actual.contenido;
+        actual.contenido = element;
+
+        return antiguoContenido;
     }
 
     @Override
@@ -291,7 +303,18 @@ public class LinkedListPropia<E> implements List<E>, Serializable {
 
     @Override
     public int indexOf(Object o) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Nodo<E> actual = primero;
+        int index = 0;
+
+        while (actual != null) {
+            if (actual.contenido.equals(o)) {
+                return index;
+            }
+            actual = actual.sig;
+            index++;
+        }
+
+        return -1; // Si no se encuentra el elemento, devuelve -1
     }
 
     @Override
@@ -433,7 +456,6 @@ public class LinkedListPropia<E> implements List<E>, Serializable {
             actual = actual.sig;
         }
         return encontrados;
-    }   
-
+    }
 
 }
