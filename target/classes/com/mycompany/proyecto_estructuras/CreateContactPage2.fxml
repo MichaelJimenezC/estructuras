@@ -15,13 +15,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.CreateContactController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.MenuPersona2Controller">
     <content>
         <VBox prefHeight="665.0" prefWidth="424.0" style="-fx-background-color: ffff;">
             <children>
                 <VBox fx:id="vboxImagen" alignment="CENTER" prefHeight="124.0" prefWidth="413.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Button fx:id="btnFoto" mnemonicParsing="false" onAction="#handleBtnFotoClick" style="-fx-background-color: ffff;">
+                        <Button fx:id="btnFoto" mnemonicParsing="false" style="-fx-background-color: ffff;">
                             <graphic>
                                 <ImageView fx:id="ImgFotoPersona" fitHeight="109.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -32,8 +32,8 @@
                         </Button>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleBtnAnteriorClick" text="Anterior" />
-                        <Button mnemonicParsing="false" onAction="#handleBtnSiguienteClick" text="Siguiente" />
+                        <Button mnemonicParsing="false"  text="Anterior" />
+                        <Button mnemonicParsing="false"  text="Siguiente" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -49,7 +49,7 @@
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                     <children>
-                        <ComboBox fx:id="cbTipo" onAction="#cambiarTipo" prefHeight="25.0" prefWidth="130.0" promptText="Persona" />
+                        <ComboBox fx:id="cbTipo" prefHeight="25.0" prefWidth="130.0" promptText="Persona" />
                     </children>
                     <padding>
                         <Insets left="75.0" right="65.0" top="5.0" />
@@ -109,7 +109,7 @@
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboPrefijos2" onShowing="#handleComboBoxPersona" prefHeight="27.0" prefWidth="156.0" />
+                                                <ComboBox fx:id="comboPrefijos2"  prefHeight="27.0" prefWidth="156.0" />
                                                 <TextField fx:id="txtTelefono" prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
@@ -117,7 +117,7 @@
                                 </VBox>
                                 <VBox prefHeight="25.0" prefWidth="47.0" spacing="20.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: FFFF;">
+                                        <Button mnemonicParsing="false"  style="-fx-background-color: FFFF;">
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -154,7 +154,7 @@
                                 </VBox>
                                 <VBox prefHeight="28.0" prefWidth="17.0" spacing="20.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="18.0" prefWidth="11.0" style="-fx-background-color: ffff;">
+                                        <Button mnemonicParsing="false"  prefHeight="18.0" prefWidth="11.0" style="-fx-background-color: ffff;">
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -188,7 +188,7 @@
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboBoxRedes" onShowing="#handleComboBoxSocialMedia" prefHeight="27.0" prefWidth="156.0" />
+                                                <ComboBox fx:id="comboBoxRedes"  prefHeight="27.0" prefWidth="156.0" />
                                                 <TextField prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
@@ -196,7 +196,7 @@
                                 </VBox>
                                 <VBox prefHeight="28.0" prefWidth="7.0" spacing="20.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: ffff;">
+                                        <Button mnemonicParsing="false"  style="-fx-background-color: ffff;">
                                             <graphic>
                                                 <ImageView fitHeight="39.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -230,7 +230,7 @@
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboDirecciones" onShowing="#handleComboBoxDirections" prefHeight="27.0" prefWidth="156.0" />
+                                                <ComboBox fx:id="comboDirecciones"  prefHeight="27.0" prefWidth="156.0" />
                                                 <TextField prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
@@ -238,7 +238,7 @@
                                 </VBox>
                                 <VBox prefHeight="28.0" prefWidth="0.0" spacing="20.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="28.0" prefWidth="0.0" style="-fx-background-color: FFFF;">
+                                        <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="0.0" style="-fx-background-color: FFFF;">
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -275,7 +275,7 @@
                                     <children>
                                         <HBox prefHeight="25.0" prefWidth="293.0" spacing="8.0">
                                             <children>
-                                    <ComboBox fx:id="comboFechas" onShowing="#handleComboBoxDates" prefHeight="25.0" prefWidth="180.0" />
+                                    <ComboBox fx:id="comboFechas"  prefHeight="25.0" prefWidth="180.0" />
                                                 <DatePicker prefHeight="25.0" prefWidth="160.0" />
                                             </children>
                                         </HBox>
@@ -283,7 +283,7 @@
                                 </VBox>
                                 <VBox prefHeight="27.0" prefWidth="43.0" spacing="20.0">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="20.0" prefWidth="23.0" style="-fx-background-color: FFFF;">
+                                        <Button mnemonicParsing="false"  prefHeight="20.0" prefWidth="23.0" style="-fx-background-color: FFFF;">
                                             <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -303,7 +303,7 @@
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="184.0" prefWidth="433.0" spacing="30.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Button fx:id="buttonGuardar" mnemonicParsing="false" onAction="#guardarContacto" prefHeight="25.0" prefWidth="147.0" style="-fx-background-color: #6743a3;" text="Guardar" textFill="WHITE">
+                        <Button fx:id="buttonGuardar" mnemonicParsing="false"  prefHeight="25.0" prefWidth="147.0" style="-fx-background-color: #6743a3;" text="Guardar" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
