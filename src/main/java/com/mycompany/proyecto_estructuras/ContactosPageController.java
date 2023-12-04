@@ -133,11 +133,11 @@ public class ContactosPageController implements Initializable {
                     principal.setStyle("-fx-border-color: #D3D3D3");
                     principal.setPadding(new Insets(5, 5, 5, 5));
                     contactoInformacion.getChildren().addAll(nombre, numero);
-                    ToggleButton botonFavorito= new ToggleButton("✰");
-                    botonFavorito.setUserData(contacto);
-                    botonFavorito.setSelected(contacto.isFavorito());
-                    botonFavorito.setOnAction(this::handleFavoritoAction);
-                    principal.getChildren().addAll(imgv, contactoInformacion, boton,botonFavorito);
+//                    ToggleButton botonFavorito= new ToggleButton("✰");
+//                    botonFavorito.setUserData(contacto);
+//                    botonFavorito.setSelected(contacto.isFavorito());
+//                    botonFavorito.setOnAction(this::handleFavoritoAction);
+                    principal.getChildren().addAll(imgv, contactoInformacion, boton);
                     vboxVerContactos.setMargin(principal, new Insets(10, 10, 10, 10));
 
                     vboxVerContactos.getChildren().add(principal);
@@ -148,17 +148,10 @@ public class ContactosPageController implements Initializable {
             }
         }
     }
-    private void handleFavoritoAction(ActionEvent event) {
-    ToggleButton botonFavorito = (ToggleButton) event.getSource();
-    Contacto contacto = (Contacto) botonFavorito.getUserData();
-
-    boolean esFavorito = botonFavorito.isSelected();
-    contacto.setFavorito(esFavorito);
-    botonFavorito.setText(esFavorito ? "★" : "✰");
 
 //    actualizarListaContactos(contacto);
 //    guardarCambios(); //llamda a metodo que tiene guarda las modificaciones
-}
+
 
 //    private void actualizarListaContactos(Contacto contactoActualizado) {
 //    for (Contacto contacto : ) {
@@ -177,7 +170,7 @@ public class ContactosPageController implements Initializable {
 //            }
 //            }
 //        }
-//    }
+
 
     
 

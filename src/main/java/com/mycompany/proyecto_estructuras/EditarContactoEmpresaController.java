@@ -23,48 +23,13 @@ import javafx.scene.layout.VBox;
  */
 public class EditarContactoEmpresaController implements Initializable {
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
+
     /**
      * Initializes the controller class.
      *
      * @param url
      */
-    @FXML
-    private TextField txtApellidosNuevos;
-    @FXML
-    private TextField txtNombresNuevos;
-    @FXML
-    private TextField txtNacionalidad;
-    @FXML
-    private TextField txtOcupación;
-
-    @Override
-
-    public void initialize(URL url, ResourceBundle rb) {
-    }
-
-    public void CambiarPestañaVista(ActionEvent event) {
-        try {
-            App.setRoot("MenuPersona");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void EliminarContacto(ActionEvent event) {
-
-    }
-
-    public void GuardarContactoActualizado(ActionEvent event) {
-//        if (contactoSelecionado instanceof Persona) {
-//            Persona personaSeleccionada = (Persona) contactoSelecionado;
-//            String nuevoNombre = txtNombresNuevos.getText();
-//            String ApellidoNuevo = txtApellidosNuevos.getText();
-//            String nacionalidadNueva = txtNacionalidad.getText();
-//            String ocupacionNueva = txtOcupación.getText();
-//
-//            Persona contacto = new Persona(nuevoNombre, ApellidoNuevo, cumpleaños, ocupacion, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos, nacionalidad);
-
-        }
-
-    }
-
+}

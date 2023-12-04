@@ -433,6 +433,7 @@ public class LinkedListPropia<E> implements List<E>, Serializable {
             actual = actual.sig;
         }
         return encontrados;
-    }
+    }   
+
 
 }
