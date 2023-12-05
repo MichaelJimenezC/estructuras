@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="600.0" prefWidth="350.0" style="-fx-background-color: FFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.ContactosPageController">
+<ScrollPane prefHeight="600.0" prefWidth="433.0" style="-fx-background-color: FFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_estructuras.ContactosPageController">
    <content>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="340.0" style="-fx-background-color: fff;">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="433.0" style="-fx-background-color: fff;">
          <children>
             <VBox alignment="CENTER" prefHeight="75.0" prefWidth="340.0" spacing="10.0">
                <children>

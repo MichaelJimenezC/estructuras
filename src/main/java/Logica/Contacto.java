@@ -22,6 +22,8 @@ public class Contacto implements Serializable, Comparable<Contacto> {
     private LinkedListPropia<Contacto> contactosRelacionados;
     private String Nacionalidad;
     private boolean favorito;
+    private static final long serialVersionUID = -5138922872403167042L;
+
     public Contacto(String nombre, LinkedListPropia<Direccion> direcciones, LinkedListPropia<String> emails, LinkedListPropia<RedSocial> redes, DoubleLinkedList<String> fotos, LinkedListPropia<Fecha> fechas, LinkedListPropia<Telefono> telefonos, String Nacionalidad) {
         this.favorito = false;
         this.nombre = nombre;
@@ -32,7 +34,7 @@ public class Contacto implements Serializable, Comparable<Contacto> {
         this.fechas = fechas;
         this.telefonos = telefonos;
         this.Nacionalidad = Nacionalidad;
-        contactosRelacionados= new LinkedListPropia<>();
+        contactosRelacionados = new LinkedListPropia<>();
     }
 
     public String getNombre() {
@@ -115,12 +117,15 @@ public class Contacto implements Serializable, Comparable<Contacto> {
         this.favorito = favorito;
     }
 
-   
-
     @Override
     public int compareTo(Contacto otroContacto) {
         return this.nombre.compareTo(otroContacto.nombre);
 
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 
 }

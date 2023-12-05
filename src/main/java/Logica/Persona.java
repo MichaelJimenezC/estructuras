@@ -72,7 +72,7 @@ public class Persona extends Contacto implements Serializable{
  
     @Override
     public String toString() {
-        return super.toString()+" , "+"Persona{" + "apellido=" + apellido + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento + ", ocupacion=" + ocupacion +'}';
+        return super.toString();
     }
 
     

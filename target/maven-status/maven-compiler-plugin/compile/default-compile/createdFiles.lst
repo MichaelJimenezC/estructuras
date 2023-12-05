@@ -5,7 +5,6 @@ Prefijos\PrefijoPais$1.class
 Direcciones\DireccionCb$2.class
 Logica\Telefono.class
 com\mycompany\proyecto_estructuras\ContactosPageController$1.class
-com\mycompany\proyecto_estructuras\CreateContactPage2Controller.class
 Logica\DoubleLinkedList$2.class
 Fechas\FechaCb$1.class
 module-info.class
@@ -21,12 +20,10 @@ Social_Media\RedesSociales.class
 Direcciones\DireccionCb$1.class
 Social_Media\RedesSociales$2.class
 com\mycompany\proyecto_estructuras\PrimaryController.class
-com\mycompany\proyecto_estructuras\MenuPersona2Controller.class
 Logica\Fecha.class
 Logica\Usuario.class
 Prefijos\PrefijoPais.class
 Logica\Direccion.class
-com\mycompany\proyecto_estructuras\CreateContactPageController.class
 Logica\AL.class
 Logica\DoubleLinkedList$1.class
 Prefijos\PrefijoPais$2.class
@@ -36,7 +33,6 @@ Logica\Archivos.class
 com\mycompany\proyecto_estructuras\ViewContactController.class
 Fechas\FechaCb.class
 Logica\LinkedListPropia$Nodo.class
-com\mycompany\proyecto_estructuras\EditarContactoEmpresaController.class
 Logica\RedSocial.class
 Logica\LinkedListPropia.class
 Logica\LinkedListPropia$1.class

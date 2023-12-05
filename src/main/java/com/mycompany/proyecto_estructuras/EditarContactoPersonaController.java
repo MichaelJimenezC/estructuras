@@ -109,79 +109,96 @@ public class EditarContactoPersonaController implements Initializable {
     private RadioButton rMasculino;
     @FXML
     private RadioButton rFemenino;
+    @FXML
+    private ComboBox<Contacto> comboRelacionado;
+    @FXML
+    private ComboBox<Contacto> comboYaRelacionado;
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-        ImgFotoPersona.setImage(new Image("file:" +fotos.get(0)));
+        ImgFotoPersona.setImage(new Image("file:" + fotos.get(0)));
         iterator.next();
+        if (!App.usuario.getContactos().isEmpty()) {
+            comboRelacionado.getItems().addAll(App.usuario.getContactos());
+
+        }
         handleComboBoxPersona();
         handleComboBoxSocialMedia();
         handleComboBoxDirections();
         handleComboBoxDates();
         llenarDatos();
-    }public void EliminarContacto(ActionEvent event) {
-    // Encuentra el contacto seleccionado
-    for (Contacto c : App.usuario.getContactos()) {
-        if (c.equals(contactoSelecionado)) {
-            // Crea un alerta para confirmación
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmación");
-            alert.setHeaderText(null);
-            alert.setContentText("¿Está seguro de eliminar el contacto?");
+    }
 
-            // Muestra el alerta y espera la respuesta del usuario
-            Optional<ButtonType> result = alert.showAndWait();
-            // Si el usuario confirma la eliminación
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Elimina el contacto y rompe el bucle
-                App.usuario.getContactos().remove(contactoSelecionado);
+    @FXML
+    public void EliminarContacto(ActionEvent event) {
+        // Encuentra el contacto seleccionado
+        for (Contacto c : App.usuario.getContactos()) {
+            if (c.equals(contactoSelecionado)) {
+                // Crea un alerta para confirmación
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmación");
+                alert.setHeaderText(null);
+                alert.setContentText("¿Está seguro de eliminar el contacto?");
 
-                // Guarda la lista de usuarios actualizada
-                Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
+                // Muestra el alerta y espera la respuesta del usuario
+                Optional<ButtonType> result = alert.showAndWait();
+                // Si el usuario confirma la eliminación
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    // Elimina el contacto y rompe el bucle
+                    App.usuario.getContactos().remove(contactoSelecionado);
 
-                // Cambia la vista
-                try {
-                    App.setRoot("ContactosPage");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                    // Guarda la lista de usuarios actualizada
+                    Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
+
+                    // Cambia la vista
+                    try {
+                        App.setRoot("ContactosPage");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    break;
                 }
-                break;
             }
         }
+        // Si se presiona "Cancelar", el código no hará nada y el usuario permanecerá en la misma escena.
     }
-    // Si se presiona "Cancelar", el código no hará nada y el usuario permanecerá en la misma escena.
-}
-@FXML
-public void handleBotonRegresar(ActionEvent event) {
-    // Crea un alerta para confirmación
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-    alert.setTitle("Confirmación de regreso");
-    alert.setHeaderText(null);
-    alert.setContentText("¿Está seguro de que desea regresar? Los cambios no guardados se perderán.");
 
-    // Muestra el alerta y espera la respuesta del usuario
-    Optional<ButtonType> result = alert.showAndWait();
-    // Si el usuario confirma que quiere regresar
-    if (result.isPresent() && result.get() == ButtonType.OK) {
-        // Cambia a la pantalla "MenuPersona"
-        try {
-            App.setRoot("MenuPersona");
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    @FXML
+    public void handleBotonRegresar(ActionEvent event) {
+        // Crea un alerta para confirmación
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación de regreso");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Está seguro de que desea regresar? Los cambios no guardados se perderán.");
+
+        // Muestra el alerta y espera la respuesta del usuario
+        Optional<ButtonType> result = alert.showAndWait();
+        // Si el usuario confirma que quiere regresar
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Cambia a la pantalla "MenuPersona"
+            try {
+                App.setRoot("MenuPersona");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
+        // Si el usuario elige "Cancelar", permanecerá en la pantalla actual
     }
-    // Si el usuario elige "Cancelar", permanecerá en la pantalla actual
-}
+
     public void llenarDatos() {
 
         if (contactoSelecionado instanceof Persona) {
             Persona personallenar = (Persona) contactoSelecionado;
+            if (!personallenar.getContactosRelacionados().isEmpty()) {
+                comboRelacionado.getItems().addAll(personallenar.getContactosRelacionados());
+
+            }
             txtNombresNuevos.setText(personallenar.getNombre()); //obligatorio
-            if(!personallenar.getGenero().isEmpty()){
-                if(personallenar.getGenero().equals("Femenino")){
+            if (!personallenar.getGenero().isEmpty()) {
+                if (personallenar.getGenero().equals("Femenino")) {
                     rFemenino.setSelected(true);
-                }else{
+                } else {
                     rMasculino.setSelected(true);
                 }
             }
@@ -580,7 +597,7 @@ public void handleBotonRegresar(ActionEvent event) {
     @FXML
     private void guardarContacto(ActionEvent event) {
 
-        if (!txtNombresNuevos.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty()&&fotos.size()>=2) {
+        if (!txtNombresNuevos.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty() && fotos.size() >= 2) {
             String nombres = txtNombresNuevos.getText();
             String apellidos = txtApellidosNuevos.getText();
             String genero = "";
@@ -681,7 +698,12 @@ public void handleBotonRegresar(ActionEvent event) {
 //            ) 
             Persona contacto = new Persona(apellidos, genero, cumpleaños, ocupacion, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos, nacionalidad);
             System.out.println("Contacto: " + contacto);
+            LinkedListPropia<Contacto> relacionados = new LinkedListPropia();
+            if (!comboYaRelacionado.getItems().isEmpty()) {
+                relacionados.addAll(comboYaRelacionado.getItems());
 
+            }
+            contacto.setContactosRelacionados(relacionados);
             for (Usuario usuario : App.listaUsuarios) {
                 System.out.println(usuario);
                 if (usuario.equals(App.usuario)) {
@@ -734,6 +756,31 @@ public void handleBotonRegresar(ActionEvent event) {
             }
         }
         return valores.toString().trim();
+    }
+
+    @FXML
+    public void EliminarContactoRelacionado(ActionEvent event) {
+
+        if (comboYaRelacionado.getValue() != null) {
+            Contacto c = comboYaRelacionado.getValue();
+            comboYaRelacionado.getItems().remove(c);
+
+        }
+
+    }
+
+    @FXML
+    public void agregarRelacionado(ActionEvent event) {
+
+        if (comboRelacionado.getValue() != null) {
+            Contacto c = comboRelacionado.getValue();
+            if (!comboYaRelacionado.getItems().contains(c)) {
+                comboYaRelacionado.getItems().add(c);
+
+            }
+
+        }
+
     }
 
 }

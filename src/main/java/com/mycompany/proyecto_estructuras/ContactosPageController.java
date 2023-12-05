@@ -47,6 +47,8 @@ public class ContactosPageController implements Initializable {
     TextField txtFiltro;
     @FXML
     ImageView imgvFiltro;
+    @FXML
+    VBox cajaAsociados;
 
     public static Contacto contactoSelecionado = null;
     private LinkedListPropia<Contacto> contactos = App.usuario.getContactos();
@@ -85,7 +87,7 @@ public class ContactosPageController implements Initializable {
     private void mostrarContactos(LinkedListPropia<Contacto> contactos) {
         vboxVerContactos.getChildren().clear();
         if (contactos.isEmpty()) {
-            
+
             Label label = new Label("NO TIENES CONTACTOS");
             vboxVerContactos.getChildren().add(label);
         } else {
@@ -95,7 +97,7 @@ public class ContactosPageController implements Initializable {
                     Persona p1 = (Persona) contacto;
                     ImageView imgv = new ImageView();
                     if (!p1.getFotos().isEmpty()) {
-                        imgv.setImage(new Image("file:" +p1.getFotos().get(0)));
+                        imgv.setImage(new Image("file:" + p1.getFotos().get(0)));
                         imgv.setFitWidth(80); // Establecer el ancho de la imagen
                         imgv.setFitHeight(80); // Establecer la altura de la imagen
                         imgv.setPreserveRatio(true);
@@ -142,7 +144,56 @@ public class ContactosPageController implements Initializable {
 
                     vboxVerContactos.getChildren().add(principal);
 
-                } else {
+                } else if (contacto instanceof Empresa) {
+                    Empresa p1 = (Empresa) contacto;
+                    ImageView imgv = new ImageView();
+                    if (!p1.getFotos().isEmpty()) {
+                        imgv.setImage(new Image("file:" + p1.getFotos().get(0)));
+                        imgv.setFitWidth(80); // Establecer el ancho de la imagen
+                        imgv.setFitHeight(80); // Establecer la altura de la imagen
+                        imgv.setPreserveRatio(true);
+                        imgv.setSmooth(true);
+                        imgv.setCache(true);
+
+                    }
+                    System.out.println(contacto);
+                    HBox principal = new HBox(40);
+                    principal.setAlignment(Pos.CENTER);
+                    VBox contactoInformacion = new VBox(5);
+                    contactoInformacion.setAlignment(Pos.CENTER);
+
+                    Label nombre = null;
+                    Label numero = null;
+
+                    for (Telefono telefono : p1.getTelefonos()) {
+                        nombre = new Label(p1.getNombre() + " " + p1.getRazonSocial());
+                        numero = new Label(telefono.getPrefijo() + " " + telefono.getNumero());
+                    }
+
+                    nombre.setStyle("-fx-text-fill: #6735a4; -fx-font-weight: bold;");
+                    numero.setStyle("-fx-text-fill: #7F65FF");
+                    Button boton = new Button("Ver");
+                    boton.setStyle("-fx-background-color: #FFFF;");
+                    boton.setStyle("-fx-font-weight: bold; -fx-text-fill: #6735a4;"); // Fuente en negrita y color morado
+                    boton.setOnAction(event -> {
+                        contactoSelecionado = contacto;
+                        try {
+                            App.setRoot("MenuEmpresa");
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                    principal.setStyle("-fx-border-color: #D3D3D3");
+                    principal.setPadding(new Insets(5, 5, 5, 5));
+                    contactoInformacion.getChildren().addAll(nombre, numero);
+//                    ToggleButton botonFavorito= new ToggleButton("✰");
+//                    botonFavorito.setUserData(contacto);
+//                    botonFavorito.setSelected(contacto.isFavorito());
+//                    botonFavorito.setOnAction(this::handleFavoritoAction);
+                    principal.getChildren().addAll(imgv, contactoInformacion, boton);
+                    vboxVerContactos.setMargin(principal, new Insets(10, 10, 10, 10));
+
+                    vboxVerContactos.getChildren().add(principal);
                     //para la empresa
                 }
             }
@@ -151,8 +202,6 @@ public class ContactosPageController implements Initializable {
 
 //    actualizarListaContactos(contacto);
 //    guardarCambios(); //llamda a metodo que tiene guarda las modificaciones
-
-
 //    private void actualizarListaContactos(Contacto contactoActualizado) {
 //    for (Contacto contacto : ) {
 //        if (contacto instanceof Persona) {
@@ -170,11 +219,6 @@ public class ContactosPageController implements Initializable {
 //            }
 //            }
 //        }
-
-
-    
-
-
     private void ordenarContactos(LinkedListPropia<Contacto> contactos, String opcionOrdenar) {
         switch (opcionOrdenar) {
             case "Tipo de Contacto":
@@ -274,7 +318,7 @@ public class ContactosPageController implements Initializable {
     }
 
     private LinkedListPropia<Contacto> filtrarContactos(LinkedListPropia<Contacto> contactos, String criterioFiltro, String ordenSeleccionado) {
-        
+
         if (!criterioFiltro.isEmpty()) {
             LinkedListPropia<Contacto> contactosFiltrados = new LinkedListPropia<>();
             for (Contacto contacto : contactos) {
@@ -297,7 +341,7 @@ public class ContactosPageController implements Initializable {
             }
 
             return contactosFiltrados;
-        }else{
+        } else {
             return this.contactos;
         }
     }

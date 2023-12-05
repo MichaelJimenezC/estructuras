@@ -27,7 +27,7 @@ public class App extends Application{
     @Override
     public void start(Stage stage) throws IOException {
 //        Archivos.serializarListaUsuarios(listaUsuarios,"usuarios.ser");
-        scene = new Scene(loadFXML("primary"), 353, 597);
+        scene = new Scene(loadFXML("primary"), 433, 597);
         stage.setTitle("Loggin Page");
         stage.setScene(scene);
         stage.show();

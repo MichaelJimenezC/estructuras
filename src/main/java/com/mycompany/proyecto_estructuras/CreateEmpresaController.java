@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package com.mycompany.proyecto_estructuras;
 
 import Direcciones.DireccionCb;
@@ -6,6 +10,7 @@ import Logica.Archivos;
 import Logica.Contacto;
 import Logica.Direccion;
 import Logica.DoubleLinkedList;
+import Logica.Empresa;
 import Logica.Fecha;
 import Logica.LinkedListPropia;
 import Logica.Persona;
@@ -14,18 +19,11 @@ import Logica.Telefono;
 import Logica.Usuario;
 import Prefijos.PrefijoPais;
 import Social_Media.RedesSociales;
-import static com.mycompany.proyecto_estructuras.App.listaUsuarios;
+import static com.mycompany.proyecto_estructuras.ContactosPageController.contactoSelecionado;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,21 +31,38 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.ListIterator;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class CreateContactController implements Initializable {
+/**
+ * FXML Controller class para la clase Empresa
+ *
+ * @author marle
+ */
+public class CreateEmpresaController implements Initializable {
 
     @FXML
     private ComboBox cbTipo;
@@ -72,8 +87,7 @@ public class CreateContactController implements Initializable {
     private ToggleGroup generos;
     @FXML
     private TextField txtNacionalidad;
-    @FXML
-    private TextField txtOcupación;
+
     @FXML
     private Button buttonGuardar;
     @FXML
@@ -87,12 +101,14 @@ public class CreateContactController implements Initializable {
     @FXML
     private ComboBox<DireccionCb> comboDirecciones;
     @FXML
-    private ComboBox<Contacto> comboRelacionado;
+    private ComboBox<Contacto> comboRelacionado=new ComboBox();
+    @FXML
+    private ComboBox<Contacto> comboYaRelacionado=new ComboBox();
     @FXML
     private ComboBox<FechaCb> comboFechas;
     private DoubleLinkedList<String> fotos = new DoubleLinkedList<>();
     private ListIterator<String> iterator = fotos.listIterator();
-    LinkedListPropia<Contacto> contactosRelacionados = new LinkedListPropia();
+    LinkedListPropia<Contacto> contactosRelacionados ;
 
     @FXML
     private TextField txtTelefono;
@@ -102,9 +118,9 @@ public class CreateContactController implements Initializable {
         String opcionSeleccionada = (String) cbTipo.getValue();
 
         if (opcionSeleccionada != null) {
-            if (opcionSeleccionada.equals("Empresa")) {
+            if (opcionSeleccionada.equals("Persona")) {
                 try {
-                    App.setRoot("CreateContactPage2");
+                    App.setRoot("CreateContact");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -255,7 +271,7 @@ public class CreateContactController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cbTipo.getItems().addAll("Persona", "Empresa");
-        cbTipo.setValue("Persona");
+        cbTipo.setValue("Empresa");
         if (!App.usuario.getContactos().isEmpty()) {
             comboRelacionado.getItems().addAll(App.usuario.getContactos());
         }
@@ -273,7 +289,7 @@ public class CreateContactController implements Initializable {
     @FXML
     private void guardarContacto(ActionEvent event) {
 
-        if (!txtNombres.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty() && fotos.size() >= 2) {
+        if (!txtNombres.getText().isEmpty() && !txtApellidos.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty() && fotos.size() >= 2) {
             String nombres = txtNombres.getText();
             String apellidos = txtApellidos.getText();
             String genero = "";
@@ -282,7 +298,6 @@ public class CreateContactController implements Initializable {
 
                 genero = select.getText();
             }
-            String ocupacion = txtOcupación.getText();
             String telefonos = obtenerValores(cajaTelefonos);
             String nacionalidad = txtNacionalidad.getText();
             // Recuperar valores dinámicos de los componentes
@@ -374,13 +389,12 @@ public class CreateContactController implements Initializable {
 //            , DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas
 //            , DoubleLinkedList<String[]> telefonos
 //            ) 
-            Persona contacto = new Persona(apellidos, genero, cumpleaños, ocupacion, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos, nacionalidad);
-            System.out.println("Contacto: " + contacto);
-            contacto.setContactosRelacionados(contactosRelacionados);
+            Empresa empresa = new Empresa(apellidos, genero, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos, nacionalidad);
+            empresa.setContactosRelacionados(contactosRelacionados);
             for (Usuario usuario : App.listaUsuarios) {
                 System.out.println(usuario);
                 if (usuario.equals(App.usuario)) {
-                    usuario.getContactos().add(contacto);
+                    usuario.getContactos().add(empresa);
                     break;
                 }
             }
@@ -537,4 +551,14 @@ public class CreateContactController implements Initializable {
 
     }
 
+    @FXML
+    public void EliminarContactoRelacionado(ActionEvent event) {
+
+        if (comboYaRelacionado.getValue() != null) {
+            Contacto c = comboYaRelacionado.getValue();
+            comboYaRelacionado.getItems().remove(c);
+
+        }
+
+    }
 }

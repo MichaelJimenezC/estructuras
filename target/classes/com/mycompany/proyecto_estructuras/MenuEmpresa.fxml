@@ -78,7 +78,7 @@
                 </VBox>
                 <VBox fx:id="vboxApellidos" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Label text="Nombres" textFill="#6735a4">
+                        <Label text="Nombre de contacto" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -94,7 +94,7 @@
                 </VBox>
                 <VBox fx:id="vboxNombres" layoutX="10.0" layoutY="134.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">
                     <children>
-                        <Label text="Apellidos" textFill="#6735a4">
+                        <Label text="Razón Social" textFill="#6735a4">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -181,19 +181,6 @@
                     </children>
                     <padding>
                         <Insets left="25.0" right="105.0" top="5.0" />
-                    </padding>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" style="-fx-background-color: ffff;">
-                    <children>
-                        <Label text="Ocupación" textFill="#6735a4">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="txtOcupación" prefHeight="28.0" prefWidth="295.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
-                    </children>
-                    <padding>
-                        <Insets bottom="20.0" left="25.0" right="105.0" top="5.0" />
                     </padding>
                 </VBox>
             <VBox fx:id="vboxApellidos1" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: ffff;">

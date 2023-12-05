@@ -59,114 +59,159 @@ import javafx.stage.Stage;
  */
 public class EditarContactoEmpresaController implements Initializable {
 
+    @FXML
+    private TextField txtApellidosNuevos;
+    @FXML
+    private TextField txtNombresNuevos;
+    @FXML
+    private TextField txtNacionalidad;
+    @FXML
+    private TextField txtOcupación;
+    @FXML
+    private TextField txtTelefono;
+    @FXML
+    private ComboBox<PrefijoPais> comboPrefijos2;
+    @FXML
+    private TextField txtEmails;
+    @FXML
+    private ComboBox<RedesSociales> comboBoxRedes;
+    @FXML
+    private ComboBox<DireccionCb> comboDirecciones;
+    @FXML
+    private ComboBox<FechaCb> comboFechas;
+    @FXML
+    private DatePicker dateFecha;
+    @FXML
+    private TextField txtRedes;
+    @FXML
+    private TextField txtDirecciones;
+    @FXML
+    private ImageView ImgFotoPersona;
+    private DoubleLinkedList<String> fotos = contactoSelecionado.getFotos();
+    private ListIterator<String> iterator = fotos.listIterator();
+    @FXML
+    private VBox cajaTelefonos;
+    @FXML
+    private VBox cajaEmails;
+    @FXML
+    private VBox cajaRedes;
+    @FXML
+    private VBox cajaDirecciones;
+    @FXML
+    private VBox cajaFechas;
+    @FXML
+    private ToggleGroup generos;
+    @FXML
+    private Button buttonGuardar;
+    @FXML
+    private Button btnFoto;
+    @FXML
+    private RadioButton rMasculino;
+    @FXML
+    private RadioButton rFemenino;
+    @FXML
+    private ComboBox<Contacto> comboRelacionado;
+    @FXML
+    private ComboBox<Contacto> comboYaRelacionado;
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-        ImgFotoEmpresa.setImage(new Image("file:" +fotos.get(0)));
+        ImgFotoPersona.setImage(new Image("file:" + fotos.get(0)));
         iterator.next();
+        if (!App.usuario.getContactos().isEmpty()) {
+            comboRelacionado.getItems().addAll(App.usuario.getContactos());
+
+        }
         handleComboBoxPersona();
         handleComboBoxSocialMedia();
         handleComboBoxDirections();
         handleComboBoxDates();
         llenarDatos();
-    }public void EliminarContacto(ActionEvent event) {
-    // Encuentra el contacto seleccionado
-    for (Contacto c : App.usuario.getContactos()) {
-        if (c.equals(contactoSelecionado)) {
-            // Crea un alerta para confirmación
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmación");
-            alert.setHeaderText(null);
-            alert.setContentText("¿Está seguro de eliminar el contacto?");
+    }
 
-            // Muestra el alerta y espera la respuesta del usuario
-            Optional<ButtonType> result = alert.showAndWait();
-            // Si el usuario confirma la eliminación
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Elimina el contacto y rompe el bucle
-                App.usuario.getContactos().remove(contactoSelecionado);
+    @FXML
+    public void EliminarContacto(ActionEvent event) {
+        // Encuentra el contacto seleccionado
+        for (Contacto c : App.usuario.getContactos()) {
+            if (c.equals(contactoSelecionado)) {
+                // Crea un alerta para confirmación
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmación");
+                alert.setHeaderText(null);
+                alert.setContentText("¿Está seguro de eliminar el contacto?");
 
-                // Guarda la lista de usuarios actualizada
-                Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
+                // Muestra el alerta y espera la respuesta del usuario
+                Optional<ButtonType> result = alert.showAndWait();
+                // Si el usuario confirma la eliminación
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    // Elimina el contacto y rompe el bucle
+                    App.usuario.getContactos().remove(contactoSelecionado);
 
-                // Cambia la vista
-                try {
-                    App.setRoot("ContactosPage");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                    // Guarda la lista de usuarios actualizada
+                    Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
+
+                    // Cambia la vista
+                    try {
+                        App.setRoot("ContactosPage");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    break;
                 }
-                break;
             }
         }
+        // Si se presiona "Cancelar", el código no hará nada y el usuario permanecerá en la misma escena.
     }
-    // Si se presiona "Cancelar", el código no hará nada y el usuario permanecerá en la misma escena.
-}
-@FXML
-public void handleBotonRegresar(ActionEvent event) {
-    // Crea un alerta para confirmación
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-    alert.setTitle("Confirmación de regreso");
-    alert.setHeaderText(null);
-    alert.setContentText("¿Está seguro de que desea regresar? Los cambios no guardados se perderán.");
 
-    // Muestra el alerta y espera la respuesta del usuario
-    Optional<ButtonType> result = alert.showAndWait();
-    // Si el usuario confirma que quiere regresar
-    if (result.isPresent() && result.get() == ButtonType.OK) {
-        // Cambia a la pantalla "MenuPersona"
-        try {
-            App.setRoot("MenuPersona");
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    @FXML
+    public void handleBotonRegresar(ActionEvent event) {
+        // Crea un alerta para confirmación
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación de regreso");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Está seguro de que desea regresar? Los cambios no guardados se perderán.");
+
+        // Muestra el alerta y espera la respuesta del usuario
+        Optional<ButtonType> result = alert.showAndWait();
+        // Si el usuario confirma que quiere regresar
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Cambia a la pantalla "MenuPersona"
+            try {
+                App.setRoot("MenuPersona");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
+        // Si el usuario elige "Cancelar", permanecerá en la pantalla actual
     }
-    // Si el usuario elige "Cancelar", permanecerá en la pantalla actual
-}
-@FXML 
-private TextField txtRazonSocial;
-@FXML 
-private TextField txtTelefonoEmpresa;
-@FXML 
-private ComboBox<PrefijoPais> comboPrefijosEmpresa;
-@FXML 
-private ComboBox<DireccionCb> comboDireccionesEmpresa;
-@FXML
-private TextField txtDirecciones;
-@FXML
-private ComboBox<RedesSociales> comboBoxRedesEmpresa;
-@FXML 
-private TextField txtRedesEmpresa;
-@FXML 
-private TextField txtEmailsEmpresa;
-@FXML 
-private ToggleGroup tipoEmpresa;
-@FXML 
-private ImageView ImgFotoEmpresa;
-    private DoubleLinkedList<String> fotos = contactoSelecionado.getFotos();
-    private ListIterator<String> iterator = fotos.listIterator();
 
-            
     public void llenarDatos() {
 
-        if (contactoSelecionado instanceof Empresa) {
-            Empresa empresallenar = (Empresa) contactoSelecionado;
-            txtRazonSocial.setText(empresallenar.getRazonSocial()); //obligatorio
-            if(!empresallenar.getTipoEmpresa().isEmpty()){
-                if(empresallenar.getTipoEmpresa().equals("pública")){
+        if (contactoSelecionado instanceof Persona) {
+            Persona personallenar = (Persona) contactoSelecionado;
+            if (!personallenar.getContactosRelacionados().isEmpty()) {
+                comboRelacionado.getItems().addAll(personallenar.getContactosRelacionados());
+
+            }
+            txtNombresNuevos.setText(personallenar.getNombre()); //obligatorio
+            if (!personallenar.getGenero().isEmpty()) {
+                if (personallenar.getGenero().equals("Publica")) {
                     rFemenino.setSelected(true);
-                }else{
+                } else {
                     rMasculino.setSelected(true);
                 }
             }
-        
-            txtTelefonoEmpresa.setText(empresallenar.getTelefonos().get(0).getNumero()); //obligatorio
-            System.out.println(comboPrefijosEmpresa.getItems().size());
-            PrefijoPais prefijo = buscarPrefijoPaisPorPrefijo(empresallenar.getTelefonos().get(0).getPrefijo(), comboPrefijosEmpresa.getItems());
+            if (!personallenar.getApellido().isEmpty()) {
+                txtApellidosNuevos.setText(personallenar.getApellido());
+            }
+            txtTelefono.setText(personallenar.getTelefonos().get(0).getNumero()); //obligatorio
+            System.out.println(comboPrefijos2.getItems().size());
+            PrefijoPais prefijo = buscarPrefijoPaisPorPrefijo(personallenar.getTelefonos().get(0).getPrefijo(), comboPrefijos2.getItems());
 
-            comboPrefijosEmpresa.setValue(prefijo);
-            for (Telefono telefono : empresallenar.getTelefonos()) {
-                int index = empresallenar.getTelefonos().indexOf(telefono);
+            comboPrefijos2.setValue(prefijo);
+            for (Telefono telefono : personallenar.getTelefonos()) {
+                int index = personallenar.getTelefonos().indexOf(telefono);
                 if (index >= 1) {
                     HBox hboxNuevosTelefonos = new HBox();
                     ComboBox<PrefijoPais> comboxNuevosTelefonos = new ComboBox<>();
@@ -181,11 +226,11 @@ private ImageView ImgFotoEmpresa;
                     cajaTelefonos.getChildren().add(hboxNuevosTelefonos);
                 }
             }
-            if (!empresallenar.getEmails().isEmpty()) {
-                txtEmailsEmpresa.setText(empresallenar.getEmails().get(0));
+            if (!personallenar.getEmails().isEmpty()) {
+                txtEmails.setText(personallenar.getEmails().get(0));
 
-                for (String email : empresallenar.getEmails()) {
-                    int index = empresallenar.getEmails().indexOf(email);
+                for (String email : personallenar.getEmails()) {
+                    int index = personallenar.getEmails().indexOf(email);
                     if (index >= 1) {
                         HBox hboxEmails = new HBox();
 
@@ -200,12 +245,12 @@ private ImageView ImgFotoEmpresa;
                 }
 
             }
-            if (!empresallenar.getRedes().isEmpty()) {
-                txtRedesEmpresa.setText(empresallenar.getRedes().get(0).getUsuario());
-                RedesSociales red = buscarRedSocialPorNombre(empresallenar.getRedes().get(0).getRed(), comboBoxRedesEmpresa.getItems());
-                comboBoxRedesEmpresa.setValue(red);
-                for (RedSocial redesocial : empresallenar.getRedes()) {
-                    int index = empresallenar.getRedes().indexOf(redesocial);
+            if (!personallenar.getRedes().isEmpty()) {
+                txtRedes.setText(personallenar.getRedes().get(0).getUsuario());
+                RedesSociales red = buscarRedSocialPorNombre(personallenar.getRedes().get(0).getRed(), comboBoxRedes.getItems());
+                comboBoxRedes.setValue(red);
+                for (RedSocial redesocial : personallenar.getRedes()) {
+                    int index = personallenar.getRedes().indexOf(redesocial);
                     if (index >= 1) {
                         HBox hboxNuevasRedes = new HBox();
                         ComboBox<RedesSociales> comboxNuevasRedes = new ComboBox<>();
@@ -223,12 +268,12 @@ private ImageView ImgFotoEmpresa;
                     }
                 }
             }
-            if (!empresallenar.getDirecciones().isEmpty()) {
-                txtDirecciones.setText(empresallenar.getDirecciones().get(0).getUbicacion());
-                DireccionCb d = buscarDireccionPorTipo(empresallenar.getDirecciones().get(0).getTipo(), comboDireccionesEmpresa.getItems());
-                comboDireccionesEmpresa.setValue(d);
-                for (Direccion direccion : empresallenar.getDirecciones()) {
-                    int index = empresallenar.getDirecciones().indexOf(direccion);
+            if (!personallenar.getDirecciones().isEmpty()) {
+                txtDirecciones.setText(personallenar.getDirecciones().get(0).getUbicacion());
+                DireccionCb d = buscarDireccionPorTipo(personallenar.getDirecciones().get(0).getTipo(), comboDirecciones.getItems());
+                comboDirecciones.setValue(d);
+                for (Direccion direccion : personallenar.getDirecciones()) {
+                    int index = personallenar.getDirecciones().indexOf(direccion);
                     if (index >= 1) {
                         HBox hboxNuevadDirecciones = new HBox();
                         ComboBox<DireccionCb> comboxNuevasDirecciones = new ComboBox<>();
@@ -248,12 +293,12 @@ private ImageView ImgFotoEmpresa;
                 }
 
             }
-            if (!empresallenar.getFechas().isEmpty()) {
-                dateFecha.setValue(empresallenar.getFechas().get(0).getFecha());
-                FechaCb f = buscarFechaPorFestividad(empresallenar.getFechas().get(0).getFestividad(), comboFechas.getItems());
+            if (!personallenar.getFechas().isEmpty()) {
+                dateFecha.setValue(personallenar.getFechas().get(0).getFecha());
+                FechaCb f = buscarFechaPorFestividad(personallenar.getFechas().get(0).getFestividad(), comboFechas.getItems());
                 comboFechas.setValue(f);
-                for (Fecha fecha : empresallenar.getFechas()) {
-                    int index = empresallenar.getFechas().indexOf(fecha);
+                for (Fecha fecha : personallenar.getFechas()) {
+                    int index = personallenar.getFechas().indexOf(fecha);
                     if (index >= 1) {
                         HBox hboxNuevadRedes = new HBox();
                         ComboBox<FechaCb> comboxNuevasFechas = new ComboBox<>();
@@ -267,7 +312,10 @@ private ImageView ImgFotoEmpresa;
                     }
                 }
             }
-     
+            if (!personallenar.getNacionalidad().isEmpty()) {
+                txtNacionalidad.setText(personallenar.getNacionalidad());
+
+            }
 
         }
 
@@ -296,13 +344,7 @@ private ImageView ImgFotoEmpresa;
     }
 
     public void GuardarContactoActualizado(ActionEvent event) {
-        if (contactoSelecionado instanceof Persona) {
-            Persona personaSeleccionada = (Persona) contactoSelecionado;
-            String nuevoNombre = txtNombresNuevos.getText();
-            String ApellidoNuevo = txtApellidosNuevos.getText();
-
-//            Persona contacto = new Persona(nuevoNombre, ApellidoNuevo, cumpleaños, ocupacion, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos, nacionalidad);
-        }
+        //algo
     }
 
     private RedesSociales buscarRedSocialPorNombre(String nombre, List<RedesSociales> listaRedes) {
@@ -351,7 +393,7 @@ private ImageView ImgFotoEmpresa;
                     String rutaImagen = destPath.toString().replace("\\", "/");
                     System.out.println(rutaImagen);
                     Image image = new Image("file:" + rutaImagen);
-                    ImgFotoEmpresa.setImage(image);
+                    ImgFotoPersona.setImage(image);
                     System.out.println(rutaImagen);
                     // Agregar la ruta relativa a la lista de fotos si es necesario
                     fotos.add(rutaImagen);
@@ -412,7 +454,7 @@ private ImageView ImgFotoEmpresa;
 
     private void mostrarImagenActual(String rutaImagen) {
         Image image = new Image("file:" + rutaImagen);
-        ImgFotoEmpresa.setImage(image);
+        ImgFotoPersona.setImage(image);
     }
 
     @FXML
@@ -522,17 +564,17 @@ private ImageView ImgFotoEmpresa;
 
     @FXML
     private void handleComboBoxPersona() {
-        PrefijoPais.configurarComboBoxConPrefijos(comboPrefijosEmpresa);
+        PrefijoPais.configurarComboBoxConPrefijos(comboPrefijos2);
     }
 
     @FXML
     private void handleComboBoxSocialMedia() {
-        RedesSociales.configurarComboBoxConRedes(comboBoxRedesEmpresa);
+        RedesSociales.configurarComboBoxConRedes(comboBoxRedes);
     }
 
     @FXML
     private void handleComboBoxDirections() {
-        DireccionCb.configurarComboBoxConDirecciones(comboDireccionesEmpresa);
+        DireccionCb.configurarComboBoxConDirecciones(comboDirecciones);
     }
 
     @FXML
@@ -543,13 +585,14 @@ private ImageView ImgFotoEmpresa;
     @FXML
     private void guardarContacto(ActionEvent event) {
 
-        if (!txtRazonSocial.getText().isEmpty() && comboPrefijosEmpresa.getValue() != null && !txtTelefono.getText().isEmpty()&&fotos.size()>=2) {
-            String nombres = txtRazonSocial.getText();
-            String tipoEmpresa = "";
-            if (tipoEmpresa.getSelectedToggle != null) {
-                RadioButton select = (RadioButton) tipoEmpresa.getSelectedToggle();
+        if (!txtNombresNuevos.getText().isEmpty() && !txtApellidosNuevos.getText().isEmpty() && comboPrefijos2.getValue() != null && !txtTelefono.getText().isEmpty() && fotos.size() >= 2) {
+            String nombres = txtNombresNuevos.getText();
+            String apellidos = txtApellidosNuevos.getText();
+            String genero = "";
+            if (generos.getSelectedToggle() != null) {
+                RadioButton select = (RadioButton) generos.getSelectedToggle();
 
-                tipoEmpresa = select.getText();
+                genero = select.getText();
             }
             String telefonos = obtenerValores(cajaTelefonos);
             String nacionalidad = txtNacionalidad.getText();
@@ -582,7 +625,6 @@ private ImageView ImgFotoEmpresa;
             System.out.println("fechas: " + fechasRelevantesArray.length);
 
             DateTimeFormatter formateo = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate cumpleaños = null;
             for (String algo : telefonosArray) {
                 if (!algo.isEmpty()) {
                     String[] telefonoArray = algo.split("[()]");
@@ -620,10 +662,7 @@ private ImageView ImgFotoEmpresa;
                 for (String algo : fechasRelevantesArray) {
                     String[] fecha = algo.split(" ");
                     if (!fecha[0].equals("null") && !fecha[1].equals("null")) {
-                        if (fecha[0].equals("Cumpleaños")) {
-                            LocalDate fechaComoLocalDate = LocalDate.parse(fecha[1], formateo);
-                            cumpleaños = fechaComoLocalDate;
-                        }
+
                         LocalDate localD = LocalDate.parse(fecha[1], formateo);
                         Fecha f = new Fecha(fecha[0], localD);
 
@@ -640,9 +679,13 @@ private ImageView ImgFotoEmpresa;
 //            , DoubleLinkedList<String> fotos, DoubleLinkedList<String[]> fechas
 //            , DoubleLinkedList<String[]> telefonos
 //            ) 
-            Empresa contacto = new Empresa(nombres, genero, cumpleaños, ocupacion, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos, nacionalidad);
-            System.out.println("Contacto: " + contacto);
+            Empresa empresa = new Empresa(apellidos, genero, nombres, lldirecciones, llemails, llredes, fotos, llfechas, lltelefonos, nacionalidad);
+            LinkedListPropia<Contacto> relacionados = new LinkedListPropia();
+            if (!comboYaRelacionado.getItems().isEmpty()) {
+                relacionados.addAll(comboYaRelacionado.getItems());
 
+            }
+            empresa.setContactosRelacionados(relacionados);
             for (Usuario usuario : App.listaUsuarios) {
                 System.out.println(usuario);
                 if (usuario.equals(App.usuario)) {
@@ -650,7 +693,7 @@ private ImageView ImgFotoEmpresa;
                     int index = contactos.indexOf(contactoSelecionado);
 
                     if (index != -1) {
-                        contactos.set(index, contacto);
+                        contactos.set(index, empresa);
                     }
                     break;
                 }
@@ -662,7 +705,7 @@ private ImageView ImgFotoEmpresa;
             alert.setContentText("!Se ha modificado con éxito el contacto!");
             alert.showAndWait();
             try {
-                App.setRoot("Menu");
+                App.setRoot("MenuPersona");
             } catch (IOException ex) {
                 System.out.println("Estamos dentro del cambio de escena");
             }
@@ -697,5 +740,29 @@ private ImageView ImgFotoEmpresa;
         return valores.toString().trim();
     }
 
-}
+    @FXML
+    public void EliminarContactoRelacionado(ActionEvent event) {
 
+        if (comboYaRelacionado.getValue() != null) {
+            Contacto c = comboYaRelacionado.getValue();
+            comboYaRelacionado.getItems().remove(c);
+
+        }
+
+    }
+
+    @FXML
+    public void agregarRelacionado(ActionEvent event) {
+
+        if (comboRelacionado.getValue() != null) {
+            Contacto c = comboRelacionado.getValue();
+            if (!comboYaRelacionado.getItems().contains(c)) {
+                comboYaRelacionado.getItems().add(c);
+
+            }
+
+        }
+
+    }
+
+}

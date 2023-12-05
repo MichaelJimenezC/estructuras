@@ -84,6 +84,8 @@ public class ViewContactController implements Initializable {
     private DatePicker calendario;
     @FXML
     private ComboBox<DireccionCb> comboDirecciones;
+    @FXML
+    private VBox cajaRelacionados; 
 
     /**
      * Initializes the controller class.
@@ -216,6 +218,24 @@ public class ViewContactController implements Initializable {
             txtNacionalidad.setEditable(valor);
             txtOcupación.setText(p1.getOcupacion());
             txtOcupación.setEditable(valor);
+            if(!p1.getContactosRelacionados().isEmpty()){
+                for(Contacto contacto:p1.getContactosRelacionados()){
+                    VBox caja=new VBox();
+                    ImageView img=new ImageView();
+                    img.setOnMouseClicked(event -> {
+                        contactoSelecionado = contacto;
+                        try {
+                            App.setRoot("MenuPersona");
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+                    img.setImage(new Image("file:" +contacto.getFotos().get(0)));
+                    Label lbl=new Label(contacto.getNombre());
+                    caja.getChildren().addAll(img,lbl);
+                    cajaRelacionados.getChildren().add(caja);
+                }
+            }
 
         }
     }
