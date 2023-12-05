@@ -35,10 +35,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Optional;
 import javafx.event.Event;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -118,39 +120,59 @@ public class EditarContactoPersonaController implements Initializable {
         handleComboBoxDirections();
         handleComboBoxDates();
         llenarDatos();
-    }
-
-    public void EliminarContacto(ActionEvent event) {
-        for (Contacto c : App.usuario.getContactos()) {
-            if (c.equals(contactoSelecionado)) {
-                App.usuario.getContactos().remove(contactoSelecionado);
-                Alert alert = new Alert(Alert.AlertType.WARNING);
+    }public void EliminarContacto(ActionEvent event) {
+    // Encuentra el contacto seleccionado
+    for (Contacto c : App.usuario.getContactos()) {
+        if (c.equals(contactoSelecionado)) {
+            // Crea un alerta para confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmación");
             alert.setHeaderText(null);
-            alert.setContentText("¿Esta seguro de eliminar el contacto?");
-            alert.showAndWait();
+            alert.setContentText("¿Está seguro de eliminar el contacto?");
+
+            // Muestra el alerta y espera la respuesta del usuario
+            Optional<ButtonType> result = alert.showAndWait();
+            // Si el usuario confirma la eliminación
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Elimina el contacto y rompe el bucle
+                App.usuario.getContactos().remove(contactoSelecionado);
+
+                // Guarda la lista de usuarios actualizada
+                Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
+
+                // Cambia la vista
+                try {
+                    App.setRoot("ContactosPage");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
                 break;
-                
             }
         }
-        Archivos.serializarListaUsuarios(App.listaUsuarios, "usuarios.ser");
+    }
+    // Si se presiona "Cancelar", el código no hará nada y el usuario permanecerá en la misma escena.
+}
+@FXML
+public void handleBotonRegresar(ActionEvent event) {
+    // Crea un alerta para confirmación
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirmación de regreso");
+    alert.setHeaderText(null);
+    alert.setContentText("¿Está seguro de que desea regresar? Los cambios no guardados se perderán.");
 
+    // Muestra el alerta y espera la respuesta del usuario
+    Optional<ButtonType> result = alert.showAndWait();
+    // Si el usuario confirma que quiere regresar
+    if (result.isPresent() && result.get() == ButtonType.OK) {
+        // Cambia a la pantalla "MenuPersona"
         try {
-            App.setRoot("ContactosPage");
+            App.setRoot("MenuPersona");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-
-    @FXML
-    public void handleBotonRegresar(ActionEvent event) {
-        try {
-            App.setRoot("ContactosPage");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
+    // Si el usuario elige "Cancelar", permanecerá en la pantalla actual
+}
     public void llenarDatos() {
 
         if (contactoSelecionado instanceof Persona) {
@@ -679,7 +701,7 @@ public class EditarContactoPersonaController implements Initializable {
             alert.setContentText("!Se ha modificado con éxito el contacto!");
             alert.showAndWait();
             try {
-                App.setRoot("ContactosPage");
+                App.setRoot("MenuPersona");
             } catch (IOException ex) {
                 System.out.println("Estamos dentro del cambio de escena");
             }

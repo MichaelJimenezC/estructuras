@@ -58,7 +58,7 @@
                   </VBox>
                         <Button fx:id="btnFoto" mnemonicParsing="false" onAction="#handleBtnFotoClick" style="-fx-background-color: ffff;">
                             <graphic>
-                                <ImageView fx:id="ImgFotoPersona" fitHeight="109.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
+                                <ImageView fx:id="ImgFotoEmpresa" fitHeight="109.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
                             </graphic>
                         </Button>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
@@ -96,7 +96,7 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="txtNombres" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                        <TextField fx:id="txtRazonSocial" prefHeight="25.0" prefWidth="354.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                     </children>
                     <padding>
                         <Insets left="25.0" right="75.0" top="5.0" />
@@ -140,8 +140,8 @@
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboPrefijos2" onShowing="#handleComboBoxPersona" prefHeight="27.0" prefWidth="156.0" />
-                                                <TextField fx:id="txtTelefono" prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                                <ComboBox fx:id="comboPrefijosEmpresa" onShowing="#handleComboBoxPersona" prefHeight="27.0" prefWidth="156.0" />
+                                                <TextField fx:id="txtTelefonoEmpresa" prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
                                     </children>
@@ -180,7 +180,7 @@
                             <children>
                                 <VBox fx:id="cajaEmails" prefHeight="28.0" prefWidth="311.0" spacing="10.0">
                                     <children>
-                                        <TextField prefHeight="27.0" prefWidth="305.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                        <TextField fx:id="txtEmailsEmpresa" prefHeight="27.0" prefWidth="305.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                     </children>
                                 </VBox>
                                 <VBox prefHeight="28.0" prefWidth="17.0" spacing="20.0">
@@ -219,8 +219,8 @@
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboBoxRedes" onShowing="#handleComboBoxSocialMedia" prefHeight="27.0" prefWidth="156.0" />
-                                                <TextField prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                                <ComboBox fx:id="comboBoxRedesEmpresa" onShowing="#handleComboBoxSocialMedia" prefHeight="27.0" prefWidth="156.0" />
+                                                <TextField fx:id="txtRedesEmpresa" prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
                                     </children>
@@ -261,8 +261,8 @@
                                     <children>
                                         <HBox prefHeight="27.0" prefWidth="332.0" spacing="8.0">
                                             <children>
-                                                <ComboBox fx:id="comboDirecciones" onShowing="#handleComboBoxDirections" prefHeight="27.0" prefWidth="156.0" />
-                                                <TextField prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
+                                                <ComboBox fx:id="comboDireccionesEmpresa" onShowing="#handleComboBoxDirections" prefHeight="27.0" prefWidth="156.0" />
+                                                <TextField fx:id="txtDirecciones" prefHeight="27.0" prefWidth="153.0" style="-fx-border-color: #7F65FF; -fx-border-radius: 6;" />
                                             </children>
                                         </HBox>
                                     </children>
